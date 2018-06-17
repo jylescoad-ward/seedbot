@@ -6,10 +6,6 @@ console.log(ffmpeg.path, ffmpeg.version);
 const client = new Discord.Client();
 const config = require("./config.json");
 
-
-
-
-
 //CHANGELOG
 /////////////////
 //16.06.2018 VERISON 0.1 [PUBLIC RELEASE]
@@ -23,22 +19,16 @@ const config = require("./config.json");
 //  bot.jyles.pw
 /////////////////
 
-
-
-
 client.on("message", async message => {
   if(message.author.bot) return;
   if(message.content.indexOf(config.prefix) !== 0) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
   
-
-
-
-  //HELP SCRIPTS________________________________________________________________________
+  //HELP SCRIPTS
+  
   if (command === "help") {
     message.channel.send("***SeedBot Command Directory***\nPrefix: ***s!***\n*Usage: s!help.[command group]*\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n•Moderation Commands: **s!help.mod**\n•Music Commands: **s!help.music**\n•Other Commands: **s!help.other**\n");
-
   }
   if (command === "help.mod") {
 
@@ -51,8 +41,8 @@ client.on("message", async message => {
     message.channel.send("***SeedBot Music Commands***\nPrefix: ***s?***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n•*Play* // Command Usage: **s?play**[song name or youtube URL]\nPlay a song\n\n•*Skip* // **s?skip**\nSkip a song, its sort of self explanitory\n\n•*Leave* // **s?leave**\nDisconnects the bot from the voice channel\n\n•*Queue* // **s?queue**\nShows what songs are currentley queued.\n\n•*Volume* // Command Usage: **s?vol** [volume count 0-100]\nChange th volume of the music (server-wide)\n");
   }
 
-
-  //OTHER COMMANDS_________________________________________________________________________
+  //OTHER COMMANDS
+  
   if (command === "ping") {
     const m = await message.channel.send("Ping?");
     m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
@@ -64,11 +54,8 @@ client.on("message", async message => {
     message.reply("Here is my creators discord!\n http://gg.jyles.pw");
   }
 
-
-
-
-
-  //Moderation commands ___________________________________________________________________________________
+  //Moderation commands
+  
   if(command === "kick") {
     if(!message.member.roles.some(r=>["seedadmin", "seedmod"].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
@@ -107,17 +94,14 @@ client.on("message", async message => {
       .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
   }
 
-
-
-
-
-
-  //INIT COMMANDS __________________________________________________
+  //INIT COMMANDS
+  
   if (command === "setup") {
     message.reply("To Setup SeedBot You need to Create ***Two Roles***\n One Role with the name of ``SeedModerator``\n and the other role with the name of ``SeedAdmin``\n And You should be set to use the Moderation Commands!");
   }
 
-  //SERVER SIDE COMMANDS___________________________________________________________
+  //SERVER SIDE COMMANDS
+  
   if (command === 'ad-servers') {
     console.log("Number of Available Servers: " + client.guilds.size);
     var list = client.guilds.array().sort();
@@ -129,34 +113,9 @@ client.on("message", async message => {
     console.log("Available Channels: " + list);
   }
 
-
-
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Initialise bot
 client.on("ready", () => {
   console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
   client.user.setActivity(`s!help // bot.jyles.pw // Serving ${client.guilds.size} servers`);
