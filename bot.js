@@ -1,27 +1,25 @@
 const Discord = require("discord.js");
 const Music = require('discord.js-musicbot-addon');
-const ytdl = require('ytdl-core');
-const ffmpeg = require('@ffmpeg-installer/ffmpeg');
-console.log(ffmpeg.path, ffmpeg.version);
+console.log('copyright 2018, jyles.pw\n\n\n\n');
 const client = new Discord.Client();
 const config = require("./config.json");
 
 
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////
 //CHANGELOG
-/////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 //16.06.2018 VERISON 0.1 [PUBLIC RELEASE]
 //+Mod Commands
 //~Developing Music
 //[TBA]DMOJ Plugin (Suguested by @CheezBiscut#9461)
-/////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 //  JOIN MY DISCORD
 //  gg.jyles.pw
 //  @Seed#0001
 //  bot.jyles.pw
-/////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -35,7 +33,7 @@ client.on("message", async message => {
 
 
 
-  //HELP SCRIPTS________________________________________________________________________
+  //HELP SCRIPTS_____________________________________________________________
   if (command === "help") {
     message.channel.send("***SeedBot Command Directory***\nPrefix: ***s!***\n*Usage: s!help.[command group]*\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n•Moderation Commands: **s!help.mod**\n•Music Commands: **s!help.music**\n•Other Commands: **s!help.other**\n");
 
@@ -52,7 +50,7 @@ client.on("message", async message => {
   }
 
 
-  //OTHER COMMANDS_________________________________________________________________________
+  //OTHER COMMANDS______________________________________________________________
   if (command === "ping") {
     const m = await message.channel.send("Ping?");
     m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
@@ -68,7 +66,7 @@ client.on("message", async message => {
 
 
 
-  //Moderation commands ___________________________________________________________________________________
+  //Moderation commands ___________________________________________________________________________
   if(command === "kick") {
     if(!message.member.roles.some(r=>["seedadmin", "seedmod"].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
