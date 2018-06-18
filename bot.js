@@ -36,17 +36,20 @@ client.on("message", async message => {
   //HELP SCRIPTS_____________________________________________________________
   if (command === "help") {
     message.channel.send("***SeedBot Command Directory***\nPrefix: ***s!***\n*Usage: s!help.[command group]*\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n•Moderation Commands: **s!help.mod**\n•Music Commands: **s!help.music**\n•Other Commands: **s!help.other**\n");
-
+    console.log('user executed s!help');
   }
   if (command === "help.mod") {
 
     message.channel.send("***SeedBot Moderation Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n•*Kick* // Command Usage: **s!kick **[user]** reason**\nKick a user\n\n•*Ban* // Command Usage: **s!ban** [user] **reason**\nDeportes a user from a server (permantley until pardoned from the server settings)\n\n•*Purge* // Command Usage: **s!purge**[ammount of messages]\nDelete Message with a command\n\n");
+    console.log('user executed s!help.mod');
   }
   if (command === "help.other") {
     message.channel.send("***SeedBot Other Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n•*Ping* // **s!ping**\n Tests Latency between the bot and the Discord API\n\n•*Setup* // **s!setup**\nGives you instructions on how to setup SeedBot\n\n•*Discord* // s!discord \nGives the end-user the link to the creators discord server\n\n•*Invite* // s!invite \nGives you the invite link for the discord bot\n\n");
+    console.log('user executed s!help.other');
   }
   if (command === "help.music") {
     message.channel.send("***SeedBot Music Commands***\nPrefix: ***s?***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n•*Play* // Command Usage: **s?play**[song name or youtube URL]\nPlay a song\n\n•*Skip* // **s?skip**\nSkip a song, its sort of self explanitory\n\n•*Leave* // **s?leave**\nDisconnects the bot from the voice channel\n\n•*Queue* // **s?queue**\nShows what songs are currentley queued.\n\n•*Volume* // Command Usage: **s?vol** [volume count 0-100]\nChange th volume of the music (server-wide)\n");
+    console.log('user executed s!help.music');
   }
 
 
@@ -54,12 +57,15 @@ client.on("message", async message => {
   if (command === "ping") {
     const m = await message.channel.send("Ping?");
     m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
+    console.log('user executed s!ping');
   }
   if (command === "invite") {
     message.reply("Here is the Invite link for SeedBot\n https://goo.gl/pA7oFj");
+    console.log('user executed s!invite');
   }
   if (command === "discord") {
     message.reply("Here is my creators discord!\n http://gg.jyles.pw");
+    console.log('user executed s!discord');
   }
 
 
@@ -79,6 +85,7 @@ client.on("message", async message => {
     await member.kick(reason)
       .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
     message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`);
+    console.log('user executed s!kick');
   }
 
   if(command === "ban") {
@@ -94,6 +101,7 @@ client.on("message", async message => {
     await member.ban(reason)
       .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
     message.reply(`${member.user.tag} has been banned by ${message.author.tag} because: ${reason}`);
+    console.log('user executed s!ban');
   }
 
   if(command === "purge") {
@@ -103,6 +111,7 @@ client.on("message", async message => {
     const fetched = await message.channel.fetchMessages({limit: deleteCount});
     message.channel.bulkDelete(fetched)
       .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
+    console.log('user executed s!purge');
   }
 
 
@@ -113,6 +122,7 @@ client.on("message", async message => {
   //INIT COMMANDS __________________________________________________
   if (command === "setup") {
     message.reply("To Setup SeedBot You need to Create ***Two Roles***\n One Role with the name of ``SeedModerator``\n and the other role with the name of ``SeedAdmin``\n And You should be set to use the Moderation Commands!");
+    console.log('user executed s!setup');
   }
 
   //SERVER SIDE COMMANDS___________________________________________________________
