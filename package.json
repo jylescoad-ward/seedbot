@@ -1,0 +1,8 @@
+{
+  "name": "SeedBot",
+  "version": "0.0.3",
+  "description": "A Bot by @Seed#0001 for Discord",
+  "main": "bot.js",
+  "author": "github.com/jylescoad-ward [jyles.pw]",
+  "license": "MIT License [https://opensource.org/licenses/MIT]"
+}

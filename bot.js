@@ -3,6 +3,7 @@ const Music = require('discord.js-musicbot-addon');
 console.log('copyright 2018, jyles.pw\n\n\n\n');
 const client = new Discord.Client();
 const config = require("./config.json");
+require('./package.json');
 
 
 
@@ -135,6 +136,9 @@ client.on("message", async message => {
     console.log("Number of Available Channels: " + client.channels.size);
     var list = client.channels.array().sort();
     console.log("Available Channels: " + list);
+  }
+  if (command === 'ad-clear'){
+    console.clear();  
   }
 
 
