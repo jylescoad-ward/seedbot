@@ -1,2 +1,0 @@
-clear
-node bot.js
