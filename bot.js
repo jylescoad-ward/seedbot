@@ -3,7 +3,11 @@ const Music = require('discord.js-musicbot-addon');
 console.log('copyright 2018, jyles.pw\n\n\n\n');
 const client = new Discord.Client();
 const config = require("./config.json");
-require('./package.json');
+var readline = require('readline');
+var rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
 
 
@@ -12,9 +16,10 @@ require('./package.json');
 //CHANGELOG
 /////////////////////////////////////////////////////////////////////////////////////
 //16.06.2018 VERISON 0.1 [PUBLIC RELEASE]
-//+Mod Commands
-//~Developing Music
-//[TBA]DMOJ Plugin (Suguested by @CheezBiscut#9461)
+// Simple Moderation Commands                         [Added]                         14.06.2018
+// Developing Music                                   [Awaiting on Addon Developer]   16.06.2018
+// DMOJ Plugin (Suguested by @CheezBiscut#9461)       [Waiting for Bot Creator]     
+// Custom Rich Presence Commands (Owner Only)         [Added // sort of buggy]        20.06.2018
 /////////////////////////////////////////////////////////////////////////////////////
 //  JOIN MY DISCORD
 //  gg.jyles.pw
@@ -22,6 +27,8 @@ require('./package.json');
 //  bot.jyles.pw
 /////////////////////////////////////////////////////////////////////////////////////
 
+// LATEST ADDITIONS
+// Added Custom Rich Presence Messages                Added at 20.6.2018
 
 
 
@@ -74,6 +81,8 @@ client.on("message", async message => {
 
 
   //Moderation commands ___________________________________________________________________________
+  
+  //Kick Command
   if(command === "kick") {
     if(!message.member.roles.some(r=>["seedadmin", "seedmod"].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
@@ -89,6 +98,7 @@ client.on("message", async message => {
     console.log('user executed s!kick');
   }
 
+  //Ban Command
   if(command === "ban") {
     if(!message.member.roles.some(r=>["Administrator"].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
@@ -105,6 +115,7 @@ client.on("message", async message => {
     console.log('user executed s!ban');
   }
 
+  //Purge Command
   if(command === "purge") {
     const deleteCount = parseInt(args[0], 10);
     if(!deleteCount || deleteCount < 2 || deleteCount > 100)
@@ -126,19 +137,44 @@ client.on("message", async message => {
     console.log('user executed s!setup');
   }
 
-  //SERVER SIDE COMMANDS___________________________________________________________
-  if (command === 'ad-servers') {
-    console.log("Number of Available Servers: " + client.guilds.size);
-    var list = client.guilds.array().sort();
-    console.log("Available Servers: " + list);
+
+  //OWNER ONLY COMMANDS______________________________________________
+
+  //Show Number of servers and List of Servers
+  if (command === 'svrs') {
+    if (message.author.id === '230485481773596672'){
+      message.author.send("Number of Available Servers: " + client.guilds.size);
+      var list = client.guilds.array().sort();
+      message.author.send("Available Servers: " + list);
+    }
+    else{
+      message.reply('no u');
+    }
   }
-  if (command === 'ad-channels') {
-    console.log("Number of Available Channels: " + client.channels.size);
-    var list = client.channels.array().sort();
-    console.log("Available Channels: " + list);
+
+  //Shows Number of accesable channels
+  if (command === 'chnls') {
+    if (message.author.id === '230485481773596672'){
+      message.author.send("Number of Available Channels: " + client.channels.size);
+      var list = client.channels.array().sort();
+      message.author.send("Available Channels: " + list);
+    }
+    else{
+      message.reply('no u');
+    }
   }
-  if (command === 'ad-clear'){
-    console.clear();  
+
+  //Changes the Rich Presence
+  if (command === 'rp') {
+    var game = args.slice(0).join(" ");;
+    if (message.author.id === '230485481773596672'){
+      client.user.setActivity(game + ' // bot.jyles.pw // Serving ${client.guilds.size} servers');
+      console.log('game set to: ' + game);
+      message.author.send('game set to: ' + game)
+    }
+    else{
+      message.reply('no u');
+    }
   }
 
 
@@ -171,16 +207,6 @@ client.on("message", async message => {
 
 client.on("ready", () => {
   console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
-  client.user.setActivity(`s!help // bot.jyles.pw // Serving ${client.guilds.size} servers`);
-});
-
-client.on("guildCreate", guild => {
-  console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
-  client.user.setActivity(`s!help // bot.jyles.pw // Serving ${client.guilds.size} servers`);
-});
-
-client.on("guildDelete", guild => {
-  console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
   client.user.setActivity(`s!help // bot.jyles.pw // Serving ${client.guilds.size} servers`);
 });
 Music.start(client, {
