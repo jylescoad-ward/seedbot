@@ -7,23 +7,26 @@ const config = require("./config.json");
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////
-//CHANGELOG
-/////////////////////////////////////////////////////////////////////////////////////
-//16.06.2018 VERISON 0.1 [PUBLIC RELEASE]
-// Simple Moderation Commands                         [Added]                         14.06.2018
-// Developing Music                                   [Awaiting on Addon Developer]   16.06.2018
-// DMOJ Plugin (Suguested by @CheezBiscut#9461)       [Waiting for Bot Creator]     
-// Custom Rich Presence Commands (Owner Only)         [Added // sort of buggy]        20.06.2018
-/////////////////////////////////////////////////////////////////////////////////////
-//  JOIN MY DISCORD
-//  gg.jyles.pw
-//  @Seed#0001
-//  bot.jyles.pw
-/////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------------------------------------------------------------------------
+//CHANGELOG      //       INFO                                                                       |
+//----------------------------------------------------------------------------------------------------
+//        21.06.2018 VERISON 0.2 [PUBLIC RELEASE]                                                    |
+//        BUILD 18                                                                                   |
+//----------------------------------------------------------------------------------------------------
+//                                                                                                   |
+// Simple Moderation Commands                         [Added]                         14.06.2018     |
+// Developing Music                                   [Awaiting on Addon Developer]   16.06.2018     |
+// DMOJ Plugin (Suguested by @CheezBiscut#9461)       [Waiting for Bot Creator]                      |
+// Custom Rich Presence Commands (Owner Only)         [Added // sort of buggy]        20.06.2018     |
+//----------------------------------------------------------------------------------------------------
+//  JOIN MY discord                                                                                  |
+//  gg.jyles.pw                                                                                      |
+//  @Seed#0001                                                                                       |
+//  bot.jyles.pw                                                                                     |
+//----------------------------------------------------------------------------------------------------
 
 // LATEST ADDITIONS
-// Fixed Rich Presence Reset Command                  Added at 21.6.2018
+// Fixed Rich Presence Command                        Added at 21.6.2018
 
 // LATEST REMOVALS
 // Removed random shit that is decrepecated.          Removed at 21.6.2018
@@ -164,22 +167,27 @@ client.on("message", async message => {
 
   //Changes the Rich Presence
   if (command === 'rp') {
-    var game = args.slice(0).join(" ");;
-    if (message.author.id === '230485481773596672'){
-        if(game === 'reset'){
-            client.user.setActivity(' s!help // bot.jyles.pw // Serving ${client.guilds.size} servers');
-            console.log('game activity has been reset');
-            message.author.send('game activity has been reset')
-        }
-        else{
-            client.user.setActivity(game + ' // bot.jyles.pw // Serving ${client.guilds.size} servers');
-            console.log('game set to: ' + game);
-            message.author.send('game set to: ' + game)
-        }
+    var game = args.slice(0).join(" ");
 
+// only @Seed#0001, @CheezBiscuit and @SurprisedSamoyd can access this command
+
+    //Checking if the sender is a certian user
+    if (message.author.id === '230485481773596672' || message.author.id === '317250979311386627' || message.author.id === '195406632224555009') {
+
+      //reset command
+      if (game === 'reset') {
+        client.user.setActivity('s!help // bot.jyles.pw // Serving ' + client.guilds.size + ' servers');
+        console.log('game activity has been reset');
+        message.author.send('game activity has been reset');
+      }
+      else{
+        client.user.setActivity(game + ' // bot.jyles.pw // Serving ${client.guilds.size} servers');
+        console.log('game set to: ' + game);
+        message.author.send('game set to: ' + game);
+      }
     }
     else{
-      message.reply('no u');
+      message.reply('you do not have permissions to use this command,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
     }
   }
 
