@@ -23,7 +23,7 @@ const config = require("./config.json");
 /////////////////////////////////////////////////////////////////////////////////////
 
 // LATEST ADDITIONS
-// Added Custom Rich Presence Messages                Added at 20.6.2018
+// Fixed Rich Presence Reset Command                  Added at 21.6.2018
 
 // LATEST REMOVALS
 // Removed random shit that is decrepecated.          Removed at 21.6.2018
@@ -166,9 +166,17 @@ client.on("message", async message => {
   if (command === 'rp') {
     var game = args.slice(0).join(" ");;
     if (message.author.id === '230485481773596672'){
-      client.user.setActivity(game + ' // bot.jyles.pw // Serving ${client.guilds.size} servers');
-      console.log('game set to: ' + game);
-      message.author.send('game set to: ' + game)
+        if(game === 'reset'){
+            client.user.setActivity(' s!help // bot.jyles.pw // Serving ${client.guilds.size} servers');
+            console.log('game activity has been reset');
+            message.author.send('game activity has been reset')
+        }
+        else{
+            client.user.setActivity(game + ' // bot.jyles.pw // Serving ${client.guilds.size} servers');
+            console.log('game set to: ' + game);
+            message.author.send('game set to: ' + game)
+        }
+
     }
     else{
       message.reply('no u');
