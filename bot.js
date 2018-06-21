@@ -3,11 +3,6 @@ const Music = require('discord.js-musicbot-addon');
 console.log('copyright 2018, jyles.pw\n\n\n\n');
 const client = new Discord.Client();
 const config = require("./config.json");
-var readline = require('readline');
-var rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
 
 
 
@@ -29,6 +24,9 @@ var rl = readline.createInterface({
 
 // LATEST ADDITIONS
 // Added Custom Rich Presence Messages                Added at 20.6.2018
+
+// LATEST REMOVALS
+// Removed random shit that is decrepecated.          Removed at 21.6.2018
 
 
 
