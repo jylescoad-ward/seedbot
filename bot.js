@@ -4,21 +4,9 @@ console.log('copyright 2018, jyles.pw\n');
 console.log('VERISON 0.2.1\nBUILD 19\n\n\n\n')
 const client = new Discord.Client();
 const config = require("./config.json");
-const {Signale} = require('signale');
-const options = {
-  disabled: false,
-  interactive: false,
-  stream: process.stdout,
-  types: {
-    command: {
-      color: 'green',
-      label: 'Command'
-    },
-  }
-};
-const signal = new Signale(options);
 
-signal.command("Testing to see if this works...")
+
+
 
 //----------------------------------------------------------------------------------------------------
 //CHANGELOG      //       INFO                                                                       |
@@ -39,11 +27,10 @@ signal.command("Testing to see if this works...")
 //----------------------------------------------------------------------------------------------------
 
 // LATEST ADDITIONS
-// Added Signale compatability                        Added on 24.6.2018
-// Fixed Rich Presence Command                        Added on 21.6.2018
+// Fixed Rich Presence Command                        Added at 21.6.2018
 
 // LATEST REMOVALS
-// Removed random shit that is decrepecated.          Removed on 21.6.2018
+// Removed random shit that is decrepecated.          Removed at 21.6.2018
 
 
 
@@ -52,7 +39,7 @@ client.on("message", async message => {
   if(message.content.indexOf(config.prefix) !== 0) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
-
+  
 
 
 
@@ -96,7 +83,7 @@ client.on("message", async message => {
 
 
   //Moderation commands ___________________________________________________________________________
-
+  
   //Kick Command
   if(command === "kick") {
     if(!message.member.roles.some(r=>["seedadmin", "seedmod"].includes(r.name)) )
@@ -104,7 +91,7 @@ client.on("message", async message => {
     let member = message.mentions.members.first() || message.guild.members.get(args[0]);
     if(!member)
       return message.reply("Please mention a valid member of this server");
-    if(!member.kickable)
+    if(!member.kickable) 
       return message.reply("I cannot kick this user! Do they have a higher role? Do I have kick permissions?");
     if(!reason) reason = "No reason provided";
     await member.kick(reason)
@@ -120,7 +107,7 @@ client.on("message", async message => {
     let member = message.mentions.members.first();
     if(!member)
       return message.reply("Please mention a valid member of this server");
-    if(!member.bannable)
+    if(!member.bannable) 
       return message.reply("I cannot ban this user! Do they have a higher role? Do I have ban permissions?");
     let reason = args.slice(1).join(' ');
     if(!reason) reason = "No reason provided";
@@ -234,7 +221,7 @@ client.on("message", async message => {
 
 
 client.on("ready", () => {
-  console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
+  console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
   client.user.setActivity(`s!help // bot.jyles.pw // Serving ${client.guilds.size} servers`);
 });
 Music.start(client, {
