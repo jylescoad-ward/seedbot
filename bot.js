@@ -19,6 +19,10 @@ const options = {
       color: 'red'
       label: 'ERROR'
     }
+    discord: {
+      color: 'purple'
+      label: 'DISCORD COMMAND'
+    }
   }
 };
 const signal = new Signale(options);
@@ -53,6 +57,7 @@ signal.info("Running SeedBot version 0.2.3, build 22")
 //                                                                                                   |
 //                                                                                                   |
 // LATEST ADDITIONS                                                                                  |
+// More Logging Stuff (30%)                           Added on 25.6.2018                             |
 // Created DEV branch on Github                       Added on 25.6.2018                             |
 // Added Signale compatability                        Added on 24.6.2018                             |
 // Fixed Rich Presence Command                        Added on 21.6.2018                             |
