@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const Music = require('discord.js-musicbot-addon');
 console.log('copyright 2018, jyles.pw\n');
-console.log('VERISON 0.2.3\nBUILD 21\n\n\n\n')
+console.log('VERISON 0.2.3\nBUILD 22\n\n\n\n')
 const client = new Discord.Client();
 const config = require("./config.json");
 const {Signale} = require('signale');
@@ -23,8 +23,8 @@ signal.command("Testing to see if this works...")
 //----------------------------------------------------------------------------------------------------
 //CHANGELOG      //       INFO                                                                       |
 //----------------------------------------------------------------------------------------------------
-//        21.06.2018 VERISON 0.2.3 [PUBLIC RELEASE]                                                  |
-//        BUILD 21                                                                                   |
+//        21.06.2018 VERISON 0.2.3 [DEV RELEASE]                                                     |
+//        BUILD 22                                                                                   |
 //----------------------------------------------------------------------------------------------------
 //                                                                                                   |
 // Simple Moderation Commands                         [Added]                         14.06.2018     |
