@@ -14,6 +14,10 @@ const options = {
       color: 'green',
       label: 'Command'
     },
+    startup: {
+      color: 'grey',
+      label: 'INFO'
+    }
   }
 };
 const signal = new Signale(options);
