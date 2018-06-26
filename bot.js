@@ -13,19 +13,21 @@ const options = {
     },
     info: {
       color: 'grey',
-      label: 'INFO'
+      label: 'INFO',
     },
     error: {
-      color: 'red'
-      label: 'ERROR'
-    }
-    discord: {
-      color: 'purple'
-      label: 'DISCORD COMMAND'
+      color: 'red',
+      label: 'ERROR',
+    },
+    owner: {
+      color: 'purple',
+      label: 'OWNER COMMAND',
     }
   }
 };
 const signal = new Signale(options);
+var build = '23';
+var ver = '0.2.4';
 
 signal.info("Starting the SeedBot...")
 signal.info("Copyright 2018, jyles.pw")
@@ -34,8 +36,8 @@ signal.info("Running SeedBot version 0.2.3, build 22")
 //----------------------------------------------------------------------------------------------------
 //CHANGELOG      //       INFO                                                                       |
 //----------------------------------------------------------------------------------------------------
-//        21.06.2018 VERISON 0.2.3 [DEV RELEASE]                                                     |
-//        BUILD 22                                                                                   |
+//        21.06.2018 VERISON 0.2.4 [DEV RELEASE]                                                     |
+//        BUILD 23                                                                                   |
 //----------------------------------------------------------------------------------------------------
 //                                                                                                   |
 // Simple Moderation Commands                         [Added]                         14.06.2018     |
@@ -57,6 +59,7 @@ signal.info("Running SeedBot version 0.2.3, build 22")
 //                                                                                                   |
 //                                                                                                   |
 // LATEST ADDITIONS                                                                                  |
+// More Logging Stuff (50%)                           Added on 26.6.2018                             |
 // More Logging Stuff (30%)                           Added on 25.6.2018                             |
 // Created DEV branch on Github                       Added on 25.6.2018                             |
 // Added Signale compatability                        Added on 24.6.2018                             |
@@ -188,7 +191,7 @@ client.on("message", async message => {
       message.author.send("Number of Available Servers: " + client.guilds.size);
       var list = client.guilds.array().sort();
       message.author.send("Available Servers: " + list);
-      signal.command("Seed executed s!srvrs");
+      signal.owner("An Owner executed s!srvrs");
     }
     else{
       message.reply('Unable to perform action - you do not have the appropriate role');
@@ -202,7 +205,7 @@ client.on("message", async message => {
       message.author.send("Number of Available Channels: " + client.channels.size);
       var list = client.channels.array().sort();
       message.author.send("Available Channels: " + list);
-      signal.command("Seed executed s!chnls");
+      signal.owner("An Owner executed s!chnls");
     }
     else{
       message.reply('Unable to perform action - you do not have the appropriate role');
@@ -223,12 +226,12 @@ client.on("message", async message => {
       if (game === 'reset') {
         client.user.setActivity('s!help // bot.jyles.pw // Serving ' + client.guilds.size + ' servers');
         message.author.send('Game activity has been reset!');
-        signal.command("A user executed s!rp reset");
+        signal.owner("A Owner executed s!rp reset");
       }
       else{
         client.user.setActivity(game + ' // bot.jyles.pw // Serving ${client.guilds.size} servers');
         message.author.send('game set to: ' + game);
-        signal.command("A user executed s!rp " + game + ", game set to " + game);
+        signal.owner("A Owner executed s!rp " + game + ", game set to " + game);
       }
     }
     else{
