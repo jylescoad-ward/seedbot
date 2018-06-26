@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config.json");
+const Music = require('discord.js-musicbot-addon');
 const {Signale} = require('signale');
 const options = {
   disabled: false,
@@ -26,32 +27,31 @@ const options = {
   }
 };
 const signal = new Signale(options);
-var build = '23';
+var build = '24';
 var ver = '0.2.4';
 
 signal.info("Starting the SeedBot...")
 signal.info("Copyright 2018, jyles.pw")
-signal.info("Running SeedBot version 0.2.3, build 22")
+signal.info("Running SeedBot version " + ver +" build " + build)
 
 //----------------------------------------------------------------------------------------------------
 //CHANGELOG      //       INFO                                                                       |
 //----------------------------------------------------------------------------------------------------
 //        21.06.2018 VERISON 0.2.4 [DEV RELEASE]                                                     |
-//        BUILD 23                                                                                   |
+//        BUILD 24                                                                                   |
 //----------------------------------------------------------------------------------------------------
 //                                                                                                   |
-// Simple Moderation Commands                         [Added]                         14.06.2018     |
-// Developing Music                                   [Awaiting on Addon Developer]   16.06.2018     |
+// Music                                              [Awaiting on Addon Developer]       16.06.2018 |
 // DMOJ Plugin (Suguested by @CheezBiscut#9461)       [Waiting for Bot Creator]                      |
-// Custom Rich Presence Commands (Owner Only)         [Added // sort of buggy]        20.06.2018     |
+// Custom Rich Presence Commands (Owner Only)         [Added // n&#069;^2d more eyedeers] 20.06.2018 |
 //----------------------------------------------------------------------------------------------------
 //  JOIN MY discord                                                                                  |
 //  gg.jyles.pw                                                                                      |
-//  @Seed#0001                                                                                       |
 //  bot.jyles.pw                                                                                     |
+//  @Seed#0001                                                                                       |
 //----------------------------------------------------------------------------------------------------
-//  COLLABORATORS                                                                                    |
-// ________________                                                                                  |
+//  COLLABORATORS                 |                                                                  |
+// ________________________________                                                                  |
 // @CheezBiscut#9461                                                                                 |
 // @Seed#0001                                                                                        |
 // @TheBitGoat#8832                                                                                  |
@@ -59,6 +59,7 @@ signal.info("Running SeedBot version 0.2.3, build 22")
 //                                                                                                   |
 //                                                                                                   |
 // LATEST ADDITIONS                                                                                  |
+// Fixed [ 'Music' is not defined ]                   Fixed on 26.6.2018                             |
 // More Logging Stuff (50%)                           Added on 26.6.2018                             |
 // More Logging Stuff (30%)                           Added on 25.6.2018                             |
 // Created DEV branch on Github                       Added on 25.6.2018                             |
@@ -66,6 +67,7 @@ signal.info("Running SeedBot version 0.2.3, build 22")
 // Fixed Rich Presence Command                        Added on 21.6.2018                             |
 //                                                                                                   |
 // LATEST REMOVALS                                                                                   |
+// Removed A User from Owner List                     Removed on 26.6.2018                           |
 // Buggy Stuff                                        Removed on 25.6.2018                           |
 // Removed random shit that is decrepecated.          Removed on 21.6.2018                           |
 //                                                                                                   |
@@ -217,10 +219,10 @@ client.on("message", async message => {
   if (command === 'rp') {
     var game = args.slice(0).join(" ");
 
-// only @Seed#0001, @CheezBiscuit and @SurprisedSamoyd can access this command
+// only @Seed#0001 and @CheezBiscuit can access this command
 
     //Checking if the sender is a certian user
-    if (message.author.id === '230485481773596672' || message.author.id === '317250979311386627' || message.author.id === '195406632224555009') {
+    if (message.author.id === '230485481773596672' || message.author.id === '317250979311386627') {
 
       //reset command
       if (game === 'reset') {
