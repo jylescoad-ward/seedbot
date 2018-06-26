@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const Music = require('discord.js-musicbot-addon');
 console.log('copyright 2018, jyles.pw\n');
-console.log('VERISON 0.2.1\nBUILD 19\n\n\n\n')
+console.log('VERISON 0.2.1\nBUILD 20\n\n\n\n')
 const client = new Discord.Client();
 const config = require("./config.json");
 
@@ -12,7 +12,7 @@ const config = require("./config.json");
 //CHANGELOG      //       INFO                                                                       |
 //----------------------------------------------------------------------------------------------------
 //        21.06.2018 VERISON 0.2.1 [PUBLIC RELEASE]                                                  |
-//        BUILD 19                                                                                   |
+//        BUILD 20                                                                                   |
 //----------------------------------------------------------------------------------------------------
 //                                                                                                   |
 // Simple Moderation Commands                         [Added]                         14.06.2018     |
@@ -26,10 +26,11 @@ const config = require("./config.json");
 //  bot.jyles.pw                                                                                     |
 //----------------------------------------------------------------------------------------------------
 
-// LATEST ADDITIONS
+// ---LATEST ADDITIONS---
+// Credits                                            Added at 26.6.2018
 // Fixed Rich Presence Command                        Added at 21.6.2018
 
-// LATEST REMOVALS
+// ---LATEST REMOVALS---
 // Removed random shit that is decrepecated.          Removed at 21.6.2018
 
 
@@ -206,7 +207,13 @@ client.on("message", async message => {
 
 
 
-
+// ---Credits---
+// Thanks to @SurprisedSamoyd for helping me through rough times
+// Thanks to @GADDOjnr for being there when nobody else was there
+// Thanks to @println_hi_#3869 for the coding support @ school
+// Thanks to Mr Anderson for teaching me and giving me the resources to learn javascript
+// Thanks to Christ Church Grammar School for my education
+// and Finally Thank you 
 
 
 
