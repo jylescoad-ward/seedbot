@@ -194,6 +194,18 @@ client.on("message", async message => {
     }
 
 
+    //StrafeCode.com Server Commands (Staff)
+    if (command === 'staff request'){
+        if(message.channel.id === '489269312645758976'){
+            var userrequest = args.slice(0).join(" ");
+            client.users.get("230485481773596672").send("**User: ${user} Sent a Request**\n*Request*\n" + userrequest);
+            
+            message.reply('Request Sent to CEO');
+            msg.delete('2');
+        }
+    }
+
+
 
 
 
