@@ -1,8 +1,17 @@
 {
-  "name": "SeedBot",
-  "version": "0.2.7",
+  "name": "seedbot",
+  "version": "0.2.8",
   "description": "A Bot by @Seed#0001 for Discord",
   "main": "bot.js",
   "author": "github.com/jylescoad-ward [jyles.pw && strafecode.com]",
-  "license": "MIT License [https://opensource.org/licenses/MIT]"
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "discord.js-musicbot-addon": "^12.0.6",
+    "signale": "^1.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }

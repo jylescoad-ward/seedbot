@@ -27,6 +27,9 @@ const options = {
         }
     }
 };
+setTimeout(function(){ 
+    doSomething(); 
+}, 3000);
 const signal = new Signale(options);
 var build = '291';
 var ver = '0.2.6';
@@ -195,13 +198,19 @@ client.on("message", async message => {
 
 
     //StrafeCode.com Server Commands (Staff)
-    if (command === 'staff request'){
+    if (command === 'request'){
+        var userrequest = args.slice(0).join(" ");
+        console.log(userrequest);
         if(message.channel.id === '489269312645758976'){
-            var userrequest = args.slice(0).join(" ");
-            client.users.get("230485481773596672").send("**User: ${user} Sent a Request**\n*Request*\n" + userrequest);
+            client.users.get("230485481773596672").send(":grey_exclamation: **User: " + message.author.toString() + " Sent a Request**:grey_exclamation: \n:anger: *Request Details* :anger:\n" + userrequest);
             
             message.reply('Request Sent to CEO');
-            msg.delete('2');
+            setTimeout();
+            message.channel.send('?purge 2');
+            client.channel.get('489303673126780948').sent('***New Request!***\n**Requested by: ' + message.author.toString() + '\n**Request Details: ' + userrequest);
+        }
+        else{
+            message.reply('Incorrect Channel, Piss off.')
         }
     }
 
@@ -259,12 +268,12 @@ client.on("message", async message => {
             //reset command
             if (game === 'reset') {
                 client.user.setActivity('s!help // bot.jyles.pw // Serving ' + client.guilds.size + ' servers');
-                message.author.send('Game activity has been reset!');
+                message.author.send('Rich Presence Has Been Reset!');
                 signal.owner("A Owner executed s!rp reset");
             }
             else {
                 client.user.setActivity(game + ' // bot.jyles.pw // Serving ${client.guilds.size} servers');
-                message.author.send('game set to: ' + game);
+                message.author.send('Rich Presence Status Updated To: ' + game);
                 signal.owner("A Owner executed s!rp " + game + ", game set to " + game);
             }
         }
