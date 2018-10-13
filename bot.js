@@ -1,3 +1,6 @@
+
+//Changelog Moved to changelog.txt
+
 const Discord = require("discord.js");
 const { RichEmbed } = require('discord.js')
 const client = new Discord.Client();
@@ -8,8 +11,16 @@ const config = require("./config.json");
 const problems = require('./DMOJ-Modules/problem.js')
 const contests = require('./DMOJ-Modules/contest.js')
 const users = require('./DMOJ-Modules/user.js')
+const Music = require('discord.js-musicbot-addon');
 
 const { Signale } = require('signale');
+
+//DMOJ MODULE
+const problems = require('./dmoj/problem.js')
+const contests = require('./dmoj/contest.js')
+const users = require('./dmoj/user.js')
+//END OF DMOJ MODULE
+
 const options = {
     disabled: false,
     interactive: false,
@@ -28,64 +39,19 @@ const options = {
             label: 'ERROR',
         },
         owner: {
-            color: 'purple',
-            label: 'OWNER COMMAND',
+            color: 'orange',
+            label: 'DEVELOPER COMMAND',
         }
     }
 };
-// setTimeout(function(){
-//     doSomething();
-// }, 3000);
+
 const signal = new Signale(options);
-var build = '291';
-var ver = '0.2.6';
+var build = '372';
+var ver = '0.3';
 
 signal.info("Starting the SeedBot...")
 signal.info("Copyright 2018, jyles.pw")
 signal.info("Running SeedBot version " + ver + " build " + build)
-
-//----------------------------------------------------------------------------------------------------
-//CHANGELOG      //       INFO                                                                       |
-//----------------------------------------------------------------------------------------------------
-//        28.07.2018 VERISON 0.2.6 [PUBLIC RELEASE]                                                  |
-//        BUILD 291                                                                                  |
-//----------------------------------------------------------------------------------------------------
-//                                                                                                   |
-// Music                                              [Awaiting on Addon Developer]       16.06.2018 |
-// Custom Rich Presence Commands (Owner Only)         [Added // n&#069;^2d more eyedeers] 20.06.2018 |
-// Fix Crash on changing rpc via discord vgui         [Reported // @CheezBiscut, can u fix?]27.7.18  |
-//----------------------------------------------------------------------------------------------------
-//  JOIN MY discord                                                                                  |
-//  gg.jyles.pw                                                                                      |
-//  bot.jyles.pw                                                                                     |
-//  @Seed#0001                                                                                       |
-//----------------------------------------------------------------------------------------------------
-//  COLLABORATORS                 |                                                                  |
-// ________________________________                                                                  |
-// @CheezBiscut#9461                                                                                 |
-// @Seed#0001                                                                                        |
-//----------------------------------------------------------------------------------------------------
-//                                                                                                   |
-//                                                                                                   |
-// LATEST ADDITIONS                                                                                  |
-// Changed s!rp --> s!rpc                             Fixed on 28.7.2018                             |
-// >>MODULAR HELP SYSTEM<<                            Added on 28.7.2018                             |
-// Added more simple Help COMMANDS                    Added on 27.6.2018                             |
-// Added DMOJ problem info compatability              Added on 26.6.2018                             |
-// Fixed [ 'Music' is not defined ]                   Fixed on 26.6.2018                             |
-// More Logging Stuff (50%)                           Added on 26.6.2018                             |
-// More Logging Stuff (30%)                           Added on 25.6.2018                             |
-// Created DEV branch on Github                       Added on 25.6.2018                             |
-// Added Signale compatability                        Added on 24.6.2018                             |
-// Fixed Rich Presence Command                        Added on 21.6.2018                             |
-//                                                                                                   |
-// LATEST REMOVALS                                                                                   |
-// Old confusing non-modular help system              Removed on 28.7.2018                           |
-// Removed A User from Owner List                     Removed on 26.6.2018                           |
-// Buggy Stuff                                        Removed on 25.6.2018                           |
-// Removed random shit that is decrepecated.          Removed on 21.6.2018                           |
-//                                                                                                   |
-//----------------------------------------------------------------------------------------------------
 
 client.on("message", async message => {
     if (message.author.bot) return;
@@ -179,30 +145,31 @@ client.on("message", async message => {
 
         //s!help
         if (helpcategory === '') {
-            message.channel.send("***SeedBot Command Directory***\nPrefix: ***s!***\n*Usage: s!help.[command group]*\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:diamond_shape_with_a_dot_inside: Moderation Commands: **s!help mod**\n:diamond_shape_with_a_dot_inside: Music Commands: **s!help music**\n:diamond_shape_with_a_dot_inside: Other Commands: **s!help other**\n");
+            message.channel.send("***SeedBot Command Directory***\nPrefix: ***s!***\n*Usage: s!help.[command group]*\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: Moderation Commands: **s!help mod**\n:radio_button: Music Commands: **s!help music**\n:radio_button: Other Commands: **s!help other**\n");
             signal.command("A user executed s!help");
         }
 
         //s!help mod
         else if (helpcategory === 'mod') {
-            message.channel.send("***SeedBot Moderation Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:diamond_shape_with_a_dot_inside: *Kick* // Command Usage: **s!kick **[user]** reason**\nKick a user\n\n:diamond_shape_with_a_dot_inside: *Ban* // Command Usage: **s!ban** [user] **reason**\nDeportes a user from a server (permantley until pardoned from the server settings)\n\n:diamond_shape_with_a_dot_inside: *Purge* // Command Usage: **s!purge**[ammount of messages]\nDelete Message with a command\n\n");
+            message.channel.send("***SeedBot Moderation Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Kick* // Command Usage: **s!kick **[user]** reason**\nKick a user\n\n:radio_button: *Ban* // Command Usage: **s!ban** [user] **reason**\nDeportes a user from a server (permantley until pardoned from the server settings)\n\n:radio_button: *Purge* // Command Usage: **s!purge**[ammount of messages]\nDelete Message with a command\n\n");
             signal.command("A user executed s!help mod");
         }
 
         //s!help other
         else if (helpcategory === 'other') {
-            message.channel.send("***SeedBot Other Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:diamond_shape_with_a_dot_inside: *Ping* // **s!ping**\n Tests Latency between the bot and the Discord API\n\n:diamond_shape_with_a_dot_inside: *Setup* // **s!setup**\nGives you instructions on how to setup SeedBot\n\n:diamond_shape_with_a_dot_inside: *Discord* // **s!discord** \nGives the end-user the link to the creators discord server\n\n:diamond_shape_with_a_dot_inside: *Invite* // **s!invite** \nGives you the invite link for the discord bot\n\n");
+            message.channel.send("***SeedBot Other Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Ping* // **s!ping**\n Tests Latency between the bot and the Discord API\n\n:radio_button: *Setup* // **s!setup**\nGives you instructions on how to setup SeedBot\n\n:radio_button: *Discord* // **s!discord** \nGives the end-user the link to the creators discord server\n\n:radio_button: *Invite* // **s!invite** \nGives you the invite link for the discord bot\n\n");
             signal.command("A user executed s!help other")
         }
 
         //s!help music
         else if (helpcategory === 'music') {
-            message.channel.send("***SeedBot Music Commands***\nPrefix: ***s?***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:diamond_shape_with_a_dot_inside: *Play* // Command Usage: **s?play**[song name or youtube URL]\nPlay a song\n\n:diamond_shape_with_a_dot_inside: *Skip* // **s?skip**\nSkip a song, its sort of self explanitory\n\n:diamond_shape_with_a_dot_inside: *Leave* // **s?leave**\nDisconnects the bot from the voice channel\n\n:diamond_shape_with_a_dot_inside: *Queue* // **s?queue**\nShows what songs are currentley queued.\n\n:diamond_shape_with_a_dot_inside: *Volume* // Command Usage: **s?vol** [volume count 0-100]\nChange th volume of the music (server-wide)\n");
+            message.channel.send("***Bot is broken and awaing fixing by the developer***\n\n~~***SeedBot Music Commands***\nPrefix: ***s?***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Play* // Command Usage: **s?play**[song name or youtube URL]\nPlay a song\n\n:radio_button: *Skip* // **s?skip**\nSkip a song, its sort of self explanitory\n\n:radio_button: *Leave* // **s?leave**\nDisconnects the bot from the voice channel\n\n:radio_button: *Queue* // **s?queue**\nShows what songs are currentley queued.\n\n:radio_button: *Volume* // Command Usage: **s?vol** [volume count 0-100]\nChange th volume of the music (server-wide)\n~~");
             signal.command("A user executed s!help music");
         }
 
         //s!help dmoj
         else if (helpcategory === 'dmoj') {
+            message.channel.send("***SeedBot DMOJ Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Problem* // Command Usage: s!dmoj problem info <Problem Code>\n (pass the -l flag for language list)\n:radio_button: *Contests* // Command Usage: s!dmoj contest <Content Code>\n (pass the -l flag for top 10 leaderboard)\n:radio_button: *Users* // Command usage: s!dmoj user <Username>\n (pass the -l flag for a list of solved problems)");
             signal.command("A user executed s!help dmoj");
         }
     }
@@ -230,7 +197,7 @@ client.on("message", async message => {
 
     //Kick Command
     if (command === "kick") {
-        if (!message.member.roles.some(r => ["seedadmin", "seedmod"].includes(r.name)))
+        if (!message.member.roles.some(r => ["seedadmin", "seedmod"].includes(r.name)) || !message.author.id === '230485481773596672')
             signal.error("A user executed s!kick without appropriate permissions");
         return message.reply("Sorry, you don't have permissions to use this!");
         let member = message.mentions.members.first() || message.guild.members.get(args[0]);
@@ -249,7 +216,7 @@ client.on("message", async message => {
 
     //Ban Command
     if (command === "ban") {
-        if (!message.member.roles.some(r => ["Administrator"].includes(r.name)))
+        if (!message.member.roles.some(r => ["seedadmin"].includes(r.name)) || !message.author.id === '230485481773596672')
             signal.error("A user executed s!ban without appropriate permissions");
         return message.reply("Sorry, you don't have permissions to use this!");
         let member = message.mentions.members.first();
@@ -265,6 +232,7 @@ client.on("message", async message => {
             .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
         message.reply(`${member.user.tag} has been banned by ${message.author.tag} because: ${reason}`);
         signal.command("A user executed s!ban");
+        client.users.get(member).send("You have been banned\n reason: " + reason);
     }
 
     //Purge Command
@@ -290,7 +258,7 @@ client.on("message", async message => {
             message.reply('Request Sent to CEO');
             setTimeout();
             message.channel.send('?purge 2');
-            client.channel.get('489303673126780948').sent('***New Request!***\n**Requested by: ' + message.author.toString() + '\n**Request Details: ' + userrequest);
+            client.channel.get('489303673126780948').send('***New Request!***\n**Requested by: ' + message.author.toString() + '\n**Request Details: ' + userrequest);
         }
         else{
             message.reply('Incorrect Channel, Piss off.')
@@ -378,6 +346,10 @@ client.on("message", async message => {
     }
 
 
+    //USER CREATED MODULES ___________________________________________________________________________
+
+    //DMOJ MODULE COMMANDS____________________________________________________________________________
+
 
 });
 
@@ -407,17 +379,7 @@ client.on("message", async message => {
 
 client.on("ready", () => {
     signal.info(`Bot has started, with ` + client.users.size + ` users, in ` + client.channels.size + ` channels of ` + client.guilds.size + ` guilds.`);
-    client.user.setActivity(`s!help // bot.jyles.pw // Serving ` + client.guilds.size + ` servers`);
+
+    client.user.setActivity(`s!help // v` + ver + ` // ` + client.guilds.size + ` guilds.`);
 });
-// Music.start(client, {
-//     prefix: 's?', // Prefix for the commands.
-//     global: true,            // Non-server-specific queues.
-//     maxQueueSize: 64,        // Maximum queue size of 25.
-//     clearInvoker: true,      // If permissions applicable, allow the bot to delete the messages that invoke it.  helpCmd: 'help',        // Sets the name for the help command.
-//     playCmd: 'play',        // Sets the name for the 'play' command.
-//     volumeCmd: 'vol',     // Sets the name for the 'volume' command.
-//     leaveCmd: 'leave',      // Sets the name for the 'leave' command.
-//     enableQueueStat: true,
-//     youtubeKey: config.ytapi,
-// });
 client.login(config.token);
