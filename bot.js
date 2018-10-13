@@ -8,9 +8,9 @@ const config = require("./config.json");
 // const Music = require('discord.js-musicbot-addon');
 
 //DMOJ Modules
-const problems = require('./DMOJ-Modules/problem.js')
-const contests = require('./DMOJ-Modules/contest.js')
-const users = require('./DMOJ-Modules/user.js')
+const problems = require('./dmoj/problem.js')
+const contests = require('./dmoj/contest.js')
+const users = require('./dmoj/user.js')
 const Music = require('discord.js-musicbot-addon');
 
 const { Signale } = require('signale');
