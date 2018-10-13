@@ -7,12 +7,6 @@ const client = new Discord.Client();
 const config = require("./config.json");
 // const Music = require('discord.js-musicbot-addon');
 
-//DMOJ Modules
-const problems = require('./dmoj/problem.js')
-const contests = require('./dmoj/contest.js')
-const users = require('./dmoj/user.js')
-const Music = require('discord.js-musicbot-addon');
-
 const { Signale } = require('signale');
 
 //DMOJ MODULE
@@ -330,7 +324,7 @@ client.on("message", async message => {
         }
         else {
             message.reply('you do not have permissions to use this command,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
-            signal.error("A user executed s!rp without appropriate permissions")
+            signal.error("A user eSxecuted s!rp without appropriate permissions")
         }
     }
     if (command === 'spam') {
