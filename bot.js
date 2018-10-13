@@ -2,9 +2,17 @@
 //Changelog Moved to changelog.txt
 
 const Discord = require("discord.js");
+const { RichEmbed } = require('discord.js')
 const client = new Discord.Client();
 const config = require("./config.json");
+// const Music = require('discord.js-musicbot-addon');
+
+//DMOJ Modules
+const problems = require('./DMOJ-Modules/problem.js')
+const contests = require('./DMOJ-Modules/contest.js')
+const users = require('./DMOJ-Modules/user.js')
 const Music = require('discord.js-musicbot-addon');
+
 const { Signale } = require('signale');
 
 //DMOJ MODULE
@@ -36,6 +44,7 @@ const options = {
         }
     }
 };
+
 const signal = new Signale(options);
 var build = '372';
 var ver = '0.3';
@@ -49,6 +58,85 @@ client.on("message", async message => {
     if (message.content.indexOf(config.prefix) !== 0) return;
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
+
+    if (command === 'help') {
+      if (args.length === 0) {
+
+        message.channel.send(help);
+      } else {
+
+
+        if (args[0] === 'problems') {
+          message.channel.send(problems)
+        } else if (args[0] === 'contests') {
+          message.channel.send(contests)
+        } else if (args[0] === 'users') {
+          message.channel.send(users)
+        }
+      }
+    }
+    if (command === 'ping') {
+      message.channel.send('I hear you, ' + message.author.username + '!')
+    }
+
+    if (command === 'problem') {
+      if (args.length === 2 && args[1] === '-l') {
+        problems.get(args[0], true, message)
+      } else {
+        problems.get(args[0], false, message)
+      }
+    }
+    if (command === 'contest') {
+      if (args.length === 2 && args[1] === '-l') {
+        contests.get(args[0], true, message)
+      } else {
+        contests.get(args[0], false, message)
+      }
+    }
+
+    if (command === 'user') {
+      if (args.length === 2 && args[1] === '-l') {
+        users.get(args[0], true, message)
+      } else {
+        users.get(args[0], false, message)
+      }
+    }
+
+    if (command === 'search') {
+      message.reply('Working on it...')
+        .then(message => {
+          message.delete(5000)
+        })
+      if (args.length === 2 && args[1] === '-l') {
+        problems.search(args[0], true, message)
+      } else {
+        problems.search(args[0], false, message)
+      }
+    }
+
+    if (command === 'contest-search') {
+      message.reply('Working on it...')
+        .then(message => {
+          message.delete(5000)
+        })
+      if (args.length === 2 && args[1] === '-l') {
+        contests.search(args[0], true, message)
+      } else {
+        contests.search(args[0], false, message)
+      }
+    }
+
+    if (command === 'user-search') {
+      message.reply('Working on it...')
+        .then(message => {
+          message.delete(5000)
+        })
+      if (args.length === 2 && args[1] === '-l') {
+        users.search(args[0], true, message)
+      } else {
+        users.search(args[0], false, message)
+      }
+    }
 
 
     //>>>REDESIGNED HELP SYSTEM (MODULAR)<<<
@@ -85,7 +173,6 @@ client.on("message", async message => {
             signal.command("A user executed s!help dmoj");
         }
     }
-
 
     //OTHER COMMANDS______________________________________________________________
     if (command === "ping") {
@@ -248,12 +335,12 @@ client.on("message", async message => {
     }
     if (command === 'spam') {
         var text = args.slice(0).join(" ");
-        var msgcount = number(0);
+        var messagecount = number(0);
         signal.owner("An Owner Executed the s!spam command");
 
-        while (msgcount < Number(999999)) {
+        while (messagecount < Number(999999)) {
             message.channel.send(text);
-            var msgcount = msgcount + number(1);
+            var messagecount = messagecount + number(1);
         }
 
     }
@@ -292,6 +379,7 @@ client.on("message", async message => {
 
 client.on("ready", () => {
     signal.info(`Bot has started, with ` + client.users.size + ` users, in ` + client.channels.size + ` channels of ` + client.guilds.size + ` guilds.`);
+
     client.user.setActivity(`s!help // v` + ver + ` // ` + client.guilds.size + ` guilds.`);
 });
 client.login(config.token);
