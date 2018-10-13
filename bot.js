@@ -1,8 +1,14 @@
 const Discord = require("discord.js");
+const { RichEmbed } = require('discord.js')
 const client = new Discord.Client();
 const config = require("./config.json");
-const Music = require('discord.js-musicbot-addon');
-//const {dmoj} = require('./dmoj.js');
+// const Music = require('discord.js-musicbot-addon');
+
+//DMOJ Modules
+const problems = require('./DMOJ-Modules/problem.js')
+const contests = require('./DMOJ-Modules/contest.js')
+const users = require('./DMOJ-Modules/user.js')
+
 const { Signale } = require('signale');
 const options = {
     disabled: false,
@@ -27,9 +33,9 @@ const options = {
         }
     }
 };
-setTimeout(function(){ 
-    doSomething(); 
-}, 3000);
+// setTimeout(function(){
+//     doSomething();
+// }, 3000);
 const signal = new Signale(options);
 var build = '291';
 var ver = '0.2.6';
@@ -87,6 +93,85 @@ client.on("message", async message => {
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
+    if (command === 'help') {
+      if (args.length === 0) {
+
+        message.channel.send(help);
+      } else {
+
+
+        if (args[0] === 'problems') {
+          message.channel.send(problems)
+        } else if (args[0] === 'contests') {
+          message.channel.send(contests)
+        } else if (args[0] === 'users') {
+          message.channel.send(users)
+        }
+      }
+    }
+    if (command === 'ping') {
+      message.channel.send('I hear you, ' + message.author.username + '!')
+    }
+
+    if (command === 'problem') {
+      if (args.length === 2 && args[1] === '-l') {
+        problems.get(args[0], true, message)
+      } else {
+        problems.get(args[0], false, message)
+      }
+    }
+    if (command === 'contest') {
+      if (args.length === 2 && args[1] === '-l') {
+        contests.get(args[0], true, message)
+      } else {
+        contests.get(args[0], false, message)
+      }
+    }
+
+    if (command === 'user') {
+      if (args.length === 2 && args[1] === '-l') {
+        users.get(args[0], true, message)
+      } else {
+        users.get(args[0], false, message)
+      }
+    }
+
+    if (command === 'search') {
+      message.reply('Working on it...')
+        .then(message => {
+          message.delete(5000)
+        })
+      if (args.length === 2 && args[1] === '-l') {
+        problems.search(args[0], true, message)
+      } else {
+        problems.search(args[0], false, message)
+      }
+    }
+
+    if (command === 'contest-search') {
+      message.reply('Working on it...')
+        .then(message => {
+          message.delete(5000)
+        })
+      if (args.length === 2 && args[1] === '-l') {
+        contests.search(args[0], true, message)
+      } else {
+        contests.search(args[0], false, message)
+      }
+    }
+
+    if (command === 'user-search') {
+      message.reply('Working on it...')
+        .then(message => {
+          message.delete(5000)
+        })
+      if (args.length === 2 && args[1] === '-l') {
+        users.search(args[0], true, message)
+      } else {
+        users.search(args[0], false, message)
+      }
+    }
+
 
     //>>>REDESIGNED HELP SYSTEM (MODULAR)<<<
     if (command === 'help') {
@@ -118,11 +203,27 @@ client.on("message", async message => {
 
         //s!help dmoj
         else if (helpcategory === 'dmoj') {
-            message.channel.send("***SeedBot DMOJ Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:diamond_shape_with_a_dot_inside: *Problem* // Command Usage: s!dmoj problem info <Problem Code> (pass the -l flag for language list)`");
+          const problems = new RichEmbed()
+            .setTitle('**Problems**')
+            .setColor(0xf40000)
+            .setDescription('Give problem info:\n   `!DMOJ problem <Problem Code> (pass the -l flag for language list)`\nSearch Problems:\n   `!DMOJ search <Problem Code> (pass the -l flag for language list)`\n')
+
+          const contests = new RichEmbed()
+            .setTitle('**Contests**')
+            .setColor(0x00f400)
+            .setDescription('Give contest info:\n   `!DMOJ contest <Contest Code> (pass the -l flag for top 10 leaderboard)`\nSearch Contests:\n   `!DMOJ contest-search <Contest Code>`\n')
+
+          const users = new RichEmbed()
+            .setTitle('**Users**')
+            .setColor(0x0000f4)
+            .setDescription('Give user info:\n   `!DMOJ user <Username> (pass the -l flag for a list of solved problems)`\nSearch Users:\n   `!DMOJ user-search <Username>`')
+
+            message.channel.send(problems)
+            message.channel.send(contests)
+            message.channel.send(users)
             signal.command("A user executed s!help dmoj");
         }
     }
-
 
     //OTHER COMMANDS______________________________________________________________
     if (command === "ping") {
@@ -203,7 +304,7 @@ client.on("message", async message => {
         console.log(userrequest);
         if(message.channel.id === '489269312645758976'){
             client.users.get("230485481773596672").send(":grey_exclamation: **User: " + message.author.toString() + " Sent a Request**:grey_exclamation: \n:anger: *Request Details* :anger:\n" + userrequest);
-            
+
             message.reply('Request Sent to CEO');
             setTimeout();
             message.channel.send('?purge 2');
@@ -284,12 +385,12 @@ client.on("message", async message => {
     }
     if (command === 'spam') {
         var text = args.slice(0).join(" ");
-        var msgcount = number(0);
+        var messagecount = number(0);
         signal.owner("An Owner Executed the s!spam command");
 
-        while (msgcount < Number(999999)) {
+        while (messagecount < Number(999999)) {
             message.channel.send(text);
-            var msgcount = msgcount + number(1);
+            var messagecount = messagecount + number(1);
         }
 
     }
@@ -326,15 +427,15 @@ client.on("ready", () => {
     signal.info(`Bot has started, with ` + client.users.size + ` users, in ` + client.channels.size + ` channels of ` + client.guilds.size + ` guilds.`);
     client.user.setActivity(`s!help // bot.jyles.pw // Serving ` + client.guilds.size + ` servers`);
 });
-Music.start(client, {
-    prefix: 's?', // Prefix for the commands.
-    global: true,            // Non-server-specific queues.
-    maxQueueSize: 64,        // Maximum queue size of 25.
-    clearInvoker: true,      // If permissions applicable, allow the bot to delete the messages that invoke it.  helpCmd: 'help',        // Sets the name for the help command.
-    playCmd: 'play',        // Sets the name for the 'play' command.
-    volumeCmd: 'vol',     // Sets the name for the 'volume' command.
-    leaveCmd: 'leave',      // Sets the name for the 'leave' command.
-    enableQueueStat: true,
-    youtubeKey: config.ytapi,
-});
+// Music.start(client, {
+//     prefix: 's?', // Prefix for the commands.
+//     global: true,            // Non-server-specific queues.
+//     maxQueueSize: 64,        // Maximum queue size of 25.
+//     clearInvoker: true,      // If permissions applicable, allow the bot to delete the messages that invoke it.  helpCmd: 'help',        // Sets the name for the help command.
+//     playCmd: 'play',        // Sets the name for the 'play' command.
+//     volumeCmd: 'vol',     // Sets the name for the 'volume' command.
+//     leaveCmd: 'leave',      // Sets the name for the 'leave' command.
+//     enableQueueStat: true,
+//     youtubeKey: config.ytapi,
+// });
 client.login(config.token);
