@@ -203,24 +203,6 @@ client.on("message", async message => {
 
         //s!help dmoj
         else if (helpcategory === 'dmoj') {
-          const problems = new RichEmbed()
-            .setTitle('**Problems**')
-            .setColor(0xf40000)
-            .setDescription('Give problem info:\n   `!DMOJ problem <Problem Code> (pass the -l flag for language list)`\nSearch Problems:\n   `!DMOJ search <Problem Code> (pass the -l flag for language list)`\n')
-
-          const contests = new RichEmbed()
-            .setTitle('**Contests**')
-            .setColor(0x00f400)
-            .setDescription('Give contest info:\n   `!DMOJ contest <Contest Code> (pass the -l flag for top 10 leaderboard)`\nSearch Contests:\n   `!DMOJ contest-search <Contest Code>`\n')
-
-          const users = new RichEmbed()
-            .setTitle('**Users**')
-            .setColor(0x0000f4)
-            .setDescription('Give user info:\n   `!DMOJ user <Username> (pass the -l flag for a list of solved problems)`\nSearch Users:\n   `!DMOJ user-search <Username>`')
-
-            message.channel.send(problems)
-            message.channel.send(contests)
-            message.channel.send(users)
             signal.command("A user executed s!help dmoj");
         }
     }
