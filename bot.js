@@ -56,7 +56,7 @@ client.on("message", async message => {
     const command = args.shift().toLowerCase();
 
     if (command === 'problem') {
-        refreshPage();
+        
       if (args.length === 2 && args[1] === '-l') {
         problems.get(args[0], true, message)
       } else {
@@ -64,7 +64,7 @@ client.on("message", async message => {
       }
     }
     if (command === 'contest') {
-        refreshPage();
+        
       if (args.length === 2 && args[1] === '-l') {
         contests.get(args[0], true, message)
       } else {
@@ -73,7 +73,7 @@ client.on("message", async message => {
     }
 
     if (command === 'user') {
-        refreshPage();
+        
       if (args.length === 2 && args[1] === '-l') {
         users.get(args[0], true, message)
       } else {
@@ -82,7 +82,7 @@ client.on("message", async message => {
     }
 
     if (command === 'search') {
-        refreshPage();
+        
       message.reply('Working on it...')
         .then(message => {
           message.delete(5000)
@@ -95,7 +95,7 @@ client.on("message", async message => {
     }
 
     if (command === 'contest-search') {
-        refreshPage();
+        
       message.reply('Working on it...')
         .then(message => {
           message.delete(5000)
@@ -108,7 +108,7 @@ client.on("message", async message => {
     }
 
     if (command === 'user-search') {
-        refreshPage();
+        
       message.reply('Working on it...')
         .then(message => {
           message.delete(5000)
@@ -129,35 +129,35 @@ client.on("message", async message => {
 
         //s!help
         if (helpcategory === '') {
-            refreshPage();
+            
             message.channel.send("***SeedBot Command Directory***\nPrefix: ***s!***\n*Usage: s!help.[command group]*\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: Moderation Commands: **s!help mod**\n:radio_button: Music Commands: **s!help music**\n:radio_button: Other Commands: **s!help other**\n");
             signal.command("A user executed s!help");
         }
 
         //s!help mod
         else if (helpcategory === 'mod') {
-            refreshPage();
+            
             message.channel.send("***SeedBot Moderation Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Kick* // Command Usage: **s!kick **[user]** reason**\nKick a user\n\n:radio_button: *Ban* // Command Usage: **s!ban** [user] **reason**\nDeportes a user from a server (permantley until pardoned from the server settings)\n\n:radio_button: *Purge* // Command Usage: **s!purge**[ammount of messages]\nDelete Message with a command\n\n");
             signal.command("A user executed s!help mod");
         }
 
         //s!help other
         else if (helpcategory === 'other') {
-            refreshPage();
+            
             message.channel.send("***SeedBot Other Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Ping* // **s!ping**\n Tests Latency between the bot and the Discord API\n\n:radio_button: *Setup* // **s!setup**\nGives you instructions on how to setup SeedBot\n\n:radio_button: *Discord* // **s!discord** \nGives the end-user the link to the creators discord server\n\n:radio_button: *Invite* // **s!invite** \nGives you the invite link for the discord bot\n\n");
             signal.command("A user executed s!help other")
         }
 
         //s!help music
         else if (helpcategory === 'music') {
-            refreshPage();
+            
             message.channel.send("***Bot is broken and awaing fixing by the developer***\n\n~~***SeedBot Music Commands***\nPrefix: ***s?***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Play* // Command Usage: **s?play**[song name or youtube URL]\nPlay a song\n\n:radio_button: *Skip* // **s?skip**\nSkip a song, its sort of self explanitory\n\n:radio_button: *Leave* // **s?leave**\nDisconnects the bot from the voice channel\n\n:radio_button: *Queue* // **s?queue**\nShows what songs are currentley queued.\n\n:radio_button: *Volume* // Command Usage: **s?vol** [volume count 0-100]\nChange th volume of the music (server-wide)\n~~");
             signal.command("A user executed s!help music");
         }
 
         //s!help dmoj
         else if (helpcategory === 'dmoj') {
-            refreshPage();
+            
             message.channel.send("***SeedBot DMOJ Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Problem* // Command Usage: s!problem info <Problem Code>\n (pass the -l flag for language list)\n:radio_button: *Contests* // Command Usage: s!contest <Content Code>\n (pass the -l flag for top 10 leaderboard)\n:radio_button: *Users* // Command usage: s!user <Username>\n (pass the -l flag for a list of solved problems)");
             signal.command("A user executed s!help dmoj");
         }
@@ -165,18 +165,18 @@ client.on("message", async message => {
 
     //OTHER COMMANDS______________________________________________________________
     if (command === "ping") {
-        refreshPage();
+        
         const m = await message.channel.send("Ping?");
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
         signal.command("A user executed s!ping");
     }
     if (command === "invite") {
-        refreshPage();
+        
         message.reply("Here is the Invite link for SeedBot\n https://goo.gl/pA7oFj");
         signal.command("A user executed s!invite");
     }
     if (command === "discord") {
-        refreshPage();
+        
         message.reply("Here is my creators discord!\n http://gg.jyles.pw");
         signal.command("A user executed s!discord");
     }
@@ -229,7 +229,7 @@ client.on("message", async message => {
 
     //StrafeCode.com Server Commands (Staff)
     if (command === 'request'){
-        refreshPage();
+        
         var userrequest = args.slice(0).join(" ");
         console.log(userrequest);
         if(message.channel.id === '489269312645758976'){
@@ -252,7 +252,7 @@ client.on("message", async message => {
 
     //INIT COMMANDS __________________________________________________
     if (command === "setup") {
-        refreshPage();
+        
         message.reply("To Setup SeedBot You need to Create ***Two Roles***\n One Role with the name of ``SeedModerator``\n and the other role with the name of ``SeedAdmin``\n And You should be set to use the Moderation Commands!");
         signal.command("A user executed s!setup");
     }
@@ -262,7 +262,7 @@ client.on("message", async message => {
 
     //Show Number of servers and List of Servers
     if (command === 'svrs') {
-        refreshPage();
+        
         if (message.author.id === '230485481773596672') {
             message.author.send("Number of Available Servers: " + client.guilds.size);
             var list = client.guilds.array().sort();
@@ -277,7 +277,7 @@ client.on("message", async message => {
 
     //Shows Number of accesable channels
     if (command === 'chnls') {
-        refreshPage();
+        
         if (message.author.id === '230485481773596672') {
             message.author.send("Number of Available Channels: " + client.channels.size);
             var list = client.channels.array().sort();
@@ -302,7 +302,7 @@ client.on("message", async message => {
     //Changes the Rich Presence
     if (command === 'rpc') {
         var game = args.slice(0).join(" ");
-        refreshPage();
+        
 
         // only @Seed#0001 and @CheezBiscuit can access this command
 
