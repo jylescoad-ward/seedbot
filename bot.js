@@ -41,8 +41,8 @@ const options = {
 };
 
 const signal = new Signale(options);
-var build = '416';
-var ver = '0.4';
+var build = '420';
+var ver = '0.4.3';
 
 
 signal.info("Starting the SeedBot...")
@@ -208,7 +208,7 @@ client.on("message", async message => {
       let user = message.mentions.users.first();
       let logchannel = message.guild.channels.find('name', 'logs');
       if (!logchannel) return message.reply('I cannot find a logs channel');
-      if (!message.member.hasPermission("BAN_MEMBERS")) return msg.reply(":no_entry_sign: **Error:** You don't have the **Ban Members** permission!");
+      if (!message.member.hasPermission("BAN_MEMBERS")) return message.reply(":no_entry_sign: **Error:** You don't have the **Ban Members** permission!");
       if (reason.length < 1) return message.reply('You must supply a reason for the ban.');
       if (message.mentions.users.size < 1) return message.reply('You must mention someone to ban them.').catch(console.error);
 
@@ -343,24 +343,24 @@ client.on("message", async message => {
 
     if (command === 'rps') {
       let choice = args.join(" ").toLowerCase();
-      if (choice === '') return msg.reply("Please specify either rock, paper or scissors.");
-      if (choice !== "rock" && choice !== "paper" && choice !== "scissors") return msg.reply(`Please specify either rock, paper or scissors. ${choice} isn't one of those :P`);
-      msg.reply(random());
+      if (choice === '') return message.reply("Please specify either rock, paper or scissors.");
+      if (choice !== "rock" && choice !== "paper" && choice !== "scissors") return message.reply(`Please specify either rock, paper or scissors. ${choice} isn't one of those :P`);
+      message.reply(random());
     }
     if (command === 'punch') {
-      let user = message.mentions.users.first(){
-            if(user.id != owner){
-              message.reply('You have punched <@' + user.id + '>')
-      } else
-              message.reply("you can't hurt him you pleblord.")
+      let user = message.mentions.users.first()
+      if(user.id != owner){
+          message.reply('You have punched <@' + user.id + '>')
+      } else {
+          message.reply("you can't hurt him you pleblord.")
       }
     }
     if (command === 'avatar') {
-      let avatar = msg.mentions.users.size ? msg.mentions.users.first().avatarURL : msg.author.avatarURL;
-      if (msg.mentions.users.size > 0) {
-          msg.channel.send(`Avatar for, **${msg.mentions.users.first().username}:**\n${avatar}`);
+      let avatar = message.mentions.users.size ? message.mentions.users.first().avatarURL : message.author.avatarURL;
+      if (message.mentions.users.size > 0) {
+          message.channel.send(`Avatar for, **${message.mentions.users.first().username}:**\n${avatar}`);
       } else {
-        msg.channel.send(`Avatar for, **${msg.author.username}:**\n${avatar}`);
+        message.channel.send(`Avatar for, **${message.author.username}:**\n${avatar}`);
       }
     }
     if (command === 'hammer') {
