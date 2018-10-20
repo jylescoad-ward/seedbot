@@ -1,11 +1,9 @@
 |----------------------------------------------------------------------------------------------------
 |CHANGELOG                                                                                          |
 |----------------------------------------------------------------------------------------------------
-|        28.07.2018 VERISON 0.3 [PUBLIC RELEASE]                                                    |
-|        BUILD 372                                                                                  |
-|----------------------------------------------------------------------------------------------------
-|                                                                                                   |
-| Music                                              [Awaiting on Addon Developer]       16.06.2018 |
+|        20.10.2018 VERISON 0.4 [PUBLIC RELEASE]                                                    |
+|        BUILD 416                                                                                  |
+|                                        THE FUN UPDATE                                             |
 |----------------------------------------------------------------------------------------------------
 |  JOIN MY discord                                                                                  |
 |  gg.jyles.pw                                                                                      |
@@ -14,12 +12,16 @@
 |----------------------------------------------------------------------------------------------------
 |  COLLABORATORS                 |                                                                  |
 | ________________________________                                                                  |
-| @CheezBiscut#9461                                                                                 |
+| @CheezBiscut#9461  [DMOJ Plugin]                                                                  |
 | @Seed#0001                                                                                        |
 |----------------------------------------------------------------------------------------------------
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
+| Moved help to website                              Moved on 20.10.2018                            |
+| Added some ''''fun'''' commands                    Added on 20.10.2018                            |
+| Make the moderation system simple                  Added on 20.10.2018                            |
+| Added friendly statistic GUI                       Added on 13.10.2018                            |
 | Moved changelog to CHANGELOG.txt                   Moved on 13.10.2018                            |
 | Created CHANGELOG.txt                              Moved on 13.10.2018                            |
 | DMOJ MODULE IS FIXED!!! <3 <3                      Added on 13.10.2018                            |
@@ -36,6 +38,7 @@
 | Fixed Rich Presence Command                        Added on 21.6.2018                             |
 |                                                                                                   |
 | LATEST REMOVALS                                                                                   |
+| Removed Electron GUI                               Removed on 20.10.2018                          |
 | Squished some Bugs                                 Removed on 13.10.2018                          |
 | Removed the music bot until darko fixes it         Removed on 12.10.2018                          |
 | Old confusing non-modular help system              Removed on 28.7.2018                           |

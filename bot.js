@@ -14,6 +14,7 @@ const problems = require('./dmoj/problem.js')
 const contests = require('./dmoj/contest.js')
 const users = require('./dmoj/user.js')
 //END OF DMOJ MODULE
+const owner = 230485481773596672
 
 const options = {
     disabled: false,
@@ -35,13 +36,14 @@ const options = {
         owner: {
             color: 'orange',
             label: 'DEVELOPER COMMAND',
-        }
+      }
     }
 };
 
 const signal = new Signale(options);
-var build = '372';
-var ver = '0.3';
+var build = '416';
+var ver = '0.4';
+
 
 signal.info("Starting the SeedBot...")
 signal.info("Copyright 2018, jyles.pw")
@@ -53,27 +55,8 @@ client.on("message", async message => {
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-    if (command === 'help') {
-      if (args.length === 0) {
-
-        message.channel.send(help);
-      } else {
-
-
-        if (args[0] === 'problems') {
-          message.channel.send(problems)
-        } else if (args[0] === 'contests') {
-          message.channel.send(contests)
-        } else if (args[0] === 'users') {
-          message.channel.send(users)
-        }
-      }
-    }
-    if (command === 'ping') {
-      message.channel.send('I hear you, ' + message.author.username + '!')
-    }
-
     if (command === 'problem') {
+        refreshPage();
       if (args.length === 2 && args[1] === '-l') {
         problems.get(args[0], true, message)
       } else {
@@ -81,6 +64,7 @@ client.on("message", async message => {
       }
     }
     if (command === 'contest') {
+        refreshPage();
       if (args.length === 2 && args[1] === '-l') {
         contests.get(args[0], true, message)
       } else {
@@ -89,6 +73,7 @@ client.on("message", async message => {
     }
 
     if (command === 'user') {
+        refreshPage();
       if (args.length === 2 && args[1] === '-l') {
         users.get(args[0], true, message)
       } else {
@@ -97,6 +82,7 @@ client.on("message", async message => {
     }
 
     if (command === 'search') {
+        refreshPage();
       message.reply('Working on it...')
         .then(message => {
           message.delete(5000)
@@ -109,6 +95,7 @@ client.on("message", async message => {
     }
 
     if (command === 'contest-search') {
+        refreshPage();
       message.reply('Working on it...')
         .then(message => {
           message.delete(5000)
@@ -121,6 +108,7 @@ client.on("message", async message => {
     }
 
     if (command === 'user-search') {
+        refreshPage();
       message.reply('Working on it...')
         .then(message => {
           message.delete(5000)
@@ -135,50 +123,60 @@ client.on("message", async message => {
 
     //>>>REDESIGNED HELP SYSTEM (MODULAR)<<<
     if (command === 'help') {
-        var helpcategory = args.slice(0).join(" ");
+        var helpcategoryold = args.slice(0).join(" ");
+
+        message.reply('http://bot.jyles.pw/#help');
 
         //s!help
         if (helpcategory === '') {
+            refreshPage();
             message.channel.send("***SeedBot Command Directory***\nPrefix: ***s!***\n*Usage: s!help.[command group]*\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: Moderation Commands: **s!help mod**\n:radio_button: Music Commands: **s!help music**\n:radio_button: Other Commands: **s!help other**\n");
             signal.command("A user executed s!help");
         }
 
         //s!help mod
         else if (helpcategory === 'mod') {
+            refreshPage();
             message.channel.send("***SeedBot Moderation Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Kick* // Command Usage: **s!kick **[user]** reason**\nKick a user\n\n:radio_button: *Ban* // Command Usage: **s!ban** [user] **reason**\nDeportes a user from a server (permantley until pardoned from the server settings)\n\n:radio_button: *Purge* // Command Usage: **s!purge**[ammount of messages]\nDelete Message with a command\n\n");
             signal.command("A user executed s!help mod");
         }
 
         //s!help other
         else if (helpcategory === 'other') {
+            refreshPage();
             message.channel.send("***SeedBot Other Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Ping* // **s!ping**\n Tests Latency between the bot and the Discord API\n\n:radio_button: *Setup* // **s!setup**\nGives you instructions on how to setup SeedBot\n\n:radio_button: *Discord* // **s!discord** \nGives the end-user the link to the creators discord server\n\n:radio_button: *Invite* // **s!invite** \nGives you the invite link for the discord bot\n\n");
             signal.command("A user executed s!help other")
         }
 
         //s!help music
         else if (helpcategory === 'music') {
+            refreshPage();
             message.channel.send("***Bot is broken and awaing fixing by the developer***\n\n~~***SeedBot Music Commands***\nPrefix: ***s?***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Play* // Command Usage: **s?play**[song name or youtube URL]\nPlay a song\n\n:radio_button: *Skip* // **s?skip**\nSkip a song, its sort of self explanitory\n\n:radio_button: *Leave* // **s?leave**\nDisconnects the bot from the voice channel\n\n:radio_button: *Queue* // **s?queue**\nShows what songs are currentley queued.\n\n:radio_button: *Volume* // Command Usage: **s?vol** [volume count 0-100]\nChange th volume of the music (server-wide)\n~~");
             signal.command("A user executed s!help music");
         }
 
         //s!help dmoj
         else if (helpcategory === 'dmoj') {
-            message.channel.send("***SeedBot DMOJ Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Problem* // Command Usage: s!dmoj problem info <Problem Code>\n (pass the -l flag for language list)\n:radio_button: *Contests* // Command Usage: s!dmoj contest <Content Code>\n (pass the -l flag for top 10 leaderboard)\n:radio_button: *Users* // Command usage: s!dmoj user <Username>\n (pass the -l flag for a list of solved problems)");
+            refreshPage();
+            message.channel.send("***SeedBot DMOJ Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Problem* // Command Usage: s!problem info <Problem Code>\n (pass the -l flag for language list)\n:radio_button: *Contests* // Command Usage: s!contest <Content Code>\n (pass the -l flag for top 10 leaderboard)\n:radio_button: *Users* // Command usage: s!user <Username>\n (pass the -l flag for a list of solved problems)");
             signal.command("A user executed s!help dmoj");
         }
     }
 
     //OTHER COMMANDS______________________________________________________________
     if (command === "ping") {
+        refreshPage();
         const m = await message.channel.send("Ping?");
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
         signal.command("A user executed s!ping");
     }
     if (command === "invite") {
+        refreshPage();
         message.reply("Here is the Invite link for SeedBot\n https://goo.gl/pA7oFj");
         signal.command("A user executed s!invite");
     }
     if (command === "discord") {
+        refreshPage();
         message.reply("Here is my creators discord!\n http://gg.jyles.pw");
         signal.command("A user executed s!discord");
     }
@@ -191,59 +189,47 @@ client.on("message", async message => {
 
     //Kick Command
     if (command === "kick") {
-        if (!message.member.roles.some(r => ["seedadmin", "seedmod"].includes(r.name)) || !message.author.id === '230485481773596672')
-            signal.error("A user executed s!kick without appropriate permissions");
-        return message.reply("Sorry, you don't have permissions to use this!");
-        let member = message.mentions.members.first() || message.guild.members.get(args[0]);
-        if (!member)
-            signal.error("A user executed s!kick without appropriate member name");
-        return message.reply("Please mention a valid member of this server");
-        if (!member.kickable)
-            signal.error("A user executed s!kick without appropriate bot permissions");
-        return message.reply("I cannot kick this user! Do they have a higher role? Do I have kick permissions?");
-        if (!reason) reason = "No reason provided";
-        await member.kick(reason)
-            .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
-        message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`);
-        signal.command("A user executed s!kick");
+      let reason = args.slice(1).join(' ');
+      let user = message.mentions.users.first();
+      let logchannel = message.guild.channels.find('name', 'logs');
+      if (!logchannel) return message.reply('I cannot find a logs channel');
+      if (reason.length < 1) return message.reply('You must supply a reason for the kick.');
+      if (message.mentions.users.size < 1) return message.reply('You must mention someone to kick them.').catch(console.error);
+
+      if (!message.guild.member(user).kickable) return message.reply('I cannot kick that member');
+      message.guild.member(user).kick();
+
+      message.channel.send('User: ' + + ' has been kicked');
     }
 
     //Ban Command
     if (command === "ban") {
-        if (!message.member.roles.some(r => ["seedadmin"].includes(r.name)) || !message.author.id === '230485481773596672')
-            signal.error("A user executed s!ban without appropriate permissions");
-        return message.reply("Sorry, you don't have permissions to use this!");
-        let member = message.mentions.members.first();
-        if (!member)
-            signal.error("A user executed s!ban without appropriate member name");
-        return message.reply("Please mention a valid member of this server");
-        if (!member.bannable)
-            signal.error("A user executed s!ban without appropriate bot permissions");
-        return message.reply("I cannot ban this user! Do they have a higher role? Do I have ban permissions?");
-        let reason = args.slice(1).join(' ');
-        if (!reason) reason = "No reason provided";
-        await member.ban(reason)
-            .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
-        message.reply(`${member.user.tag} has been banned by ${message.author.tag} because: ${reason}`);
-        signal.command("A user executed s!ban");
-        client.users.get(member).send("You have been banned\n reason: " + reason);
+      let reason = args.slice(1).join(' ');
+      let user = message.mentions.users.first();
+      let logchannel = message.guild.channels.find('name', 'logs');
+      if (!logchannel) return message.reply('I cannot find a logs channel');
+      if (!message.member.hasPermission("BAN_MEMBERS")) return msg.reply(":no_entry_sign: **Error:** You don't have the **Ban Members** permission!");
+      if (reason.length < 1) return message.reply('You must supply a reason for the ban.');
+      if (message.mentions.users.size < 1) return message.reply('You must mention someone to ban them.').catch(console.error);
+
+      if (!message.guild.member(user).bannable) return message.reply(`<:redTick:${settings.redTick}> I cannot ban that member`);
+      message.guild.member(user).ban();
+
+      message.channel.send('User: ' + user + ' has been banned');
     }
 
     //Purge Command
     if (command === "purge") {
-        const deleteCount = parseInt(args[0], 10);
-        if (!deleteCount || deleteCount < 2 || deleteCount > 100)
-            signal.command("A user executed s!purge without appropriate purge scale");
-        return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
-        const fetched = await message.channel.fetchMessages({ limit: deleteCount });
-        message.channel.bulkDelete(fetched)
-            .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
-        signal.command("A user executed s!purge");
+      let messagecount = parseInt(args.join(' '));
+      message.channel.fetchMessages({
+        limit: 100
+      }).then(messages => message.channel.bulkDelete(messages));
     }
 
 
     //StrafeCode.com Server Commands (Staff)
     if (command === 'request'){
+        refreshPage();
         var userrequest = args.slice(0).join(" ");
         console.log(userrequest);
         if(message.channel.id === '489269312645758976'){
@@ -266,6 +252,7 @@ client.on("message", async message => {
 
     //INIT COMMANDS __________________________________________________
     if (command === "setup") {
+        refreshPage();
         message.reply("To Setup SeedBot You need to Create ***Two Roles***\n One Role with the name of ``SeedModerator``\n and the other role with the name of ``SeedAdmin``\n And You should be set to use the Moderation Commands!");
         signal.command("A user executed s!setup");
     }
@@ -275,6 +262,7 @@ client.on("message", async message => {
 
     //Show Number of servers and List of Servers
     if (command === 'svrs') {
+        refreshPage();
         if (message.author.id === '230485481773596672') {
             message.author.send("Number of Available Servers: " + client.guilds.size);
             var list = client.guilds.array().sort();
@@ -289,6 +277,7 @@ client.on("message", async message => {
 
     //Shows Number of accesable channels
     if (command === 'chnls') {
+        refreshPage();
         if (message.author.id === '230485481773596672') {
             message.author.send("Number of Available Channels: " + client.channels.size);
             var list = client.channels.array().sort();
@@ -300,10 +289,20 @@ client.on("message", async message => {
             signal.error("A user executed s!chnls without appropriate permissions");
         }
     }
+    if (command === 'exec') {
+      if (message.author.id === owner) {
+      childProcess.exec(args.join(' '), {},
+        (err, stdout, stderr) => {
+            if (err) return message.channel.sendCode('', err.message);
+            message.channel.sendCode('', stdout);
+        });
+      }
+    }
 
     //Changes the Rich Presence
     if (command === 'rpc') {
         var game = args.slice(0).join(" ");
+        refreshPage();
 
         // only @Seed#0001 and @CheezBiscuit can access this command
 
@@ -340,9 +339,35 @@ client.on("message", async message => {
     }
 
 
-    //USER CREATED MODULES ___________________________________________________________________________
+    //FUN COMMANDS______________________________________________________________
 
-    //DMOJ MODULE COMMANDS____________________________________________________________________________
+    if (command === 'rps') {
+      let choice = args.join(" ").toLowerCase();
+      if (choice === '') return msg.reply("Please specify either rock, paper or scissors.");
+      if (choice !== "rock" && choice !== "paper" && choice !== "scissors") return msg.reply(`Please specify either rock, paper or scissors. ${choice} isn't one of those :P`);
+      msg.reply(random());
+    }
+    if (command === 'punch') {
+      let user = message.mentions.users.first();
+            if(user.id != owner){
+              message.reply('You have punched <@' + user.id + '>')
+      } else
+              message.reply("you can't hurt him you pleblord.")
+      }
+    }
+    if (command === 'avatar') {
+      let avatar = msg.mentions.users.size ? msg.mentions.users.first().avatarURL : msg.author.avatarURL;
+      if (msg.mentions.users.size > 0) {
+          msg.channel.send(`Avatar for, **${msg.mentions.users.first().username}:**\n${avatar}`);
+      } else {
+        msg.channel.send(`Avatar for, **${msg.author.username}:**\n${avatar}`);
+      }
+    }
+    if (command === 'hammer') {
+      let user = message.mentions.users.first();
+      if (message.mentions.users.first() < 1){ return message.reply('You can\'t throw a hammer at thin air, pick someone fool.')}
+      message.channel.send(`${message.author.username} threw a hammer at ${message.mentions.users.first().username}. <:hammmer:${settings.hammer}>`)
+    }
 
 
 });
