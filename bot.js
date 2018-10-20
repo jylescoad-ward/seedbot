@@ -348,7 +348,7 @@ client.on("message", async message => {
       msg.reply(random());
     }
     if (command === 'punch') {
-      let user = message.mentions.users.first();
+      let user = message.mentions.users.first(){
             if(user.id != owner){
               message.reply('You have punched <@' + user.id + '>')
       } else
