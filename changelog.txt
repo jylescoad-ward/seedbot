@@ -17,6 +17,7 @@
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
+| Rich Presence Command fixed                        Added on 30.10.2018                            |
 | M  A  T  H                                         Added on 30.10.2018                            |
 | Remove s!help after command has been executed      Added on 30.10.2018                            |
 | Fixed unknown problems on DMOJ                     Fixed on 30.10.2018                            |

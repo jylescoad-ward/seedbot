@@ -45,11 +45,42 @@ const ownerID = package.ownerID;
 
 signal.info("Starting the SeedBot...")
 signal.info("Copyright 2018, jyles.pw")
-signal.info("Running SeedBot version " + ver + " build " + build)
+signal.info("Running SeedBot version " + ver + " build " + build);
+
+client.on('message',async message => {
+  if (message.author.bot) return;
+  if (message.content.indexOf(config.mathprefix) !== 0) return;
+  const args = message.content.slice(config.mathprefix.length).trim().split(/ +/g);
+  const devcommand = args.shift().toLowerCase();
+  
+  if (message.content.startsWith(config.mathprefix)) {
+    let calculate = "=" + message.content.toLowerCase().substring(config.mathprefix.length);
+    if (isFinite(calculate.replace(/\=|\+|\-|\*|\/|\÷|\%|\(|\)|\,|\ |math.|pow|sqrt|round|floor|ceiling|ceil|pi|π|euler|absolute|abs|exp|logarithm|log|random|rand|rng/g,''))) {
+      calculate = calculate.replace(/ /g, "").replace(/÷/g, "/").replace(/power|pow/g, "Math.pow").replace(/sqrt|squareroot/g, "Math.sqrt").replace(/round/g, "Math.round").replace(/floor/g, "Math.floor").replace(/ceiling|ceil/g, "Math.ceil").replace(/pi|π/g, "Math.PI").replace(/euler/g, "Math.E").replace(/absolute|abs/g, "Math.abs").replace(/exp/g, "Math.exp").replace(/logarithm|log/g, "Math.log").replace(/random|rand|rng/g, "Math.random()");/*.replace(/acos|arccosine/g, "Math.acos").replace(/asin|arcsine/g, "Math.asin").replace(/atan|arctangent|atan1|arctangent1/g, "Math.atan").replace(/atan2|arctangent2/g, "Math.atan2").replace(/cos|cosine/g, "Math.cos").replace(/sin|sine/g, "Math.sin").replace(/tan|tangent/g, "Math.tan")*/;
+      if (calculate.replace(/[^%]/g, "").length > 0) {
+        for (let i = 0; i < calculate.replace(/[^%]/g, "").length; i++) {
+          while ((calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "+" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "-" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "*" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "/" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "(" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == ")" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "," || getSubstringIndex(calculate, "%", i+1) + 1 == calculate.length) && calculate.replace(/[^%]/g, "").length > 0) {
+            for (let j = getSubstringIndex(calculate, "%", i+1); j > -1; j--) {
+              if (calculate[j] == "=" || calculate[j] == "+" || calculate[j] == "-" || calculate[j] == "*" || calculate[j] == "/" || calculate[j] == "(" || calculate[j] == ")" || calculate[j] == ",") {
+                calculate = calculate.substring(0, j+1) + (calculate.substring(j+1, getSubstringIndex(calculate, "%", i+1))/100) + calculate.substring(getSubstringIndex(calculate, "%", i+1)+1, calculate.length);
+                break;
+              }
+            }
+          }
+        }
+      }
+      calculate =  calculate.replace(/=/g, "");
+      if (isFinite(eval(calculate))) message.channel.send(eval(calculate));
+      console.log(eval(calculate));
+    }
+  }
+});
+
+
 client.on('message',async message => {
   if (message.author.bot) return;
   if (message.content.indexOf(config.devprefix) !== 0) return;
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const args = message.content.slice(config.devprefix.length).trim().split(/ +/g);
   const devcommand = args.shift().toLowerCase();
 
   if (devcommand === 'svrs') {
@@ -91,7 +122,7 @@ client.on('message',async message => {
     if (message.author.id === ownerID) {
       client.user.setActivity('Bot is shutting down...');
       message.channel.send('Bot it now shutting down. Good Night :first_quarter_moon_with_face: :bed: ');
-      killBot();
+      process.kill();
     }
   }
 
@@ -112,7 +143,7 @@ client.on('message',async message => {
               signal.info("A Owner executed s!rp reset");
           }
           else {
-              client.user.setActivity(game + ' // bot.jyles.pw // Serving ${client.guilds.size} servers');
+              client.user.setActivity(game + ' // bot.jyles.pw // Serving ' + client.guilds.size + ' servers');
               message.author.send('Rich Presence Status Updated To: ' + game);
               signal.info("A Owner executed s!rp " + game + ", game set to " + game);
           }
@@ -341,31 +372,6 @@ client.on("message", async message => {
       if (message.mentions.users.first() < 1){ return message.reply('You can\'t throw a hammer at thin air, pick someone fool.')}
       message.channel.send(`${message.author.username} threw a hammer at ${message.mentions.users.first().username}. <:hammmer:${settings.hammer}>`)
     }
-
-
-    if (message.content.startsWith(config.mathprefix)) {
-      let calculate = "=" + message.content.toLowerCase().substring(config.mathprefix.length);
-      if (isFinite(calculate.replace(/\=|\+|\-|\*|\/|\÷|\%|\(|\)|\,|\ |math.|pow|sqrt|round|floor|ceiling|ceil|pi|π|euler|absolute|abs|exp|logarithm|log|random|rand|rng/g,''))) {
-        calculate = calculate.replace(/ /g, "").replace(/÷/g, "/").replace(/power|pow/g, "Math.pow").replace(/sqrt|squareroot/g, "Math.sqrt").replace(/round/g, "Math.round").replace(/floor/g, "Math.floor").replace(/ceiling|ceil/g, "Math.ceil").replace(/pi|π/g, "Math.PI").replace(/euler/g, "Math.E").replace(/absolute|abs/g, "Math.abs").replace(/exp/g, "Math.exp").replace(/logarithm|log/g, "Math.log").replace(/random|rand|rng/g, "Math.random()");/*.replace(/acos|arccosine/g, "Math.acos").replace(/asin|arcsine/g, "Math.asin").replace(/atan|arctangent|atan1|arctangent1/g, "Math.atan").replace(/atan2|arctangent2/g, "Math.atan2").replace(/cos|cosine/g, "Math.cos").replace(/sin|sine/g, "Math.sin").replace(/tan|tangent/g, "Math.tan")*/;
-        if (calculate.replace(/[^%]/g, "").length > 0) {
-          for (let i = 0; i < calculate.replace(/[^%]/g, "").length; i++) {
-            while ((calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "+" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "-" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "*" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "/" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "(" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == ")" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "," || getSubstringIndex(calculate, "%", i+1) + 1 == calculate.length) && calculate.replace(/[^%]/g, "").length > 0) {
-              for (let j = getSubstringIndex(calculate, "%", i+1); j > -1; j--) {
-                if (calculate[j] == "=" || calculate[j] == "+" || calculate[j] == "-" || calculate[j] == "*" || calculate[j] == "/" || calculate[j] == "(" || calculate[j] == ")" || calculate[j] == ",") {
-                  calculate = calculate.substring(0, j+1) + (calculate.substring(j+1, getSubstringIndex(calculate, "%", i+1))/100) + calculate.substring(getSubstringIndex(calculate, "%", i+1)+1, calculate.length);
-                  break;
-                }
-              }
-            }
-          }
-        }
-        calculate =  calculate.replace(/=/g, "");
-        if (isFinite(eval(calculate))) message.channel.send(eval(calculate));
-        console.log(eval(calculate));
-      }
-    }
-
-
 
 });
 
