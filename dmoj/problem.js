@@ -77,6 +77,10 @@ module.exports = {
     https.get(url, (resp) => {
       let data = ''
 
+      resp.on('404', () => {
+        var errormsg = '404 not found';
+        message.channel.send(out);
+      })
       resp.on('data', (chunk) => {
         data += chunk
       })
