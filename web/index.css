@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+h3{
+  font-size: 16px;
+  width:300px;
+  border-bottom: 1px dotted black
+}
+body{
+  padding-left: 15px;
+}
+.prefix{
+  width:170px;
+  padding-left: 5px;
+  border: solid 1px black;
+}
+#opensans{
+  font-family: 'Open Sans', sans-serif;
+}
+h1 a{
+  font-size: 24px;
+  color:black;
+}
+h1 a:hover{
+  font-size: 26px;
+  color:blue;
+  font-weight: bold;
+}

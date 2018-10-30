@@ -13,8 +13,8 @@ const { Signale } = require('signale');
 const problems = require('./dmoj/problem.js')
 const contests = require('./dmoj/contest.js')
 const users = require('./dmoj/user.js')
+const package = require('./package.json')
 //END OF DMOJ MODULE
-const owner = 230485481773596672
 
 const options = {
     disabled: false,
@@ -23,7 +23,7 @@ const options = {
     types: {
         command: {
             color: 'green',
-            label: 'COMMAND'
+            label: 'c  COMMAND'
         },
         info: {
             color: 'grey',
@@ -32,31 +32,122 @@ const options = {
         error: {
             color: 'red',
             label: 'ERROR',
-        },
-        owner: {
-            color: 'orange',
-            label: 'DEVELOPER COMMAND',
-      }
+        }
     }
 };
 
 const signal = new Signale(options);
-var build = '420';
-var ver = '0.4.3';
+const build = package.build;
+const ver = package.version;
+const ownerID = package.ownerID;
+
 
 
 signal.info("Starting the SeedBot...")
 signal.info("Copyright 2018, jyles.pw")
 signal.info("Running SeedBot version " + ver + " build " + build)
+client.on('message',async message => {
+  if (message.author.bot) return;
+  if (message.content.indexOf(config.devprefix) !== 0) return;
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const devcommand = args.shift().toLowerCase();
 
+  if (devcommand === 'svrs') {
+
+      if (message.author.id === '230485481773596672') {
+          message.author.send("Number of Available Servers: " + client.guilds.size);
+          var list = client.guilds.array().sort();
+          message.author.send("Available Servers: " + list);
+          signal.info("An Owner executed s!srvrs");
+      }
+      else {
+          message.reply('Unable to perform action - you do not have the appropriate role');
+          signal.error("A user executed s!srvrs without appropriate permissions");
+      }
+  }
+
+  //Shows Number of accesable channels
+  if (devcommand === 'chnls') {
+
+      if (message.author.id === '230485481773596672') {
+          message.author.send("Number of Available Channels: " + client.channels.size);
+          var list = client.channels.array().sort();
+          message.author.send("Available Channels: " + list);
+          signal.command("An Owner executed s!chnls");
+      }
+      else {
+          message.reply('Unable to perform action - you are not a creator or developer');
+          signal.error("A user executed s!chnls without appropriate permissions");
+      }
+  }
+  if (devcommand === 'exec') {
+    let code = args.slice(0).join(" ");
+    if (message.author.id === ownerID) {
+      let exec = eval(code);
+      message.channel.send('**Input:**\n`' + code + '`\n\n**Output**:\n`' + output);
+    }
+  }
+  if (devcommand === "killmepls") {
+    if (message.author.id === ownerID) {
+      client.user.setActivity('Bot is shutting down...');
+      message.channel.send('Bot it now shutting down. Good Night :first_quarter_moon_with_face: :bed: ');
+      killBot();
+    }
+  }
+
+  //Changes the Rich Presence
+  if (devcommand === 'rpc') {
+      var game = args.slice(0).join(" ");
+
+
+      // only @Seed#0001 and @CheezBiscuit can access this devcommand
+
+      //Checking if the sender is a certian user
+      if (message.author.id === '230485481773596672' || message.author.id === '317250979311386627') {
+
+          //reset devcommand
+          if (game === 'reset') {
+              client.user.setActivity('s!help // bot.jyles.pw // Serving ' + client.guilds.size + ' servers');
+              message.author.send('Rich Presence Has Been Reset!');
+              signal.info("A Owner executed s!rp reset");
+          }
+          else {
+              client.user.setActivity(game + ' // bot.jyles.pw // Serving ${client.guilds.size} servers');
+              message.author.send('Rich Presence Status Updated To: ' + game);
+              signal.info("A Owner executed s!rp " + game + ", game set to " + game);
+          }
+      }
+      else {
+          message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
+          signal.error("A user eSxecuted s!rp without appropriate permissions")
+      }
+  }
+  if (devcommand === 'spam') {
+    let i;
+    let text = args.slice(1).join(" ");
+    let msgcount = args.slice(2).join(" ");
+    message.channel.send(msgcount + '\n' + text);
+    if (message.author.id === ownerID) {
+      signal.command("An Owner Executed the s!spam devcommand");
+
+      for(let i = 0; i < 5; i++) {message.channel.send(message.content.split(" ").splice(2).join(" "));}
+    }
+
+  }
+
+});
 client.on("message", async message => {
     if (message.author.bot) return;
     if (message.content.indexOf(config.prefix) !== 0) return;
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
+    function killBot(){
+      process.exit();
+    }
+
     if (command === 'problem') {
-        
+
       if (args.length === 2 && args[1] === '-l') {
         problems.get(args[0], true, message)
       } else {
@@ -64,7 +155,7 @@ client.on("message", async message => {
       }
     }
     if (command === 'contest') {
-        
+
       if (args.length === 2 && args[1] === '-l') {
         contests.get(args[0], true, message)
       } else {
@@ -73,7 +164,7 @@ client.on("message", async message => {
     }
 
     if (command === 'user') {
-        
+
       if (args.length === 2 && args[1] === '-l') {
         users.get(args[0], true, message)
       } else {
@@ -82,7 +173,7 @@ client.on("message", async message => {
     }
 
     if (command === 'search') {
-        
+
       message.reply('Working on it...')
         .then(message => {
           message.delete(5000)
@@ -95,7 +186,7 @@ client.on("message", async message => {
     }
 
     if (command === 'contest-search') {
-        
+
       message.reply('Working on it...')
         .then(message => {
           message.delete(5000)
@@ -108,7 +199,7 @@ client.on("message", async message => {
     }
 
     if (command === 'user-search') {
-        
+
       message.reply('Working on it...')
         .then(message => {
           message.delete(5000)
@@ -123,61 +214,24 @@ client.on("message", async message => {
 
     //>>>REDESIGNED HELP SYSTEM (MODULAR)<<<
     if (command === 'help') {
-        var helpcategoryold = args.slice(0).join(" ");
-
-        message.reply('http://bot.jyles.pw/#help');
-
-        //s!help
-        if (helpcategory === '') {
-            
-            message.channel.send("***SeedBot Command Directory***\nPrefix: ***s!***\n*Usage: s!help.[command group]*\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: Moderation Commands: **s!help mod**\n:radio_button: Music Commands: **s!help music**\n:radio_button: Other Commands: **s!help other**\n");
-            signal.command("A user executed s!help");
-        }
-
-        //s!help mod
-        else if (helpcategory === 'mod') {
-            
-            message.channel.send("***SeedBot Moderation Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Kick* // Command Usage: **s!kick **[user]** reason**\nKick a user\n\n:radio_button: *Ban* // Command Usage: **s!ban** [user] **reason**\nDeportes a user from a server (permantley until pardoned from the server settings)\n\n:radio_button: *Purge* // Command Usage: **s!purge**[ammount of messages]\nDelete Message with a command\n\n");
-            signal.command("A user executed s!help mod");
-        }
-
-        //s!help other
-        else if (helpcategory === 'other') {
-            
-            message.channel.send("***SeedBot Other Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Ping* // **s!ping**\n Tests Latency between the bot and the Discord API\n\n:radio_button: *Setup* // **s!setup**\nGives you instructions on how to setup SeedBot\n\n:radio_button: *Discord* // **s!discord** \nGives the end-user the link to the creators discord server\n\n:radio_button: *Invite* // **s!invite** \nGives you the invite link for the discord bot\n\n");
-            signal.command("A user executed s!help other")
-        }
-
-        //s!help music
-        else if (helpcategory === 'music') {
-            
-            message.channel.send("***Bot is broken and awaing fixing by the developer***\n\n~~***SeedBot Music Commands***\nPrefix: ***s?***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Play* // Command Usage: **s?play**[song name or youtube URL]\nPlay a song\n\n:radio_button: *Skip* // **s?skip**\nSkip a song, its sort of self explanitory\n\n:radio_button: *Leave* // **s?leave**\nDisconnects the bot from the voice channel\n\n:radio_button: *Queue* // **s?queue**\nShows what songs are currentley queued.\n\n:radio_button: *Volume* // Command Usage: **s?vol** [volume count 0-100]\nChange th volume of the music (server-wide)\n~~");
-            signal.command("A user executed s!help music");
-        }
-
-        //s!help dmoj
-        else if (helpcategory === 'dmoj') {
-            
-            message.channel.send("***SeedBot DMOJ Commands***\nPrefix: ***s!***\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n:radio_button: *Problem* // Command Usage: s!problem info <Problem Code>\n (pass the -l flag for language list)\n:radio_button: *Contests* // Command Usage: s!contest <Content Code>\n (pass the -l flag for top 10 leaderboard)\n:radio_button: *Users* // Command usage: s!user <Username>\n (pass the -l flag for a list of solved problems)");
-            signal.command("A user executed s!help dmoj");
-        }
+        message.reply('http://bot.jyles.pw/');
     }
 
     //OTHER COMMANDS______________________________________________________________
     if (command === "ping") {
-        
+
         const m = await message.channel.send("Ping?");
-        m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
+        m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. \nAPI Latency is ${Math.round(client.ping)}ms`);
         signal.command("A user executed s!ping");
     }
     if (command === "invite") {
-        
-        message.reply("Here is the Invite link for SeedBot\n https://goo.gl/pA7oFj");
+
+        message.reply("Take me yo your leader!\n https://goo.gl/LqfdtJ");
         signal.command("A user executed s!invite");
     }
     if (command === "discord") {
-        
-        message.reply("Here is my creators discord!\n http://gg.jyles.pw");
+
+        message.reply("Here is my support discord!\n http://gg.jyles.pw");
         signal.command("A user executed s!discord");
     }
 
@@ -229,7 +283,7 @@ client.on("message", async message => {
 
     //StrafeCode.com Server Commands (Staff)
     if (command === 'request'){
-        
+
         var userrequest = args.slice(0).join(" ");
         console.log(userrequest);
         if(message.channel.id === '489269312645758976'){
@@ -252,90 +306,9 @@ client.on("message", async message => {
 
     //INIT COMMANDS __________________________________________________
     if (command === "setup") {
-        
+
         message.reply("To Setup SeedBot You need to Create ***Two Roles***\n One Role with the name of ``SeedModerator``\n and the other role with the name of ``SeedAdmin``\n And You should be set to use the Moderation Commands!");
         signal.command("A user executed s!setup");
-    }
-
-
-    //OWNER ONLY COMMANDS______________________________________________
-
-    //Show Number of servers and List of Servers
-    if (command === 'svrs') {
-        
-        if (message.author.id === '230485481773596672') {
-            message.author.send("Number of Available Servers: " + client.guilds.size);
-            var list = client.guilds.array().sort();
-            message.author.send("Available Servers: " + list);
-            signal.owner("An Owner executed s!srvrs");
-        }
-        else {
-            message.reply('Unable to perform action - you do not have the appropriate role');
-            signal.error("A user executed s!srvrs without appropriate permissions");
-        }
-    }
-
-    //Shows Number of accesable channels
-    if (command === 'chnls') {
-        
-        if (message.author.id === '230485481773596672') {
-            message.author.send("Number of Available Channels: " + client.channels.size);
-            var list = client.channels.array().sort();
-            message.author.send("Available Channels: " + list);
-            signal.owner("An Owner executed s!chnls");
-        }
-        else {
-            message.reply('Unable to perform action - you do not have the appropriate role');
-            signal.error("A user executed s!chnls without appropriate permissions");
-        }
-    }
-    if (command === 'exec') {
-      if (message.author.id === owner) {
-      childProcess.exec(args.join(' '), {},
-        (err, stdout, stderr) => {
-            if (err) return message.channel.sendCode('', err.message);
-            message.channel.sendCode('', stdout);
-        });
-      }
-    }
-
-    //Changes the Rich Presence
-    if (command === 'rpc') {
-        var game = args.slice(0).join(" ");
-        
-
-        // only @Seed#0001 and @CheezBiscuit can access this command
-
-        //Checking if the sender is a certian user
-        if (message.author.id === '230485481773596672' || message.author.id === '317250979311386627') {
-
-            //reset command
-            if (game === 'reset') {
-                client.user.setActivity('s!help // bot.jyles.pw // Serving ' + client.guilds.size + ' servers');
-                message.author.send('Rich Presence Has Been Reset!');
-                signal.owner("A Owner executed s!rp reset");
-            }
-            else {
-                client.user.setActivity(game + ' // bot.jyles.pw // Serving ${client.guilds.size} servers');
-                message.author.send('Rich Presence Status Updated To: ' + game);
-                signal.owner("A Owner executed s!rp " + game + ", game set to " + game);
-            }
-        }
-        else {
-            message.reply('you do not have permissions to use this command,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
-            signal.error("A user eSxecuted s!rp without appropriate permissions")
-        }
-    }
-    if (command === 'spam') {
-        var text = args.slice(0).join(" ");
-        var messagecount = number(0);
-        signal.owner("An Owner Executed the s!spam command");
-
-        while (messagecount < Number(999999)) {
-            message.channel.send(text);
-            var messagecount = messagecount + number(1);
-        }
-
     }
 
 
@@ -368,6 +341,30 @@ client.on("message", async message => {
       if (message.mentions.users.first() < 1){ return message.reply('You can\'t throw a hammer at thin air, pick someone fool.')}
       message.channel.send(`${message.author.username} threw a hammer at ${message.mentions.users.first().username}. <:hammmer:${settings.hammer}>`)
     }
+
+
+    if (message.content.startsWith(config.mathprefix)) {
+      let calculate = "=" + message.content.toLowerCase().substring(config.mathprefix.length);
+      if (isFinite(calculate.replace(/\=|\+|\-|\*|\/|\÷|\%|\(|\)|\,|\ |math.|pow|sqrt|round|floor|ceiling|ceil|pi|π|euler|absolute|abs|exp|logarithm|log|random|rand|rng/g,''))) {
+        calculate = calculate.replace(/ /g, "").replace(/÷/g, "/").replace(/power|pow/g, "Math.pow").replace(/sqrt|squareroot/g, "Math.sqrt").replace(/round/g, "Math.round").replace(/floor/g, "Math.floor").replace(/ceiling|ceil/g, "Math.ceil").replace(/pi|π/g, "Math.PI").replace(/euler/g, "Math.E").replace(/absolute|abs/g, "Math.abs").replace(/exp/g, "Math.exp").replace(/logarithm|log/g, "Math.log").replace(/random|rand|rng/g, "Math.random()");/*.replace(/acos|arccosine/g, "Math.acos").replace(/asin|arcsine/g, "Math.asin").replace(/atan|arctangent|atan1|arctangent1/g, "Math.atan").replace(/atan2|arctangent2/g, "Math.atan2").replace(/cos|cosine/g, "Math.cos").replace(/sin|sine/g, "Math.sin").replace(/tan|tangent/g, "Math.tan")*/;
+        if (calculate.replace(/[^%]/g, "").length > 0) {
+          for (let i = 0; i < calculate.replace(/[^%]/g, "").length; i++) {
+            while ((calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "+" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "-" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "*" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "/" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "(" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == ")" || calculate[getSubstringIndex(calculate, "%", i+1) + 1] == "," || getSubstringIndex(calculate, "%", i+1) + 1 == calculate.length) && calculate.replace(/[^%]/g, "").length > 0) {
+              for (let j = getSubstringIndex(calculate, "%", i+1); j > -1; j--) {
+                if (calculate[j] == "=" || calculate[j] == "+" || calculate[j] == "-" || calculate[j] == "*" || calculate[j] == "/" || calculate[j] == "(" || calculate[j] == ")" || calculate[j] == ",") {
+                  calculate = calculate.substring(0, j+1) + (calculate.substring(j+1, getSubstringIndex(calculate, "%", i+1))/100) + calculate.substring(getSubstringIndex(calculate, "%", i+1)+1, calculate.length);
+                  break;
+                }
+              }
+            }
+          }
+        }
+        calculate =  calculate.replace(/=/g, "");
+        if (isFinite(eval(calculate))) message.channel.send(eval(calculate));
+        console.log(eval(calculate));
+      }
+    }
+
 
 
 });
