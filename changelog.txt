@@ -1,8 +1,8 @@
 |----------------------------------------------------------------------------------------------------
 |CHANGELOG                                                                                          |
 |----------------------------------------------------------------------------------------------------
-|        20.10.2018 VERISON 0.5 [PUBLIC RELEASE]                                                    |
-|        BUILD 500                                                                                  |
+|        20.10.2018 VERISON 0.5.2 [PUBLIC RELEASE]                                                  |
+|        BUILD 570                                                                                  |
 |----------------------------------------------------------------------------------------------------
 |  JOIN MY discord                                                                                  |
 |  gg.jyles.pw                                                                                      |
@@ -17,6 +17,8 @@
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
+| Added s~exec                                       Added on 31.10.2018                            |
+| Added Restart Command				                 Added on 31.10.2018		            	    |
 | Rich Presence Command fixed                        Added on 30.10.2018                            |
 | M  A  T  H                                         Added on 30.10.2018                            |
 | Remove s!help after command has been executed      Added on 30.10.2018                            |

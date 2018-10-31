@@ -9,6 +9,10 @@ const config = require("./config.json");
 
 const { Signale } = require('signale');
 
+function killBot(){
+  process.kill();
+}
+
 //DMOJ MODULE
 const problems = require('./dmoj/problem.js')
 const contests = require('./dmoj/contest.js')
@@ -83,7 +87,7 @@ client.on('message',async message => {
   const args = message.content.slice(config.devprefix.length).trim().split(/ +/g);
   const devcommand = args.shift().toLowerCase();
 
-  if (devcommand === 'svrs') {
+  if (devcommand === 'servers') {
 
       if (message.author.id === '230485481773596672') {
           message.author.send("Number of Available Servers: " + client.guilds.size);
@@ -97,18 +101,24 @@ client.on('message',async message => {
       }
   }
 
+  if (devcommand === 'usercount'){
+    if (message.author.id === ownerID) {
+      message.author.send("Number of Users: " + client.users.size);
+    }
+  }
+
   //Shows Number of accesable channels
-  if (devcommand === 'chnls') {
+  if (devcommand === 'channels') {
 
       if (message.author.id === '230485481773596672') {
           message.author.send("Number of Available Channels: " + client.channels.size);
           var list = client.channels.array().sort();
-          message.author.send("Available Channels: " + list);
-          signal.command("An Owner executed s!chnls");
+          //message.author.send("Available Channels: " + list);
+          signal.command("An Owner executed s!channels");
       }
       else {
           message.reply('Unable to perform action - you are not a creator or developer');
-          signal.error("A user executed s!chnls without appropriate permissions");
+          signal.error("A user executed s!channels without appropriate permissions");
       }
   }
   if (devcommand === 'exec') {
@@ -118,11 +128,11 @@ client.on('message',async message => {
       message.channel.send('**Input:**\n`' + code + '`\n\n**Output**:\n`' + output);
     }
   }
-  if (devcommand === "killmepls") {
+  if (devcommand === "restart") {
     if (message.author.id === ownerID) {
-      client.user.setActivity('Bot is shutting down...');
-      message.channel.send('Bot it now shutting down. Good Night :first_quarter_moon_with_face: :bed: ');
-      process.kill();
+      message.channel.send('Bot it now Restarting. Good Night :first_quarter_moon_with_face: :bed: ');
+      client.user.setActivity('Bot is Restarting...');
+      process.exit();
     }
   }
 
@@ -172,10 +182,6 @@ client.on("message", async message => {
     if (message.content.indexOf(config.prefix) !== 0) return;
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-
-    function killBot(){
-      process.exit();
-    }
 
     if (command === 'problem') {
 
