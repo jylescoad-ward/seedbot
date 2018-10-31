@@ -1,8 +1,8 @@
 |----------------------------------------------------------------------------------------------------
 |CHANGELOG                                                                                          |
 |----------------------------------------------------------------------------------------------------
-|        20.10.2018 VERISON 0.5.3 [PUBLIC RELEASE]                                                  |
-|        BUILD 572                                                                                  |
+|        20.10.2018 VERISON 0.5.4 [PUBLIC RELEASE]                                                  |
+|        BUILD 573                                                                                  |
 |----------------------------------------------------------------------------------------------------
 |  JOIN MY discord                                                                                  |
 |  gg.jyles.pw                                                                                      |
@@ -18,7 +18,9 @@
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
-| Edited RPC command and default rich presence       Added on 31.10.2017                            |
+| Added note to website saying that mod cmd broke    Added on 31.10.2018                            |
+| Added developer commands to website                Added on 31.10.2018                            |
+| Edited RPC command and default rich presence       Added on 31.10.2018                            |
 | Added the music bot, ffs darko                     Added on 31.10.2018        [Still Broken  :/  ]|
 | Added s~exec                                       Added on 31.10.2018                            |
 | Added Restart Command				                       Added on 31.10.2018		                   	    |
