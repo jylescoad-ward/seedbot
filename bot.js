@@ -6,13 +6,10 @@ const { RichEmbed } = require('discord.js')
 const client = new Discord.Client();
 const config = require("./config.json");
 // const Music = require('discord.js-musicbot-addon');
-
 const { Signale } = require('signale');
-
 function killBot(){
   process.kill();
 }
-
 //DMOJ MODULE
 const problems = require('./dmoj/problem.js')
 const contests = require('./dmoj/contest.js')
@@ -44,6 +41,7 @@ const signal = new Signale(options);
 const build = package.build;
 const ver = package.version;
 const ownerID = package.ownerID;
+const ytapi = config.ytApiToken;
 
 
 
@@ -56,7 +54,7 @@ client.on('message',async message => {
   if (message.content.indexOf(config.mathprefix) !== 0) return;
   const args = message.content.slice(config.mathprefix.length).trim().split(/ +/g);
   const devcommand = args.shift().toLowerCase();
-  
+
   if (message.content.startsWith(config.mathprefix)) {
     let calculate = "=" + message.content.toLowerCase().substring(config.mathprefix.length);
     if (isFinite(calculate.replace(/\=|\+|\-|\*|\/|\÷|\%|\(|\)|\,|\ |math.|pow|sqrt|round|floor|ceiling|ceil|pi|π|euler|absolute|abs|exp|logarithm|log|random|rand|rng/g,''))) {
@@ -87,7 +85,7 @@ client.on('message',async message => {
   const args = message.content.slice(config.devprefix.length).trim().split(/ +/g);
   const devcommand = args.shift().toLowerCase();
 
-  if (devcommand === 'servers') {
+  if (devcommand === 'serverlist') {
 
       if (message.author.id === '230485481773596672') {
           message.author.send("Number of Available Servers: " + client.guilds.size);
@@ -97,7 +95,7 @@ client.on('message',async message => {
       }
       else {
           message.reply('Unable to perform action - you do not have the appropriate role');
-          signal.error("A user executed s!srvrs without appropriate permissions");
+          signal.error("A user executed s!serverlist without appropriate permissions");
       }
   }
 
@@ -148,12 +146,12 @@ client.on('message',async message => {
 
           //reset devcommand
           if (game === 'reset') {
-              client.user.setActivity('s!help // bot.jyles.pw // Serving ' + client.guilds.size + ' servers');
+              client.user.setActivity('s!help // bot.jyles.pw // Serving ' + client.users.size + ' players');
               message.author.send('Rich Presence Has Been Reset!');
               signal.info("A Owner executed s!rp reset");
           }
           else {
-              client.user.setActivity(game + ' // bot.jyles.pw // Serving ' + client.guilds.size + ' servers');
+              client.user.setActivity(game + ' // bot.jyles.pw // Serving ' + client.users.size + ' players');
               message.author.send('Rich Presence Status Updated To: ' + game);
               signal.info("A Owner executed s!rp " + game + ", game set to " + game);
           }
@@ -309,37 +307,6 @@ client.on("message", async message => {
       message.channel.send('User: ' + user + ' has been banned');
     }
 
-    //Purge Command
-    if (command === "purge") {
-      let messagecount = parseInt(args.join(' '));
-      message.channel.fetchMessages({
-        limit: 100
-      }).then(messages => message.channel.bulkDelete(messages));
-    }
-
-
-    //StrafeCode.com Server Commands (Staff)
-    if (command === 'request'){
-
-        var userrequest = args.slice(0).join(" ");
-        console.log(userrequest);
-        if(message.channel.id === '489269312645758976'){
-            client.users.get("230485481773596672").send(":grey_exclamation: **User: " + message.author.toString() + " Sent a Request**:grey_exclamation: \n:anger: *Request Details* :anger:\n" + userrequest);
-
-            message.reply('Request Sent to CEO');
-            setTimeout();
-            message.channel.send('?purge 2');
-            client.channel.get('489303673126780948').send('***New Request!***\n**Requested by: ' + message.author.toString() + '\n**Request Details: ' + userrequest);
-        }
-        else{
-            message.reply('Incorrect Channel, Piss off.')
-        }
-    }
-
-
-
-
-
 
     //INIT COMMANDS __________________________________________________
     if (command === "setup") {
@@ -408,6 +375,6 @@ client.on("message", async message => {
 client.on("ready", () => {
     signal.info(`Bot has started, with ` + client.users.size + ` users, in ` + client.channels.size + ` channels of ` + client.guilds.size + ` guilds.`);
 
-    client.user.setActivity(`s!help // v` + ver + ` // ` + client.guilds.size + ` guilds.`);
+    client.user.setActivity(`s!help // v` + ver + ` // ` + client.users.size + ` Users.`);
 });
 client.login(config.token);

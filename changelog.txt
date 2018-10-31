@@ -1,24 +1,27 @@
 |----------------------------------------------------------------------------------------------------
 |CHANGELOG                                                                                          |
 |----------------------------------------------------------------------------------------------------
-|        20.10.2018 VERISON 0.5.2 [PUBLIC RELEASE]                                                  |
-|        BUILD 570                                                                                  |
+|        20.10.2018 VERISON 0.5.3 [PUBLIC RELEASE]                                                  |
+|        BUILD 572                                                                                  |
 |----------------------------------------------------------------------------------------------------
 |  JOIN MY discord                                                                                  |
 |  gg.jyles.pw                                                                                      |
 |  bot.jyles.pw                                                                                     |
 |  @Seed#0001                                                                                       |
 |----------------------------------------------------------------------------------------------------
-|  COLLABORATORS                 |                                                                  |
-| ________________________________                                                                  |
+|  COLLABORATORS                 ║                                                                  |
+| ═══════════════════════════════╝                                                                  |
+| @Darko Pendragon#0561 [Music Plugin]                                                              |
 | @CheezBiscut#9461  [DMOJ Plugin]                                                                  |
 | @Seed#0001                                                                                        |
 |----------------------------------------------------------------------------------------------------
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
+| Edited RPC command and default rich presence       Added on 31.10.2017                            |
+| Added the music bot, ffs darko                     Added on 31.10.2018        [Still Broken  :/  ]|
 | Added s~exec                                       Added on 31.10.2018                            |
-| Added Restart Command				                 Added on 31.10.2018		            	    |
+| Added Restart Command				                       Added on 31.10.2018		                   	    |
 | Rich Presence Command fixed                        Added on 30.10.2018                            |
 | M  A  T  H                                         Added on 30.10.2018                            |
 | Remove s!help after command has been executed      Added on 30.10.2018                            |

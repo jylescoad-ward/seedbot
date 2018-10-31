@@ -1,0 +1,31 @@
+const music = require('discord.js-musicbot-addon');
+music.start(client, {
+  youtubeKey: ytapi,
+  cooldown: {
+    disabled: true,
+    timer: 10000
+  },
+  botPrefix: config.musicprefix,
+  play: {
+    alt: "p"
+  },
+  remove: {
+    alt: "rm"
+  },
+  queue: {
+    alt: "q"
+  },
+  leave: {
+    alt: "exit"
+  },
+  skip: {
+    alt: "sk"
+  },
+  volume: {
+    alt: "vol"
+  },
+  anyoneCanSkip: true,
+  anyoneCanAdjust: false,
+  inlineEmbeds: true,
+  logging: true
+});
