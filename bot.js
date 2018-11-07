@@ -10,8 +10,7 @@ const { Signale } = require('signale');
 function killBot(){
   process.kill();
 }
-setTimeout(waittfam() {
-}, 1000);
+setTimeout(function waittfam() {}, 1000);
 //DMOJ MODULE
 const problems = require('./dmoj/problem.js')
 const contests = require('./dmoj/contest.js')
