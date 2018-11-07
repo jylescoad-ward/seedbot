@@ -1,4 +1,4 @@
-
+﻿
 //Changelog Moved to changelog.txt
 
 const Discord = require("discord.js");
@@ -10,6 +10,8 @@ const { Signale } = require('signale');
 function killBot(){
   process.kill();
 }
+setTimeout(waittfam() {
+}, 1000);
 //DMOJ MODULE
 const problems = require('./dmoj/problem.js')
 const contests = require('./dmoj/contest.js')
@@ -43,7 +45,37 @@ const ver = package.version;
 const ownerID = package.ownerID;
 const ytapi = config.ytApiToken;
 
+const log4js = require('log4js');
 
+log4js.configure(
+  {
+    appenders: {
+      file: {
+        type: 'file',
+        filename: 'important-things.log',
+        maxLogSize: 10 * 1024 * 1024, // = 10Mb
+        numBackups: 5, // keep five backup files
+        compress: true, // compress the backups
+        encoding: 'utf-8',
+        mode: 0o0640,
+        flags: 'w+'
+      },
+      dateFile: {
+        type: 'dateFile',
+        filename: 'more-important-things.log',
+        pattern: 'yyyy-MM-dd-hh',
+        compress: true
+      },
+      out: {
+        type: 'stdout'
+      }
+    },
+    categories: {
+      default: { appenders: ['file', 'dateFile', 'out'], level: 'trace' }
+    }
+  }
+);
+const logger = log4js.getLogger('things');
 
 signal.info("Starting the SeedBot...")
 signal.info("Copyright 2018, jyles.pw")
@@ -84,6 +116,17 @@ client.on('message',async message => {
   if (message.content.indexOf(config.devprefix) !== 0) return;
   const args = message.content.slice(config.devprefix.length).trim().split(/ +/g);
   const devcommand = args.shift().toLowerCase();
+  const announcementschannel = client.channels.find('name', 'announcements');
+  const generalchannel = client.channels.find('name', 'general');
+
+  if (devcommand === 'announce') {
+    let message = args.slice(0).join(" ")
+    let array = client.channels.array().sort();
+    if (message.author.id === ownerID) {
+      client.channels.get(array).send(message);
+    }
+    else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
+  }
 
   if (devcommand === 'serverlist') {
 
@@ -93,16 +136,14 @@ client.on('message',async message => {
           message.author.send("Available Servers: " + list);
           signal.info("An Owner executed s!srvrs");
       }
-      else {
-          message.reply('Unable to perform action - you do not have the appropriate role');
-          signal.error("A user executed s!serverlist without appropriate permissions");
-      }
+      else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
 
   if (devcommand === 'usercount'){
     if (message.author.id === ownerID) {
       message.author.send("Number of Users: " + client.users.size);
     }
+    else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
 
   //Shows Number of accesable channels
@@ -114,17 +155,15 @@ client.on('message',async message => {
           //message.author.send("Available Channels: " + list);
           signal.command("An Owner executed s!channels");
       }
-      else {
-          message.reply('Unable to perform action - you are not a creator or developer');
-          signal.error("A user executed s!channels without appropriate permissions");
-      }
+      else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
   if (devcommand === 'exec') {
     let code = args.slice(0).join(" ");
     if (message.author.id === ownerID) {
       let exec = eval(code);
-      message.channel.send('**Input:**\n`' + code + '`\n\n**Output**:\n`' + output);
+      message.channel.send('**Input:**\n`' + code + '`\n\n**Output**:\n`' + exec + '`');
     }
+    else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
   if (devcommand === "restart") {
     if (message.author.id === ownerID) {
@@ -132,6 +171,14 @@ client.on('message',async message => {
       client.user.setActivity('Bot is Restarting...');
       process.exit();
     }
+    else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
+  }
+  if (devcommand === 'refreshrpc') {
+    if (message.author.id === ownerID) {
+      message.channel.send('Rich Presence Refreshed!');
+      client.user.setActivity('s!help // bot.jyles.pw // Serving ' + client.users.size + ' players');
+    }
+    else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
 
   //Changes the Rich Presence
@@ -156,10 +203,7 @@ client.on('message',async message => {
               signal.info("A Owner executed s!rp " + game + ", game set to " + game);
           }
       }
-      else {
-          message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
-          signal.error("A user eSxecuted s!rp without appropriate permissions")
-      }
+      else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
   if (devcommand === 'spam') {
     let i;
@@ -169,11 +213,10 @@ client.on('message',async message => {
     if (message.author.id === ownerID) {
       signal.command("An Owner Executed the s!spam devcommand");
 
-      for(let i = 0; i < 5; i++) {message.channel.send(message.content.split(" ").splice(2).join(" "));}
+      for(let i = 0; i < 5; i++) {message.channel.send(message.content.split(" ").splice(2).join(" "));waittfam();}
     }
-
+    else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
-
 });
 client.on("message", async message => {
     if (message.author.bot) return;
@@ -378,3 +421,18 @@ client.on("ready", () => {
     client.user.setActivity(`s!help // v` + ver + ` // ` + client.users.size + ` Users.`);
 });
 client.login(config.token);
+
+
+const music = require('discord.js-musicbot-addon');
+music.start(client, {
+  youtubeKey: '',
+  cooldown: {
+    disabled: true,
+    timer: 10000
+  },
+  botPrefix: 's?',
+  anyoneCanSkip: true,
+  anyoneCanAdjust: false,
+  inlineEmbeds: true,
+  logging: true
+});
