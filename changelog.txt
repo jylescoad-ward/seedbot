@@ -1,8 +1,8 @@
 |----------------------------------------------------------------------------------------------------
 |CHANGELOG                                                                                          |
 |----------------------------------------------------------------------------------------------------
-|        20.10.2018 VERISON 0.5 [PUBLIC RELEASE]                                                    |
-|        BUILD 500                                                                                  |
+|        20.10.2018 VERISON 0.5.8 [PUBLIC RELEASE]                                                  |
+|        BUILD 583                                                                                  |
 |----------------------------------------------------------------------------------------------------
 |  JOIN MY discord                                                                                  |
 |  gg.jyles.pw                                                                                      |
@@ -17,6 +17,7 @@
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
+| Moved Bot to Heroku (24/7)                         Added on 10.11.2018                            |
 | M  A  T  H                                         Added on 30.10.2018                            |
 | Remove s!help after command has been executed      Added on 30.10.2018                            |
 | Fixed unknown problems on DMOJ                     Fixed on 30.10.2018                            |

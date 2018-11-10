@@ -436,12 +436,12 @@ client.on("ready", () => {
 
     client.user.setActivity(`s!help // v` + ver + ` // ` + client.users.size + ` Users.`);
 });
-client.login(config.token);
-
+//client.login(config.token);
+client.login(process.env.BOT_TOKEN);
 
 const music = require('discord.js-musicbot-addon');
 music.start(client, {
-  youtubeKey: '',
+  youtubeKey: 'put youtube v3 token here',
   cooldown: {
     disabled: true,
     timer: 10000
