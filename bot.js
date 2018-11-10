@@ -17,6 +17,7 @@ const contests = require('./dmoj/contest.js')
 const users = require('./dmoj/user.js')
 const package = require('./package.json')
 //END OF DMOJ MODULE
+const publicIp = require('public-ip')
 
 const options = {
     disabled: false,
@@ -117,6 +118,22 @@ client.on('message',async message => {
   const devcommand = args.shift().toLowerCase();
   const announcementschannel = client.channels.find('name', 'announcements');
   const generalchannel = client.channels.find('name', 'general');
+
+  if (devcommand === 'getipv4') {
+    if (message.author.id === ownerID) {
+      publicIp.v4().then(ip => {
+        message.author.send('**Global IPv4:**\n*' + ip + '*');
+      });
+    }
+  }
+
+  if (devcommand === 'getipv6') {
+    if (message.author.id === ownerID) {
+      publicIp.v6().then(ip => {
+        message.author.send('**Global IPv6:**\n*' + ip + '*');
+      });
+    }
+  }
 
   if (devcommand === 'announce') {
     let message = args.slice(0).join(" ")
