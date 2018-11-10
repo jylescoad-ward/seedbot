@@ -439,7 +439,7 @@ client.login(process.env.BOT_TOKEN);
 
 const music = require('discord.js-musicbot-addon');
 music.start(client, {
-  youtubeKey: 'put youtube v3 token here',
+  youtubeKey: process.env.YT_TOKEN,
   cooldown: {
     disabled: true,
     timer: 10000
