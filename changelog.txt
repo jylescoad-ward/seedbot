@@ -1,30 +1,22 @@
 |----------------------------------------------------------------------------------------------------
 |CHANGELOG                                                                                          |
 |----------------------------------------------------------------------------------------------------
-|        20.10.2018 VERISON 0.5.4 [PUBLIC RELEASE]                                                  |
-|        BUILD 573                                                                                  |
+|        20.10.2018 VERISON 0.5 [PUBLIC RELEASE]                                                    |
+|        BUILD 500                                                                                  |
 |----------------------------------------------------------------------------------------------------
 |  JOIN MY discord                                                                                  |
 |  gg.jyles.pw                                                                                      |
 |  bot.jyles.pw                                                                                     |
 |  @Seed#0001                                                                                       |
 |----------------------------------------------------------------------------------------------------
-|  COLLABORATORS                 ║                                                                  |
-| ═══════════════════════════════╝                                                                  |
-| @Darko Pendragon#0561 [Music Plugin]                                                              |
+|  COLLABORATORS                 |                                                                  |
+| ________________________________                                                                  |
 | @CheezBiscut#9461  [DMOJ Plugin]                                                                  |
 | @Seed#0001                                                                                        |
 |----------------------------------------------------------------------------------------------------
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
-| Added note to website saying that mod cmd broke    Added on 31.10.2018                            |
-| Added developer commands to website                Added on 31.10.2018                            |
-| Edited RPC command and default rich presence       Added on 31.10.2018                            |
-| Added the music bot, ffs darko                     Added on 31.10.2018        [Still Broken  :/  ]|
-| Added s~exec                                       Added on 31.10.2018                            |
-| Added Restart Command				                       Added on 31.10.2018		                   	    |
-| Rich Presence Command fixed                        Added on 30.10.2018                            |
 | M  A  T  H                                         Added on 30.10.2018                            |
 | Remove s!help after command has been executed      Added on 30.10.2018                            |
 | Fixed unknown problems on DMOJ                     Fixed on 30.10.2018                            |
