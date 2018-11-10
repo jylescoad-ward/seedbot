@@ -336,11 +336,10 @@ client.on("message", async message => {
     //Moderation commands ___________________________________________________________________________
 
     //Kick Command
-    if (command === "kick") {
+        if (command === "kick") {
       let reason = args.slice(1).join(' ');
       let user = message.mentions.users.first();
       let logchannel = message.guild.channels.find('name', 'logs');
-      if (!logchannel) return message.reply('I cannot find a logs channel');
       if (reason.length < 1) return message.reply('You must supply a reason for the kick.');
       if (message.mentions.users.size < 1) return message.reply('You must mention someone to kick them.').catch(console.error);
 
@@ -355,7 +354,6 @@ client.on("message", async message => {
       let reason = args.slice(1).join(' ');
       let user = message.mentions.users.first();
       let logchannel = message.guild.channels.find('name', 'logs');
-      if (!logchannel) return message.reply('I cannot find a logs channel');
       if (!message.member.hasPermission("BAN_MEMBERS")) return message.reply(":no_entry_sign: **Error:** You don't have the **Ban Members** permission!");
       if (reason.length < 1) return message.reply('You must supply a reason for the ban.');
       if (message.mentions.users.size < 1) return message.reply('You must mention someone to ban them.').catch(console.error);
