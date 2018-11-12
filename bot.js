@@ -213,11 +213,6 @@ client.on('message',async message => {
               message.author.send('Rich Presence Has Been Reset!');
               signal.info("A Owner executed s!rp reset");
           }
-		  if (game === 'refresh'){
-			client.user.setActivity(`s!help // ` + client.users.size + ` Users. // v` + ver);
-			message.author.send('Rich Presence has been Refreshed!');
-			signal.info("A Owner executed s!rp refresh");
-		  }
           else {
               client.user.setActivity(game + ' // bot.jyles.pw // Serving ' + client.users.size + ' players');
               message.author.send('Rich Presence Status Updated To: ' + game);
