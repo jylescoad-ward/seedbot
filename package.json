@@ -1,7 +1,7 @@
 {
   "name": "SeedBot",
-  "version": "0.6",
-  "build": "600",
+  "version": "0.6.1",
+  "build": "608",
   "ownerID": "230485481773596672",
   "description": "A Bot by @Seed#0001 for Discord",
   "main": "bot.js",
@@ -9,7 +9,7 @@
   "license": "MIT License [https://opensource.org/licenses/MIT]",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "discord.js-musicbot-addon": "^13.0.1",
+    "discord.js-musicbot-addon": "^13.0.3",
     "ffmpeg": "0.0.4",
     "https": "^1.0.0",
     "jsdom": "^12.2.0",

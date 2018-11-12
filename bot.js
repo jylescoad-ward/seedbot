@@ -440,6 +440,7 @@ client.login(process.env.BOT_TOKEN);
 const music = require('discord.js-musicbot-addon');
 music.start(client, {
   youtubeKey: process.env.YT_TOKEN,
+  //youtubeKey: config.ytapi,
   cooldown: {
     disabled: true,
     timer: 10000
