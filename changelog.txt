@@ -1,8 +1,8 @@
 |----------------------------------------------------------------------------------------------------
 |CHANGELOG                                                                                          |
 |----------------------------------------------------------------------------------------------------
-|        12.11.2018 VERISON 0.6.0 [PUBLIC RELEASE]                                                  |
-|        BUILD 600                                                                                  |
+|        12.11.2018 VERISON 0.6.1 [PUBLIC RELEASE]                                                  |
+|        BUILD 611                                                                                  |
 |----------------------------------------------------------------------------------------------------
 |  JOIN MY discord                                                                                  |
 |  gg.jyles.pw                                                                                      |
@@ -17,7 +17,8 @@
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
-| Added s!rpc refresh								 Added on 12.11.2018    [0.6]					|
+| Thanks @BlueSpring for fixing the s~eval&&exec     Added on 13.11.2018    [0.6.1]                 |
+| Added s!rpc refresh								                 Added on 12.11.2018    [0.6]					          |
 | Moved Bot to Heroku (24/7)                         Added on 10.11.2018                            |
 | M  A  T  H                                         Added on 30.10.2018                            |
 | Remove s!help after command has been executed      Added on 30.10.2018                            |
