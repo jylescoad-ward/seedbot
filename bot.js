@@ -6,7 +6,8 @@ const Discord = require("discord.js"),
       client = new Discord.Client(),
       config = require("./config.json"),
 // const Music = require('discord.js-musicbot-addon');
-      { Signale } = require('signale');
+      { Signale } = require('signale'),
+      util = require('util');
 function killBot(){
   process.kill();
 }
