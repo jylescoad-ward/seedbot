@@ -174,7 +174,7 @@ client.on('message',async message => {
     let code = args.slice(0).join(" ");
     if (message.author.id === ownerID) {
 			if (!code) return message.channel.send('No code provided!');
-			this.client = bot;
+			this.client = client;
 
 			const evaled = {},
 			 logs = [];
@@ -263,7 +263,7 @@ client.on('message',async message => {
   if (devcommand === 'refreshrpc') {
     if (message.author.id === ownerID) {
       message.channel.send('Rich Presence Refreshed!');
-      client.user.setActivity(`s!help // ${client.users.size} Users. // v${ver}`);
+      client.user.setActivity('s!help // bot.jyles.pw // Serving ' + client.users.size + ' players');
     }
     else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
@@ -280,12 +280,12 @@ client.on('message',async message => {
 
           //reset devcommand
           if (game === 'reset') {
-              client.user.setActivity(`s!help // ${client.users.size} Users. // v${ver}`);
+              client.user.setActivity('s!help // bot.jyles.pw // Serving ' + client.users.size + ' players');
               message.author.send('Rich Presence Has Been Reset!');
               signal.info("A Owner executed s!rp reset");
           }
           else {
-              client.user.setActivity(game + ` // ${client.users.size} Users. // v${ver}`);
+              client.user.setActivity(game + ' // bot.jyles.pw // Serving ' + client.users.size + ' players');
               message.author.send('Rich Presence Status Updated To: ' + game);
               signal.info("A Owner executed s!rp " + game + ", game set to " + game);
           }
