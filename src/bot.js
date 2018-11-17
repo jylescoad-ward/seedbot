@@ -1,6 +1,3 @@
-﻿
-//Changelog Moved to changelog.txt
-
 const Discord = require("discord.js"),
       { RichEmbed } = Discord,
       client = new Discord.Client(),
@@ -190,7 +187,7 @@ client.on('message',async message => {
 				const cleaned = a.map(obj => {
 					if (typeof o !== 'string') obj = util.inspect(obj, { depth: 1 });
 					return obj.replace(tokenRegex, 'Nice try getting a token.');
-					
+
 				});
 
 				if (!evaled.output) {
