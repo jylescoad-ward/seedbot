@@ -156,6 +156,12 @@ client.on('message',async message => {
     }
     else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
+  if (devcommand === 'say'){
+	if (message.author.id === ownerID){
+		let message = args.slice(0).join(" ")
+		message.channel.send(message);
+	}
+  }
 
   //Shows Number of accesable channels
   if (devcommand === 'channels') {
