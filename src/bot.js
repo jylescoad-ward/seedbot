@@ -403,6 +403,9 @@ client.on('message',async message => {
         message.reply("Here is my support discord!\n http://gg.jyles.pw");
         signal.command("A user executed s!discord");
     }
+    if (command === "github") {
+	    message.reply("http://seedbot.git.jyles.pw");
+    }
 
 
 
