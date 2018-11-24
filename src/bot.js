@@ -414,6 +414,7 @@ client.on('message',async message => {
         if (command === "kick") {
       let reason = args.slice(1).join(' ');
       let user = message.mentions.users.first();
+      message.reply(user);
       let logchannel = message.guild.channels.find('name', 'logs');
       if (reason.length < 1) return message.reply('You must supply a reason for the kick.');
       if (message.mentions.users.size < 1) return message.reply('You must mention someone to kick them.').catch(console.error);
