@@ -1,23 +1,21 @@
-﻿
-//Changelog Moved to changelog.txt
-
-const Discord = require("discord.js");
-const { RichEmbed } = require('discord.js')
-const client = new Discord.Client();
-const config = require("./config.json");
+const Discord = require("discord.js"),
+      { RichEmbed } = Discord,
+      client = new Discord.Client(),
+      config = require("./config.json"),
 // const Music = require('discord.js-musicbot-addon');
-const { Signale } = require('signale');
+      { Signale } = require('signale'),
+      util = require('util');
 function killBot(){
   process.kill();
 }
 setTimeout(function waittfam() {}, 1000);
 //DMOJ MODULE
-const problems = require('./dmoj/problem.js')
-const contests = require('./dmoj/contest.js')
-const users = require('./dmoj/user.js')
-const package = require('./package.json')
+const problems = require('./dmoj/problem.js'),
+contests = require('./dmoj/contest.js'),
+users = require('./dmoj/user.js'),
+package = require('./package.json');
 //END OF DMOJ MODULE
-const publicIp = require('public-ip')
+const publicIp = require('public-ip');
 
 const options = {
     disabled: false,
@@ -39,13 +37,12 @@ const options = {
     }
 };
 
-const signal = new Signale(options);
-const build = package.build;
-const ver = package.version;
-const ownerID = package.ownerID;
-const ytapi = config.ytApiToken;
-
-const log4js = require('log4js');
+const signal = new Signale(options),
+      build = package.build,
+      ver = package.version,
+      ownerID = package.ownerID,
+      ytapi = config.ytApiToken,
+      log4js = require('log4js');
 
 log4js.configure(
   {
@@ -79,7 +76,7 @@ const logger = log4js.getLogger('things');
 
 signal.info("Starting the SeedBot...")
 signal.info("Copyright 2018, jyles.pw")
-signal.info("Running SeedBot version " + ver + " build " + build);
+signal.info(`Running SeedBot version ${ver} build ${build}`);
 
 client.on('message',async message => {
   if (message.author.bot) return;
@@ -108,10 +105,8 @@ client.on('message',async message => {
       console.log(eval(calculate));
     }
   }
-});
-
-
-client.on('message',async message => {
+})
+.on('message',async message => {
   if (message.author.bot) return;
   if (message.content.indexOf(config.devprefix) !== 0) return;
   const args = message.content.slice(config.devprefix.length).trim().split(/ +/g);
@@ -161,6 +156,12 @@ client.on('message',async message => {
     }
     else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
+  if (devcommand === 'say'){
+      let msg = args.slice(0).join(" ")
+      if (message.author.id === ownerID) {
+          message.channel.send(msg)
+      }
+  }
 
   //Shows Number of accesable channels
   if (devcommand === 'channels') {
@@ -173,11 +174,85 @@ client.on('message',async message => {
       }
       else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
-  if (devcommand === 'exec') {
+  if (['eval', 'exec'].some(arx => devcommand == arx)) {
     let code = args.slice(0).join(" ");
     if (message.author.id === ownerID) {
-      let exec = eval(code);
-      message.channel.send('**Input:**\n`' + code + '`\n\n**Output**:\n`' + exec + '`');
+			if (!code) return message.channel.send('No code provided!');
+			this.client = client;
+
+			const evaled = {},
+			 logs = [];
+
+			const token = this.client.token.split('').join('[^]{0,2}'),
+			 rev = this.client.token.split('').reverse().join('[^]{0,2}'),
+			 tokenRegex = new RegExp(`${token}|${rev}`, 'g'),
+			 cba = '```js\n',
+			 cb = '```';
+
+			const print = (...a) => { // eslint-disable-line no-unused-vars
+				const cleaned = a.map(obj => {
+					if (typeof o !== 'string') obj = util.inspect(obj, { depth: 1 });
+					return obj.replace(tokenRegex, 'Nice try getting a token.');
+
+				});
+
+				if (!evaled.output) {
+					logs.push(...cleaned);
+					return;
+				}
+
+				evaled.output += evaled.output.endsWith('\n') ? cleaned.join(' ') : `\n${cleaned.join(' ')}`;
+				const title = evaled.errored ? '☠\u2000**Error**' : '📤\u2000**Output**';
+
+				if (evaled.output.length + code.length > 1900) evaled.output = 'Output too long.';
+				var emb = new RichEmbed().setColor('GREEN')
+				.addField(`📥\u2000**Input**`,
+				`${cba}js`+code+cb).addField(`${title}`,
+				`${cba}js`+evaled.output+cb).setTimestamp();
+				evaled.message.edit("", emb);
+			};
+
+			try {
+				let output = eval(code);
+				if (output && typeof output.then === 'function') output = await output;
+
+				if (typeof output !== 'string') output = util.inspect(output, { depth: 0 });
+				output = `${logs.join('\n')}\n${logs.length && output === 'undefined' ? '' : output}`;
+				output = output.replace(tokenRegex, 'Nice try getting a token.');
+
+				if (output.length + code.length > 1900) output = 'Output too long.';
+
+				var emb = new Discord.RichEmbed().setColor('GREEN')
+				.addField(`📥\u2000**Input**`,
+				`${cba}`+code+cb).addField(`📤\u2000**Output**`,
+				`${cba}`+output+cb).setTimestamp();
+				const sent = await message.channel.send("", emb);
+
+				evaled.message = sent;
+				evaled.errored = false;
+				evaled.output = output;
+
+				return sent;
+			} catch (err) {
+				console.error(err); // eslint-disable-line no-console
+				let error = err;
+
+				error = error.toString();
+				error = `${logs.join('\n')}\n${logs.length && error === 'undefined' ? '' : error}`;
+				error = error.replace(tokenRegex, 'Nice try getting a token.');
+
+				var emb = new Discord.RichEmbed().setColor('RED')
+				.addField(`📥\u2000**Input**`,
+				`${cba}`+code+cb).addField(`☠\u2000**Error**`,
+				`${cba}`+error+cb).setTimestamp();
+				const sent = await message.channel.send("", emb);
+
+				evaled.message = sent;
+				evaled.errored = true;
+				evaled.output = error;
+
+				return sent;
+			}
     }
     else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
@@ -204,8 +279,8 @@ client.on('message',async message => {
 
       // only @Seed#0001 and @CheezBiscuit can access this devcommand
 
-      //Checking if the sender is a certian user
-      if (message.author.id === '230485481773596672' || message.author.id === '317250979311386627') {
+      //Checking if the sender is a certain user
+      if (['230485481773596672', '317250979311386627'].some(ca => message.author.id == ca)) {
 
           //reset devcommand
           if (game === 'reset') {
@@ -233,8 +308,8 @@ client.on('message',async message => {
     }
     else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
-});
-client.on("message", async message => {
+})
+.on("message", async message => {
     if (message.author.bot) return;
     if (message.content.indexOf(config.prefix) !== 0) return;
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
@@ -328,6 +403,9 @@ client.on("message", async message => {
         message.reply("Here is my support discord!\n http://gg.jyles.pw");
         signal.command("A user executed s!discord");
     }
+    if (command === "github") {
+	    message.reply("http://seedbot.git.jyles.pw");
+    }
 
 
 
@@ -336,83 +414,34 @@ client.on("message", async message => {
     //Moderation commands ___________________________________________________________________________
 
     //Kick Command
-	if (command === 'kick') {
-		let reason = args.slice(1).join(' ');
-		let user = message.mentions.users.first();
-		let logchannel = message.guild.channels.find('name', 'logs');
-		if (reason.length < 1) return message.reply('You must supply a reason for the kick.');
-		if (message.mentions.users.size < 1) return message.reply('You must mention someone to kick them.').catch(console.error);
-  
-		if (!message.guild.member(user).kickable) return message.reply('I cannot kick that member');
-		message.guild.member(user).kick();
+        if (command === "kick") {
+      let reason = args.slice(1).join(' ');
+      let user = message.mentions.users.first();
+      message.reply(user);
+      let logchannel = message.guild.channels.find('name', 'logs');
+      if (reason.length < 1) return message.reply('You must supply a reason for the kick.');
+      if (message.mentions.users.size < 1) return message.reply('You must mention someone to kick them.').catch(console.error);
 
-		kickedUserID = user.id();
+      if (!message.guild.member(user).kickable) return message.reply('I cannot kick that member');
+      message.guild.member(user).kick();
 
-		message.channel.send({embed: {
-			color: ff0000,
-			author: {name:'Kicked User'},
-			feilds: [{
-				name: 'Reason // ' + user + ' Kicked',
-				feilds: 'Reason:\n ' + reason
-			}],
-			timestamp: 'Kicked at ' + new Date(),
-			footer: {
-				text: 'Kicked by ' + message.author.username,
-			}
-		}})
-		client.channels.get(kickedUserID).send({embed: {
-			color: ff0000,
-			author: {name:'Kicked User'},
-			feilds: [{
-				name: 'Reason // ' + user + ' Kicked',
-				feilds: 'Reason:\n ' + reason
-			}],
-			timestamp: 'Kicked at ' + new Date(),
-			footer: {
-				text: 'Kicked by ' + message.author.username,
-			}
-		}})
-	}
+      message.channel.send('User: ' + + ' has been kicked');
+    }
 
     //Ban Command
-	if (command === 'ban') {
-		let reason = args.slice(1).join(' ');
-		let user = message.mentions.users.first();
-		let logchannel = message.guild.channels.find('name', 'logs');
-		if (!message.member.hasPermission("BAN_MEMBERS")) return message.reply(":no_entry_sign: **Error:** You don't have the **Ban Members** permission!");
-		if (reason.length < 1) return message.reply('You must supply a reason for the ban.');
-		if (message.mentions.users.size < 1) return message.reply('You must mention someone to ban them.').catch(console.error);
-  
-		if (!message.guild.member(user).bannable) return message.reply(`<:redTick:${settings.redTick}> I cannot ban that member`);
-		message.guild.member(user).ban();
+    if (command === "ban") {
+      let reason = args.slice(1).join(' ');
+      let user = message.mentions.users.first();
+      let logchannel = message.guild.channels.find('name', 'logs');
+      if (!message.member.hasPermission("BAN_MEMBERS")) return message.reply(":no_entry_sign: **Error:** You don't have the **Ban Members** permission!");
+      if (reason.length < 1) return message.reply('You must supply a reason for the ban.');
+      if (message.mentions.users.size < 1) return message.reply('You must mention someone to ban them.').catch(console.error);
 
-		bannedUserID = user.id();
+      if (!message.guild.member(user).bannable) return message.reply(`<:redTick:${settings.redTick}> I cannot ban that member`);
+      message.guild.member(user).ban();
 
-		message.channel.send({embed: {
-			color: ff0000,
-			author: {name:'Banned User'},
-			feilds: [{
-				name: 'Reason // ' + user + ' Banned',
-				feilds: 'Reason:\n ' + reason
-			}],
-			timestamp: 'Banned at ' + new Date(),
-			footer: {
-				text: 'Banned by ' + message.author.username,
-			}
-		}})
-		client.channels.get(bannedUserID).send({embed: {
-			color: ff0000,
-			author: {name:'Banned User'},
-			feilds: [{
-				name: 'Reason // ' + user + ' Banned',
-				feilds: 'Reason:\n ' + reason
-			}],
-			timestamp: 'Banned at ' + new Date(),
-			footer: {
-				text: 'Banned by ' + message.author.username,
-			}
-		}})
-	}
+      message.channel.send('User: ' + user + ' has been banned');
+    }
 
 
     //INIT COMMANDS __________________________________________________
@@ -453,42 +482,16 @@ client.on("message", async message => {
       message.channel.send(`${message.author.username} threw a hammer at ${message.mentions.users.first().username}. <:hammmer:${settings.hammer}>`)
     }
 
-});
+})
+.on("ready", () => {
+    signal.info(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-client.on("ready", () => {
-    signal.info(`Bot has started, with ` + client.users.size + ` users, in ` + client.channels.size + ` channels of ` + client.guilds.size + ` guilds.`);
-
-    client.user.setActivity(`s!help // ` + client.users.size + ` Users. // v` + ver);
-});
+    client.user.setActivity(`s!help // ${client.users.size} Users. // v${ver}`);
+})
 //client.login(config.token);
-client.login(process.env.BOT_TOKEN);
+.login(process.env.BOT_TOKEN);
 
-const music = require('discord.js-musicbot-addon');
-music.start(client, {
+require('discord.js-musicbot-addon').start(client, {
   youtubeKey: process.env.YT_TOKEN,
   //youtubeKey: config.ytapi,
   cooldown: {
