@@ -1,0 +1,17 @@
+<<<<<<< HEAD:config.json
+{
+	"token": "token-here",
+	"prefix": "s!",
+	"devprefix": "s~",
+	"mathprefix": "sm!",
+	"ytapi": "youtube-api-token"
+}
+=======
+{
+	"token": "token-here",
+	"prefix": "s!",
+	"devprefix": "s~",
+	"mathprefix": "sm!",
+	"ytapi": "youtube-api-token"
+}
+>>>>>>> 0029b8b4f4c3e689fdd20596ad6558b644a8d249:src/config.json
