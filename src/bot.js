@@ -496,8 +496,8 @@ client.on("ready", () => {
 
     client.user.setActivity(`s!help // ` + client.users.size + ` Users. // v` + ver);
 });
-//client.login(config.token);
-client.login(process.env.BOT_TOKEN);
+client.login(config.token);
+//client.login(process.env.BOT_TOKEN);
 
 const music = require('discord.js-musicbot-addon');
 music.start(client, {
