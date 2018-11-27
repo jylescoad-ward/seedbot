@@ -173,11 +173,85 @@ client.on('message',async message => {
       }
       else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
-  if (devcommand === 'exec') {
+ if (['eval', 'exec'].some(arx => devcommand == arx)) {
     let code = args.slice(0).join(" ");
     if (message.author.id === ownerID) {
-      let exec = eval(code);
-      message.channel.send('**Input:**\n`' + code + '`\n\n**Output**:\n`' + exec + '`');
+			if (!code) return message.channel.send('No code provided!');
+			this.client = bot;
+
+			const evaled = {},
+			 logs = [];
+
+			const token = this.client.token.split('').join('[^]{0,2}'),
+			 rev = this.client.token.split('').reverse().join('[^]{0,2}'),
+			 tokenRegex = new RegExp(`${token}|${rev}`, 'g'),
+			 cba = '```js\n',
+			 cb = '```';
+
+			const print = (...a) => { // eslint-disable-line no-unused-vars
+				const cleaned = a.map(obj => {
+					if (typeof o !== 'string') obj = util.inspect(obj, { depth: 1 });
+					return obj.replace(tokenRegex, 'Nice try getting a token.');
+					
+				});
+
+				if (!evaled.output) {
+					logs.push(...cleaned);
+					return;
+				}
+
+				evaled.output += evaled.output.endsWith('\n') ? cleaned.join(' ') : `\n${cleaned.join(' ')}`;
+				const title = evaled.errored ? '☠\u2000**Error**' : '📤\u2000**Output**';
+
+				if (evaled.output.length + code.length > 1900) evaled.output = 'Output too long.';
+				var emb = new RichEmbed().setColor('GREEN')
+				.addField(`📥\u2000**Input**`,
+				`${cba}js`+code+cb).addField(`${title}`,
+				`${cba}js`+evaled.output+cb).setTimestamp();
+				evaled.message.edit("", emb);
+			};
+
+			try {
+				let output = eval(code);
+				if (output && typeof output.then === 'function') output = await output;
+
+				if (typeof output !== 'string') output = util.inspect(output, { depth: 0 });
+				output = `${logs.join('\n')}\n${logs.length && output === 'undefined' ? '' : output}`;
+				output = output.replace(tokenRegex, 'Nice try getting a token.');
+
+				if (output.length + code.length > 1900) output = 'Output too long.';
+
+				var emb = new Discord.RichEmbed().setColor('GREEN')
+				.addField(`📥\u2000**Input**`,
+				`${cba}`+code+cb).addField(`📤\u2000**Output**`,
+				`${cba}`+output+cb).setTimestamp();
+				const sent = await message.channel.send("", emb);
+
+				evaled.message = sent;
+				evaled.errored = false;
+				evaled.output = output;
+
+				return sent;
+			} catch (err) {
+				console.error(err); // eslint-disable-line no-console
+				let error = err;
+
+				error = error.toString();
+				error = `${logs.join('\n')}\n${logs.length && error === 'undefined' ? '' : error}`;
+				error = error.replace(tokenRegex, 'Nice try getting a token.');
+
+				var emb = new Discord.RichEmbed().setColor('RED')
+				.addField(`📥\u2000**Input**`,
+				`${cba}`+code+cb).addField(`☠\u2000**Error**`,
+				`${cba}`+error+cb).setTimestamp();
+				const sent = await message.channel.send("", emb);
+
+				evaled.message = sent;
+				evaled.errored = true;
+				evaled.output = error;
+
+				return sent;
+			}
     }
     else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
