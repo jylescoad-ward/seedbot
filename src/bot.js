@@ -417,7 +417,7 @@ client.on("message", async message => {
     }
     if (command === "discord") {
 
-        message.reply("Here is my support discord!\n http://gg.jyles.pw");
+        message.reply("Here is my support discord!\n http://dariox.club/founders-discord");
         signal.command("A user executed s!discord");
     }
 
