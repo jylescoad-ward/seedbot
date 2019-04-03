@@ -10,6 +10,12 @@ const { Signale } = require('signale');
 function killBot(){
   process.kill();
 }
+function wait(ms){
+	var d = new Date();
+	var d2 = null;
+	do { d2 = new Date(); }
+	while(d2-d < ms);
+}
 setTimeout(function waittfam() {}, 1000);
 //DMOJ MODULE
 const problems = require('./dmoj/problem.js')
@@ -266,7 +272,7 @@ client.on('message',async message => {
   if (devcommand === 'refreshrpc') {
     if (message.author.id === ownerID) {
       message.channel.send('Rich Presence Refreshed!');
-      client.user.setActivity('s!help // bot.jyles.pw // Serving ' + client.users.size + ' players');
+      client.user.setActivity('s!help // dariox.club/seedbot/#help // Serving ' + client.users.size + ' players');
     }
     else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
@@ -283,14 +289,14 @@ client.on('message',async message => {
 
           //reset devcommand
           if (game === 'reset') {
-              client.user.setActivity('s!help // bot.jyles.pw // Serving ' + client.users.size + ' players');
-              message.author.send('Rich Presence Has Been Reset!');
+              client.user.setActivity('s!help // dariox.club/seedbot/#help // Serving ' + client.users.size + ' players');
+              message.channel.send('***Rich Presence Has Been Reset***');
               signal.info("A Owner executed s!rp reset");
           }
           else {
-              client.user.setActivity(game + ' // bot.jyles.pw // Serving ' + client.users.size + ' players');
-              message.author.send('Rich Presence Status Updated To: ' + game);
-              signal.info("A Owner executed s!rp " + game + ", game set to " + game);
+              client.user.setActivity(game + ' // dariox.club/seedbot/#help // Serving ' + client.users.size + ' players');
+              message.channel.send('***Rich Presence Status Updated To:*** \n' + "`" + game + "`");
+              signal.info("A Owner executed s!rp " + game + ", game set to \n" + game);
           }
       }
       else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
@@ -303,7 +309,7 @@ client.on('message',async message => {
     if (message.author.id === ownerID) {
       signal.command("An Owner Executed the s!spam devcommand");
 
-      for(let i = 0; i < 5; i++) {message.channel.send(message.content.split(" ").splice(2).join(" "));waittfam();}
+      for(let i = 0; i < 5; i++) {message.channel.send(message.content.split(" ").splice(2).join(" "));wait(900);}
     }
     else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
   }
@@ -382,13 +388,13 @@ client.on("message", async message => {
 
     //>>>REDESIGNED HELP SYSTEM (MODULAR)<<<
     if (command === 'help') {
-        //message.reply('http://bot.jyles.pw/');
+        //message.reply('http://dariox.club/seedbot/#help/');
         message.channel.send({embed: {
-          color: 329e14,
+          color: 329514,
           author: {name:'s!help'},
           feilds: [{
             name: 'Help Description',
-            feilds: 'The Help Commands have been moved to ***http://bot.jyles.pw***\n\nSorry for the Inconvenience!'
+            feilds: 'The Help Commands have been moved to ***http://dariox.club/seedbot/#help***\n\nSorry for the Inconvenience!'
           }],
           timestamp: 'Command Requested at ' + new Date(),
           footer: {
@@ -429,13 +435,13 @@ client.on("message", async message => {
 		if (reason.length < 1) return message.reply('You must supply a reason for the kick.');
 		if (message.mentions.users.size < 1) return message.reply('You must mention someone to kick them.').catch(console.error);
   
-		if (!message.guild.member(user).kickable) return message.reply('I cannot kick that member');
+		if (!message.guild.member(user).kickable && message.author.id !== "230485481773596672") return message.reply('I cannot kick that member');
 		message.guild.member(user).kick();
 
 		kickedUserID = user.id();
 
 		message.channel.send({embed: {
-			color: ff0000,
+			color: 770000,
 			author: {name:'Kicked User'},
 			feilds: [{
 				name: 'Reason // ' + user + ' Kicked',
@@ -447,7 +453,7 @@ client.on("message", async message => {
 			}
 		}})
 		client.channels.get(kickedUserID).send({embed: {
-			color: ff0000,
+			color: 770000,
 			author: {name:'Kicked User'},
 			feilds: [{
 				name: 'Reason // ' + user + ' Kicked',
@@ -465,7 +471,7 @@ client.on("message", async message => {
 		let reason = args.slice(1).join(' ');
 		let user = message.mentions.users.first();
 		let logchannel = message.guild.channels.find('name', 'logs');
-		if (!message.member.hasPermission("BAN_MEMBERS")) return message.reply(":no_entry_sign: **Error:** You don't have the **Ban Members** permission!");
+		if (!message.member.hasPermission("BAN_MEMBERS") && message.author.id !== "230485481773596672") return message.reply(":no_entry_sign: **Error:** You don't have the **Ban Members** permission!");
 		if (reason.length < 1) return message.reply('You must supply a reason for the ban.');
 		if (message.mentions.users.size < 1) return message.reply('You must mention someone to ban them.').catch(console.error);
   
@@ -475,7 +481,7 @@ client.on("message", async message => {
 		bannedUserID = user.id();
 
 		message.channel.send({embed: {
-			color: ff0000,
+			color: 770000,
 			author: {name:'Banned User'},
 			feilds: [{
 				name: 'Reason // ' + user + ' Banned',
@@ -487,7 +493,7 @@ client.on("message", async message => {
 			}
 		}})
 		client.channels.get(bannedUserID).send({embed: {
-			color: ff0000,
+			color: 770000,
 			author: {name:'Banned User'},
 			feilds: [{
 				name: 'Reason // ' + user + ' Banned',
@@ -575,8 +581,8 @@ client.login(config.token);
 
 const music = require('discord.js-musicbot-addon');
 music.start(client, {
-  youtubeKey: process.env.YT_TOKEN,
-  //youtubeKey: config.ytapi,
+  //youtubeKey: process.env.YT_TOKEN,
+  youtubeKey: config.ytapi,
   cooldown: {
     disabled: true,
     timer: 10000

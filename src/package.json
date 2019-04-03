@@ -1,7 +1,7 @@
 {
   "name": "SeedBot",
-  "version": "0.6.3",
-  "build": "613",
+  "version": "0.6.3.1",
+  "build": "617",
   "ownerID": "230485481773596672",
   "description": "A Bot by @Seed#0001 for Discord",
   "main": "bot.js",
