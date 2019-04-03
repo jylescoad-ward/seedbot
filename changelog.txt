@@ -18,10 +18,10 @@
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
-| Fixed Spam Command and Ban Command 			   Patched on 04.03.2019	[0.6.4.1]				|
+| Fixed Spam Command and Ban Command 			         Patched on 04.03.2019	  [0.6.4.1]				        |
 | Added Embed Text to Some commands                  Added on 25.11.2018    [0.6.3]                 |
 | Thanks @BlueSpring for fixing the s~eval&&exec     Added on 13.11.2018    [0.6.1]                 |
-| Added s!rpc refresh								 Added on 12.11.2018    [0.6]	                |
+| Added s!rpc refresh								                 Added on 12.11.2018    [0.6]	                  |
 | Moved Bot to Heroku (24/7)                         Added on 10.11.2018                            |
 | M  A  T  H                                         Added on 30.10.2018                            |
 | Remove s!help after command has been executed      Added on 30.10.2018                            |
@@ -48,7 +48,7 @@
 | Fixed Rich Presence Command                        Added on 21.6.2018                             |
 |                                                                                                   |
 | LATEST REMOVALS                                                                                   |
-| Broken Ban and Spam Command						 Removed on 03.04.2019							|
+| Broken Ban and Spam Command						             Removed on 03.04.2019							            |
 | Bugs                                              Squished on 12.11.2018                          |
 | Bugs                                              Squished on 30.10.2018                          |
 | Removed Electron GUI                               Removed on 20.10.2018                          |
