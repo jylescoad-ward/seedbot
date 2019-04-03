@@ -1,11 +1,11 @@
 {
   "name": "SeedBot",
-  "version": "0.6.3.1",
+  "version": "0.6.4.1",
   "build": "617",
   "ownerID": "230485481773596672",
   "description": "A Bot by @Seed#0001 for Discord",
   "main": "bot.js",
-  "author": "github.com/jylescoad-ward [jyles.pw]",
+  "author": "github.com/jylescoad-ward [jyles.club]",
   "license": "MIT License [https://opensource.org/licenses/MIT]",
   "dependencies": {
     "discord.js": "^11.4.2",
