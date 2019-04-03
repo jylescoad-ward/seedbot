@@ -18,7 +18,7 @@
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
-| Fixed Spam Command and Ban Command 			   Patched on 04.03.2019	[0.6.3.1]				|
+| Fixed Spam Command and Ban Command 			   Patched on 04.03.2019	[0.6.4.1]				|
 | Added Embed Text to Some commands                  Added on 25.11.2018    [0.6.3]                 |
 | Thanks @BlueSpring for fixing the s~eval&&exec     Added on 13.11.2018    [0.6.1]                 |
 | Added s!rpc refresh								 Added on 12.11.2018    [0.6]	                |
