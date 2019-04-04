@@ -394,7 +394,7 @@ client.on("message", async message => {
          author: {name:'s!help'},
          fields: [{
            name: 'Help Description',
-           fields: 'The Help Commands have been moved to ***http://dariox.club/seedbot/#help***\n\nSorry for the Inconvenience!'
+           value: 'The Help Commands have been moved to ***http://dariox.club/seedbot/#help***\n\nSorry for the Inconvenience!'
          }],
          timestamp: 'Command Requested at ' + new Date(),
          footer: {
