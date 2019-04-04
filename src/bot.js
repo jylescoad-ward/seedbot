@@ -388,19 +388,19 @@ client.on("message", async message => {
 
     //>>>REDESIGNED HELP SYSTEM (MODULAR)<<<
     if (command === 'help') {
-        message.reply('http://dariox.club/seedbot/#help/');
-        //message.channel.send({embed: {
-        //  color: 329514,
-        //  author: {name:'s!help'},
-        //  feilds: [{
-        //    name: 'Help Description',
-        //    feilds: 'The Help Commands have been moved to ***http://dariox.club/seedbot/#help***\n\nSorry for the Inconvenience!'
-        //  }],
-        //  timestamp: 'Command Requested at ' + new Date(),
-        //  footer: {
-        //    text: 'Requested by ' + message.author.username
-        //  }
-        //}});
+//         message.reply('http://dariox.club/seedbot/#help/');
+        message.channel.send({embed: {
+         color: 329514,
+         author: {name:'s!help'},
+         fields: [{
+           name: 'Help Description',
+           feilds: 'The Help Commands have been moved to ***http://dariox.club/seedbot/#help***\n\nSorry for the Inconvenience!'
+         }],
+         timestamp: 'Command Requested at ' + new Date(),
+         footer: {
+           text: 'Requested by ' + message.author.username
+         }
+        }});
     }
 
     //OTHER COMMANDS______________________________________________________________
