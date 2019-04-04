@@ -445,7 +445,7 @@ client.on("message", async message => {
 			author: {name:'Kicked User'},
 			fields: [{
 				name: 'Reason // ' + user + ' Kicked',
-				fields: 'Reason:\n ' + reason
+				value: 'Reason:\n ' + reason
 			}],
 			timestamp: 'Kicked at ' + new Date(),
 			footer: {
@@ -457,7 +457,7 @@ client.on("message", async message => {
 			author: {name:'Kicked User'},
 			fields: [{
 				name: 'Reason // ' + user + ' Kicked',
-				fields: 'Reason:\n ' + reason
+				value: 'Reason:\n ' + reason
 			}],
 			timestamp: 'Kicked at ' + new Date(),
 			footer: {
@@ -485,7 +485,7 @@ client.on("message", async message => {
 			author: {name:'Banned User'},
 			fields: [{
 				name: 'Reason // ' + user + ' Banned',
-				fields: 'Reason:\n ' + reason
+				value: 'Reason:\n ' + reason
 			}],
 			timestamp: 'Banned at ' + new Date(),
 			footer: {
@@ -497,7 +497,7 @@ client.on("message", async message => {
 			author: {name:'Banned User'},
 			fields: [{
 				name: 'Reason // ' + user + ' Banned',
-				fields: 'Reason:\n ' + reason
+				value: 'Reason:\n ' + reason
 			}],
 			timestamp: 'Banned at ' + new Date(),
 			footer: {
