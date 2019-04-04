@@ -394,7 +394,7 @@ client.on("message", async message => {
          author: {name:'s!help'},
          fields: [{
            name: 'Help Description',
-           feilds: 'The Help Commands have been moved to ***http://dariox.club/seedbot/#help***\n\nSorry for the Inconvenience!'
+           fields: 'The Help Commands have been moved to ***http://dariox.club/seedbot/#help***\n\nSorry for the Inconvenience!'
          }],
          timestamp: 'Command Requested at ' + new Date(),
          footer: {
@@ -443,9 +443,9 @@ client.on("message", async message => {
 		message.channel.send({embed: {
 			color: 770000,
 			author: {name:'Kicked User'},
-			feilds: [{
+			fields: [{
 				name: 'Reason // ' + user + ' Kicked',
-				feilds: 'Reason:\n ' + reason
+				fields: 'Reason:\n ' + reason
 			}],
 			timestamp: 'Kicked at ' + new Date(),
 			footer: {
@@ -455,9 +455,9 @@ client.on("message", async message => {
 		client.channels.get(kickedUserID).send({embed: {
 			color: 770000,
 			author: {name:'Kicked User'},
-			feilds: [{
+			fields: [{
 				name: 'Reason // ' + user + ' Kicked',
-				feilds: 'Reason:\n ' + reason
+				fields: 'Reason:\n ' + reason
 			}],
 			timestamp: 'Kicked at ' + new Date(),
 			footer: {
@@ -483,9 +483,9 @@ client.on("message", async message => {
 		message.channel.send({embed: {
 			color: 770000,
 			author: {name:'Banned User'},
-			feilds: [{
+			fields: [{
 				name: 'Reason // ' + user + ' Banned',
-				feilds: 'Reason:\n ' + reason
+				fields: 'Reason:\n ' + reason
 			}],
 			timestamp: 'Banned at ' + new Date(),
 			footer: {
@@ -495,9 +495,9 @@ client.on("message", async message => {
 		client.channels.get(bannedUserID).send({embed: {
 			color: 770000,
 			author: {name:'Banned User'},
-			feilds: [{
+			fields: [{
 				name: 'Reason // ' + user + ' Banned',
-				feilds: 'Reason:\n ' + reason
+				fields: 'Reason:\n ' + reason
 			}],
 			timestamp: 'Banned at ' + new Date(),
 			footer: {
