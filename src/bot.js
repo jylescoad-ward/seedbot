@@ -83,8 +83,8 @@ log4js.configure(
 );
 const logger = log4js.getLogger('things');
 
-signal.info("Starting the SeedBot...")
-signal.info("Copyright 2018, jyles.pw")
+signal.info("Starting SeedBot...")
+signal.info("Copyright 2018-2019, jyles.club and DARiOX.club")
 signal.info("Running SeedBot version " + ver + " build " + build);
 
 client.on('message',async message => {
