@@ -2,7 +2,7 @@
 |CHANGELOG                                                                                          |
 |----------------------------------------------------------------------------------------------------
 |    dd.mm.yyyy VERSION 1.major.release.patch [Release Type]                                        |
-|        03.05.2019 VERISON 1.0.0.1 [PUBLIC RELEASE]                                                |
+|        03.05.2019 VERISON 1.0.0.2 [PUBLIC RELEASE]                                                |
 |        BUILD 616                                                                                  |
 |----------------------------------------------------------------------------------------------------
 |  JOIN MY discord                                                                                  |
@@ -18,6 +18,7 @@
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
+| Fixed developer commands                           Added on 06.05.2019    [1.0.0.2]               |
 | Spring Cleaning~                                   Added on 03.05.2019    [1.0.0.1]               |
 | Added some failsafe stuff                          Added on 03.05.2019    [1.0.0.0]               |
 | Fixed Spam Command and Ban Command 			         Patched on 04.03.2019	  [0.6.4.1]               |
