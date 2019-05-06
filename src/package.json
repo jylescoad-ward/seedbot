@@ -28,5 +28,8 @@
     "url": "https://github.com/jylescoad-ward/seedbot/issues"
   },
   "homepage": "http://jyles.club/seedbot",
-  "trustedTextChannel": "trustedPeopleChannelIDOnDARiOX"
+  "trustedTextChannel": "trustedPeopleChannelIDOnDARiOX",
+  "seedsShackAnnounce": "seedsShackAnnouncementChannelID",
+  "darioxAnnounce": "darioxAnnouncementChannelID",
+  "agnAnnounce": "australianGamingNetworkAnnouncementChannelID"
 }
