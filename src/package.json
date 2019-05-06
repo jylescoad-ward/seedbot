@@ -1,24 +1,32 @@
 {
   "name": "SeedBot",
-  "version": "0.6.4.1",
-  "build": "617",
-  "ownerID": "230485481773596672",
-  "description": "A Bot by @Seed#0001 for Discord",
-  "main": "bot.js",
-  "author": "github.com/jylescoad-ward [jyles.club]",
-  "license": "MIT License [https://opensource.org/licenses/MIT]",
+  "version": "1.0.0.2",
+  "description": "A New and Improved Version of SeedBot",
+  "engines": {
+    "node": "8.16.0"
+  },
+  "main": "SeedBot.js",
+  "scripts": {
+    "start": "node SeedBot.js"
+  },
   "dependencies": {
     "discord.js": "^11.4.2",
-    "discord.js-musicbot-addon": "^13.0.3",
+    "dotenv": "^6.2.0",
     "ffmpeg": "0.0.4",
-    "https": "^1.0.0",
-    "jsdom": "^12.2.0",
-    "log4js": "^3.0.6",
-    "node-gyp": "^3.8.0",
-    "node-opus": "^0.3.1",
-    "public-ip": "^2.4.0",
-    "rebuild": "^0.1.2",
-    "signale": "^1.3.0",
-    "ytpl": "^0.1.14"
-  }
+    "ffmpeg-binaries": "^4.0.0",
+    "node-opus": "^0.3.0",
+    "opusscript": "0.0.6",
+    "syncprompt": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jylescoad-ward/seedbot.git"
+  },
+  "author": "Jyles Coad-Ward [dariox.club@gmail.com]",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jylescoad-ward/seedbot/issues"
+  },
+  "homepage": "http://jyles.club/seedbot",
+  "trustedTextChannel": "trustedPeopleChannelIDOnDARiOX"
 }
