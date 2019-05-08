@@ -1,6 +1,7 @@
 {
   "name": "SeedBot",
-  "version": "1.0.0.2",
+  "version": "1.0.0.3",
+  "build": "700",
   "description": "A New and Improved Version of SeedBot",
   "engines": {
     "node": "8.16.0"
