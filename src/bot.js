@@ -89,7 +89,7 @@ client.on('message',async message => {
 
   //Get a List of Servers and How many Servers
   if (devcommand === 'serverlist') {
-    if (message.author.id === config.ownerId) {
+    if (message.author.id === config.ownerID) {
       message.author.send("Number of Available Servers: " + client.guilds.size);
       var list = client.guilds.array().sort();
       message.author.send("Available Servers: " + list);
@@ -228,29 +228,29 @@ client.on("message", async message => {
         //Kick Command
   if (command === 'kick') {
     let reason = args.slice(1).join(' ');
-    let user = message.mentions.users.first();
+    let userToKick = message.mentions.users.first();
     let logchannel = message.guild.channels.find('name', 'logs');
     if (reason.length < 1) return message.reply('You must supply a reason for the kick.');
-    if (message.mentions.users.size < 1) return message.reply('You must mention someone to kick them.').catch(console.error);
+    if (message.mentions.userToKick.size < 1) return message.reply('You must mention someone to kick them.').catch(console.error);
   
-    if (!message.guild.member(user).kickable && message.author.id !== "230485481773596672") return message.reply('I cannot kick that member');
-    message.guild.member(user).kick();
+    if (!message.guild.member(userToKick).kickable && message.author.id !== "230485481773596672") return message.reply('I cannot kick that member');
+    message.guild.member(userToKick).kick();
 
-    kickedUserID = user.id();
+    kickedUserID = userToKick.id();
 
     message.channel.send({embed: {
       color: 770000,
       author: {name:'Kicked User'},
       fields: [{
-        name: 'Reason // ' + user + ' Kicked',
+        name: 'Reason // ' + user + ' has been Kicked',
         value: 'Reason:\n ' + reason
       }],
       timestamp: 'Kicked at ' + new Date(),
       footer: {
         text: 'Kicked by ' + message.author.username,
       }
-    }})
-    client.channels.get(kickedUserID).send({embed: {
+    }});
+    client.channels.get(userToKick).send({embed: {
       color: 770000,
       author: {name:'Kicked User'},
       fields: [{
@@ -261,28 +261,28 @@ client.on("message", async message => {
       footer: {
         text: 'Kicked by ' + message.author.username,
       }
-    }})
+    }});
   }
 
         //Ban Command
   if (command === 'ban') {
     let reason = args.slice(1).join(' ');
-    let user = message.mentions.users.first();
+    let userToBan = message.mentions.users.first();
     let logchannel = message.guild.channels.find('name', 'logs');
     if (!message.member.hasPermission("BAN_MEMBERS") || message.author.id !== "230485481773596672") return message.reply(":no_entry_sign: **Error:** You don't have the **Ban Members** permission!");
     if (reason.length < 1) return message.reply('You must supply a reason for the ban.');
-    if (message.mentions.users.size < 1) return message.reply('You must mention someone to ban them.').catch(console.error);
+    if (message.mentions.userToBan.size < 1) return message.reply('You must mention someone to ban them.').catch(console.error);
   
-    if (!message.guild.member(user).bannable) return message.reply(`<:redTick:${settings.redTick}> I cannot ban that member`);
-    message.guild.member(user).ban();
+    if (!message.guild.member(userToBan).bannable) return message.reply(`<:redTick:${settings.redTick}> I cannot ban that member`);
+    message.guild.member(userToBan).ban();
 
-    bannedUserID = user.id();
+    bannedUserID = userToBan.id();
 
     message.channel.send({embed: {
       color: 770000,
       author: {name:'Banned User'},
       fields: [{
-        name: 'Reason // ' + user + ' Banned',
+        name: 'Reason // ' + user + ' has been Banned',
         value: 'Reason:\n ' + reason
       }],
       timestamp: 'Banned at ' + new Date(),
@@ -313,7 +313,7 @@ client.on("message", async message => {
     }
     if (command === 'punch') {
       let user = message.mentions.users.first()
-      if(user.id != owner){
+      if(user.id !== ownerID){
           message.reply('You have punched <@' + user.id + '>')
       } else {
           message.reply("you can't hurt him you pleblord.")
@@ -329,8 +329,8 @@ client.on("message", async message => {
     }
     if (command === 'hammer') {
       let user = message.mentions.users.first();
-      if (message.mentions.users.first() < 1){ return message.reply('You can\'t throw a hammer at thin air, pick someone fool.')}
-      message.channel.send(`${message.author.username} threw a hammer at ${message.mentions.users.first().username}. <:hammmer:${settings.hammer}>`)
+      if (message.mentions.users.first() < 1){ return message.reply('You can\'t throw a hammer at the wall silly, ping someone after the command.')}
+      message.channel.send(`${message.author.username} threw a sledge hammer at ${message.mentions.users.first().username}. <:hammmer:${settings.hammer}>`)
     }
 
 
