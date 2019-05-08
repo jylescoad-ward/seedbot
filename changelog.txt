@@ -2,8 +2,8 @@
 |CHANGELOG                                                                                          |
 |---------------------------------------------------------------------------------------------------|
 |    dd.mm.yyyy VERSION 1.major.release.patch [Release Type]                                        |
-|        03.05.2019 VERISON 1.0.0.2 [PUBLIC RELEASE]                                                |
-|        BUILD 616                                                                                  |
+|        08.05.2019 VERISON 1.0.0.3 [PUBLIC RELEASE]                                                |
+|        BUILD 700                                                                                  |
 |---------------------------------------------------------------------------------------------------|
 |  JOIN MY discord                                                                                  |
 |  jyles.club/discord                                                                               |
@@ -12,12 +12,15 @@
 |---------------------------------------------------------------------------------------------------|
 |  COLLABORATORS                 ║                                                                  |
 | ═══════════════════════════════╝                                                                  |
-| @CheezBiscut#9461  [DMOJ Plugin]                                                                  |
-| @Seed#0001                                                                                        |
+| github/jylescoad-ward [Discord Bot]                                                               |
+|                                                                                                   |
+| github/FinchieDev     [DMOJ Plugin]                                                               |
+| github/DarkoPengragon [Music Plugin]                                                              |
 |----------------------------------------------------------------------------VERSION----------------|
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
+| Changed username varaibled for kick and ban        Added on 08.05.2019    [1.0.0.3]               |
 | Fixed developer commands                           Added on 06.05.2019    [1.0.0.2]               |
 | Spring Cleaning~                                   Added on 03.05.2019    [1.0.0.1]               |
 | Added some failsafe stuff                          Added on 03.05.2019    [1.0.0.0]               |
