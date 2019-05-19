@@ -6,7 +6,6 @@ const publicIp = require('public-ip');
 //DMOJ MODULE
 const problems = require('./dmoj/problem.js');const contests = require('./dmoj/contest.js');const users = require('./dmoj/user.js');
 //END OF DMOJ MODULE
-const publicIp = require('public-ip');
 
 //Reset bot command for s~restart
 function resetBot(channel) {
