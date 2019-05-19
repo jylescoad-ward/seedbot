@@ -211,7 +211,6 @@ client.on('message',async message => {
       message.channel.send('Bot it now Restarting. Good Night :first_quarter_moon_with_face: :bed: ');
       client.user.setActivity('Bot is Restarting...');
       resetBot(message.channel);
-            break;
     } else {
       message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
     }
