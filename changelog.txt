@@ -1,11 +1,14 @@
 |---------------------------------------------------------------------------------------------------|
 |CHANGELOG                                                                                          |
 |---------------------------------------------------------------------------------------------------|
-|    dd.mm.yyyy VERSION 1.major.release.patch [Release Type]                                        |
-|        08.05.2019 VERISON 1.0.0.3 [PUBLIC RELEASE]                                                |
-|        BUILD 700                                                                                  |
+| m is Major                                                                                        |
+| r is Release                                                                                      |
+| p is Patch                                                                                        |
+|        dd.mm.yyyy VERSION 1.m.r.p [Release Type]                                                  |
+|        04.06.2019 VERISON 1.0.0.4 [PUBLIC RELEASE]                                                |
+|        BUILD 703                                                                                  |
 |---------------------------------------------------------------------------------------------------|
-|  JOIN MY discord                                                                                  |
+|  JOIN MY DISCORD                                                                                  |
 |  jyles.club/discord                                                                               |
 |  jyles.club/seedbot                                                                               |
 |  @Seed#0001                                                                                       |
@@ -16,10 +19,14 @@
 |                                                                                                   |
 | github/FinchieDev     [DMOJ Plugin]                                                               |
 | github/DarkoPengragon [Music Plugin]                                                              |
+| github/BlueSpring     [NodeJS Eval Command]                                                       |
 |----------------------------------------------------------------------------VERSION----------------|
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
+| Compressed the first 20~ lines                     Added on 05.06.2019    -----v
+| Added required packages                            Fixed on 04.06.2019    [1.0.0.4]               |
+| Aded ChannelID's in package.json                   Added on 04.06.2019    -----^                  |
 | Changed username varaibled for kick and ban        Added on 08.05.2019    [1.0.0.3]               |
 | Fixed developer commands                           Added on 06.05.2019    [1.0.0.2]               |
 | Spring Cleaning~                                   Added on 03.05.2019    [1.0.0.1]               |

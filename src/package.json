@@ -1,23 +1,23 @@
 {
   "name": "SeedBot",
-  "version": "1.0.0.3",
-  "build": "702",
+  "version": "1.0.0.4",
+  "build": "705",
   "description": "A New and Improved Version of SeedBot",
   "ownerID": "230485481773596672",
   "engines": {
     "node": "8.16.0"
   },
-  "main": "SeedBot.js",
+  "main": "bot.js",
   "scripts": {
-    "start": "node SeedBot.js"
+    "start": "node bot.js"
   },
   "dependencies": {
-    "discord.js": "^11.4.2",
-    "dotenv": "^6.2.0",
-    "ffmpeg": "0.0.4",
+    "discord.js": "^11.5.1",
+    "discord.js-musicbot-addon": "^13.5.2",
     "ffmpeg-binaries": "^4.0.0",
-    "node-opus": "^0.3.0",
     "opusscript": "0.0.6",
+    "public-ip": "^3.1.0",
+    "signale": "^1.4.0",
     "syncprompt": "^2.0.0"
   },
   "repository": {
@@ -30,8 +30,8 @@
     "url": "https://github.com/jylescoad-ward/seedbot/issues"
   },
   "homepage": "http://jyles.club/seedbot",
-  "trustedTextChannel": "trustedPeopleChannelIDOnDARiOX",
-  "seedsShackAnnounce": "seedsShackAnnouncementChannelID",
-  "darioxAnnounce": "darioxAnnouncementChannelID",
-  "agnAnnounce": "australianGamingNetworkAnnouncementChannelID"
+  "trustedTextChannel": "580316310257532938",
+  "seedsShackAnnounce": "359878140543107084",
+  "darioxAnnounce": "562570413486505994",
+  "agnAnnounce": "523104698404700180"
 }

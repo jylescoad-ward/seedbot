@@ -1,8 +1,5 @@
 function wait(ms){var d=new Date();var d2=null;do{d2=new Date()}while(d2-d<ms);}
-const Discord = require("discord.js");
-const { RichEmbed } = require('discord.js');
-const client = new Discord.Client();
-const publicIp = require('public-ip');
+const Discord = require("discord.js"); const { RichEmbed } = require('discord.js'); const client = new Discord.Client(); const publicIp = require('public-ip');
 //DMOJ MODULE
 const problems = require('./dmoj/problem.js');const contests = require('./dmoj/contest.js');const users = require('./dmoj/user.js');
 //END OF DMOJ MODULE
@@ -24,12 +21,7 @@ const signal = new Signale(options);
 
 
 
-const config = require("./config.json");
-const package = require('./package.json');
-const build = package.build;
-const ver = package.version;
-const ownerID = package.ownerID;
-const ytapi = config.ytApiToken;
+const config = require("./config.json"); const package = require('./package.json'); const build = package.build; const ver = package.version; const ownerID = package.ownerID; const ytapi = config.ytApiToken;
 
 
 
