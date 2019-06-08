@@ -34,17 +34,15 @@ It should look a bit like this ^<br>
 1. Go to your credential page using this link<br>
 https://console.developers.google.com/apis/credentials<br>
 2. Click on create project<br>
-![guideimg4](https://camo.githubusercontent.com/30ff035db58df1a1ea1500ef8c3baf4fb2f029fc/68747470733a2f2f692e696d6775722e636f6d2f494446627957452e706e67)<br>
+![guideimg4](.guide/guide6.png)<br>
 3. Enter a project name<br>
-![guideimg5](https://camo.githubusercontent.com/d9d9b9920d9b494dfe3b947824e9e7a0628514b0/68747470733a2f2f692e696d6775722e636f6d2f434e71353051442e706e67)<br>
+![guideimg5](.guide/guide5.png)<br>
 <br>
-Enable Youtube API<br>
 4. Go to the library on the left hand side<br>
 ![guideimg6](.guide/guide6.png)<br>
 5. Search for Youtube API v3 and Enable it<br>
 ![guideimg7](.guide/guide7.png)<br>
 <br>
-Getting the Youtube API Key<br>
 6. Click on Create Credentials<br>
 ![guideimg8](.guide/guide8.png)<br>
 7. Select **Youtube API** with the **Web Server** setting<br>
