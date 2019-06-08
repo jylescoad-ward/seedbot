@@ -38,20 +38,20 @@ https://console.developers.google.com/apis/credentials<br>
 3. Enter a project name<br>
 ![guideimg5](https://camo.githubusercontent.com/d9d9b9920d9b494dfe3b947824e9e7a0628514b0/68747470733a2f2f692e696d6775722e636f6d2f434e71353051442e706e67)<br>
 <br>
-***Enable Youtube API***<br>
-1. Go to the library on the left hand side<br>
+#### Enable Youtube API<br>
+4. Go to the library on the left hand side<br>
 ![guideimg6](https://camo.githubusercontent.com/604f4f173427bc4ce40f6411144a4270116b5d79/68747470733a2f2f692e696d6775722e636f6d2f6d4434546834392e706e67)<br>
-2. Search for Youtube API v3 and Enable it<br>
+5. Search for Youtube API v3 and Enable it<br>
 ![guideimg7](https://camo.githubusercontent.com/b6653eff17c8e09d758d6ef7ecfa4fca1d2d7247/68747470733a2f2f692e696d6775722e636f6d2f616c50577053372e706e67)<br>
 <br>
-***Getting the Youtube API Key***<br>
-1. Click on Create Credentials<br>
+#### Getting the Youtube API Key<br>
+6. Click on Create Credentials<br>
 ![guideimg8](https://camo.githubusercontent.com/9bbd5e00576dfbb9a565ae7f87120563ea496908/68747470733a2f2f692e696d6775722e636f6d2f4444724a4a63772e706e67)<br>
-2. Select **Youtube API** with the **Web Server** setting<br>
+7. Select **Youtube API** with the **Web Server** setting<br>
 ![guideimg9](https://camo.githubusercontent.com/ffa7e680ea002dfa161fe352a9034a1897b6ba0d/68747470733a2f2f692e696d6775722e636f6d2f4a446c676158552e706e67)<br>
-3. Copy your API key
+8. Copy your API key
 ![guideimg10](https://camo.githubusercontent.com/b4f65f5cc38cd4517d425d712bf1bdf82ae07e83/68747470733a2f2f692e696d6775722e636f6d2f73724d6e57544c2e706e67)<br>
-4. Go **back** in to the `config.json` file and replace `youtube-api-token` on line 6 with your own API key<br>
+9. Go **back** in to the `config.json` file and replace `youtube-api-token` on line 6 with your own API key<br>
 ![guideimg11](.guide/guide11.PNG)<br>
 ![guideimg12](.guide/guide12.PNG)<br>
 <br>
