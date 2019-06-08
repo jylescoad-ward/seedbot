@@ -61,3 +61,6 @@ typings/
 .next
 
 src/config.json
+.idea/
+.github/
+src/config.json

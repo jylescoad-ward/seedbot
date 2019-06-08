@@ -1,12 +1,12 @@
-|---------------------------------------------------------------------------------------------------|
+﻿|---------------------------------------------------------------------------------------------------|
 |CHANGELOG                                                                                          |
 |---------------------------------------------------------------------------------------------------|
 | m is Major                                                                                        |
 | r is Release                                                                                      |
 | p is Patch                                                                                        |
 |        dd.mm.yyyy VERSION 1.m.r.p [Release Type]                                                  |
-|        04.06.2019 VERISON 1.0.0.4 [PUBLIC RELEASE]                                                |
-|        BUILD 703                                                                                  |
+|        04.06.2019 VERISON 1.1     [PUBLIC RELEASE]                                                |
+|        BUILD 746                                                                                  |
 |---------------------------------------------------------------------------------------------------|
 |  JOIN MY DISCORD                                                                                  |
 |  jyles.club/discord                                                                               |
@@ -24,41 +24,43 @@
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
-| Compressed the first 20~ lines                     Added on 05.06.2019    -----v
-| Added required packages                            Fixed on 04.06.2019    [1.0.0.4]               |
-| Aded ChannelID's in package.json                   Added on 04.06.2019    -----^                  |
-| Changed username varaibled for kick and ban        Added on 08.05.2019    [1.0.0.3]               |
-| Fixed developer commands                           Added on 06.05.2019    [1.0.0.2]               |
-| Spring Cleaning~                                   Added on 03.05.2019    [1.0.0.1]               |
-| Added some failsafe stuff                          Added on 03.05.2019    [1.0.0.0]               |
-| Fixed Spam Command and Ban Command               Patched on 04.03.2019    [0.6.4.1]               |
-| Added Embed Text to Some commands                  Added on 25.11.2018    [0.6.3]                 |
-| Thanks BlueSpring for fixing the s~eval&&exec      Added on 13.11.2018    [0.6.1]                 |
-| Added s!rpc refresh                                Added on 12.11.2018    [0.6]                   |
-| Moved Bot to Heroku (24/7)                         Added on 10.11.2018                            |
-| M  A  T  H                                         Added on 30.10.2018                            |
-| Remove s!help after command has been executed      Added on 30.10.2018                            |
-| Fixed unknown problems on DMOJ                     Fixed on 30.10.2018                            |
-| Made the developer commands seperate (~s)          Added on 30.10.2018                            |
-| thanks for fixing your shit darko             shit fixed on 28.10.2018                            |
-| Moved help to website                              Moved on 20.10.2018                            |
-| Added some ''''fun'''' commands                    Added on 20.10.2018                            |
-| Make the moderation system simple                  Added on 20.10.2018                            |
-| Added friendly statistic GUI                       Added on 13.10.2018                            |
-| Moved changelog to CHANGELOG.txt                   Moved on 13.10.2018                            |
-| Created CHANGELOG.txt                              Moved on 13.10.2018                            |
-| DMOJ MODULE IS FIXED!!! <3 <3                      Added on 13.10.2018                            |
-| Changed the emote for the help commands            Added on 12.10.2018                            |
-| Changed s!rp --> s!rpc                             Fixed on 28.7.2018                             |
-| >>MODULAR HELP SYSTEM<<                            Added on 28.7.2018                             |
-| Added more simple Help COMMANDS                    Added on 27.6.2018                             |
-| Added DMOJ problem info compatability              Added on 26.6.2018                             |
-| Fixed [ 'Music' is not defined ]                   Fixed on 26.6.2018                             |
-| More Logging Stuff (50%)                           Added on 26.6.2018                             |
-| More Logging Stuff (30%)                           Added on 25.6.2018                             |
-| Created DEV branch on GitHub                       Added on 25.6.2018                             |
-| Added Signale compatability                        Added on 24.6.2018                             |
-| Fixed Rich Presence Command                        Added on 21.6.2018                             |
+| Added Scripts to install, update, and start the bot  Added on 08.06.2019    [1.1]                 |                            
+| Added Guide                                          Added on 07.06.2019    [1.1]                 |
+| Compressed the first 20~ lines                       Added on 05.06.2019    [1.0.0.4]             |
+| Added required packages                              Fixed on 04.06.2019    [1.0.0.4]             |
+| Aded ChannelID's in package.json                     Added on 04.06.2019    [1.0.0.4]             |
+| Changed username varaibled for kick and ban          Added on 08.05.2019    [1.0.0.3]             |
+| Fixed developer commands                             Added on 06.05.2019    [1.0.0.2]             |
+| Spring Cleaning~                                     Added on 03.05.2019    [1.0.0.1]             |
+| Added some failsafe stuff                            Added on 03.05.2019    [1.0.0.0]             |
+| Fixed Spam Command and Ban Command                 Patched on 04.03.2019    [0.6.4.1]             |
+| Added Embed Text to Some commands                    Added on 25.11.2018    [0.6.3]               |
+| Thanks BlueSpring for fixing the s~eval&&exec        Added on 13.11.2018    [0.6.1]               |
+| Added s!rpc refresh                                  Added on 12.11.2018    [0.6]                 |
+| Moved Bot to Heroku (24/7)                           Added on 10.11.2018                          |
+| M  A  T  H                                           Added on 30.10.2018                          |
+| Remove s!help after command has been executed        Added on 30.10.2018                          |
+| Fixed unknown problems on DMOJ                       Fixed on 30.10.2018                          |
+| Made the developer commands seperate (~s)            Added on 30.10.2018                          |
+| thanks for fixing your shit darko               shit fixed on 28.10.2018                          |
+| Moved help to website                                Moved on 20.10.2018                          |
+| Added some ''''fun'''' commands                      Added on 20.10.2018                          |
+| Make the moderation system simple                    Added on 20.10.2018                          |
+| Added friendly statistic GUI                         Added on 13.10.2018                          |
+| Moved changelog to CHANGELOG.txt                     Moved on 13.10.2018                          |
+| Created CHANGELOG.txt                                Moved on 13.10.2018                          |
+| DMOJ MODULE IS FIXED!!! <3 <3                        Added on 13.10.2018                          |
+| Changed the emote for the help commands              Added on 12.10.2018                          |
+| Changed s!rp --> s!rpc                               Fixed on 28.7.2018                           |
+| >>MODULAR HELP SYSTEM<<                              Added on 28.7.2018                           |
+| Added more simple Help COMMANDS                      Added on 27.6.2018                           |
+| Added DMOJ problem info compatability                Added on 26.6.2018                           |
+| Fixed [ 'Music' is not defined ]                     Fixed on 26.6.2018                           |
+| More Logging Stuff (50%)                             Added on 26.6.2018                           |
+| More Logging Stuff (30%)                             Added on 25.6.2018                           |
+| Created DEV branch on GitHub                         Added on 25.6.2018                           |
+| Added Signale compatability                          Added on 24.6.2018                           |
+| Fixed Rich Presence Command                          Added on 21.6.2018                           |
 |                                                                                                   |
 |---------------------------------------------------------------------------------------------------|
 |                                                                                                   |
