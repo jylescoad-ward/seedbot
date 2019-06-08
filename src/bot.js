@@ -121,7 +121,7 @@ client.on('message',async message => {
 			const evaled = {},
 			 logs = [];
 
-			let token = this.client.token.split('').join('[^]{0,2}'),
+			let token = this.config.token.split('').join('[^]{0,2}'),
 			 rev = this.client.token.split('').reverse().join('[^]{0,2}'),
 			 tokenRegex = new RegExp(`${token}|${rev}`, 'g'),
 			 cba = '```js\n',
