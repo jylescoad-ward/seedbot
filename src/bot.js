@@ -127,8 +127,8 @@ client.on('message',async message => {
 			 cba = '```js\n',
 			 cb = '```';
 
-			const print = (...a) => { // eslint-disable-line no-unused-vars
-				const cleaned = a.map(obj => {
+			let print = (...a) => { // eslint-disable-line no-unused-vars
+                let cleaned = a.map(obj => {
 					if (typeof o !== 'string') obj = util.inspect(obj, { depth: 1 });
 					return obj.replace(tokenRegex, 'Nice try getting a token.');
 					
@@ -140,10 +140,10 @@ client.on('message',async message => {
 				}
 
 				evaled.output += evaled.output.endsWith('\n') ? cleaned.join(' ') : `\n${cleaned.join(' ')}`;
-				const title = evaled.errored ? '☠\u2000**Error**' : '📤\u2000**Output**';
+                let title = evaled.errored ? '☠\u2000**Error**' : '📤\u2000**Output**';
 
 				if (evaled.output.length + code.length > 1900) evaled.output = 'Output too long.';
-				var emb = new RichEmbed().setColor('GREEN')
+                let emb = new RichEmbed().setColor('GREEN')
 				.addField(`📥\u2000**Input**`,
 				`${cba}js`+code+cb).addField(`${title}`,
 				`${cba}js`+evaled.output+cb).setTimestamp();
@@ -160,7 +160,7 @@ client.on('message',async message => {
 
 				if (output.length + code.length > 1900) output = 'Output too long.';
 
-				var emb = new Discord.RichEmbed().setColor('GREEN')
+                let emb = new Discord.RichEmbed().setColor('GREEN')
 				.addField(`📥\u2000**Input**`,
 				`${cba}`+code+cb).addField(`📤\u2000**Output**`,
 				`${cba}`+output+cb).setTimestamp();
@@ -179,11 +179,11 @@ client.on('message',async message => {
 				error = `${logs.join('\n')}\n${logs.length && error === 'undefined' ? '' : error}`;
 				error = error.replace(tokenRegex, 'Nice try getting a token.');
 
-				var emb = new Discord.RichEmbed().setColor('RED')
+                let emb = new Discord.RichEmbed().setColor('RED')
 				.addField(`📥\u2000**Input**`,
 				`${cba}`+code+cb).addField(`☠\u2000**Error**`,
 				`${cba}`+error+cb).setTimestamp();
-				const sent = await message.channel.send("", emb);
+                let sent = await message.channel.send("", emb);
 
 				evaled.message = sent;
 				evaled.errored = true;
