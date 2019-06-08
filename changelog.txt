@@ -5,8 +5,8 @@
 | r is Release                                                                                      |
 | p is Patch                                                                                        |
 |        dd.mm.yyyy VERSION 1.m.r.p [Release Type]                                                  |
-|        04.06.2019 VERISON 1.1     [PUBLIC RELEASE]                                                |
-|        BUILD 746                                                                                  |
+|        04.06.2019 VERISON 1.1.1   [PUBLIC RELEASE]                                                |
+|        BUILD 747                                                                                  |
 |---------------------------------------------------------------------------------------------------|
 |  JOIN MY DISCORD                                                                                  |
 |  jyles.club/discord                                                                               |

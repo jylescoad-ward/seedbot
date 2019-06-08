@@ -117,7 +117,6 @@ client.on('message',async message => {
     let code = args.slice(0).join(" ");
     if (message.author.id === ownerID) {
 			if (!code) return message.channel.send('No code provided!');
-			this.client = bot;
 
 			const evaled = {},
 			 logs = [];
