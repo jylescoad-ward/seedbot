@@ -1,5 +1,5 @@
-#How to install SeedBot on Debian
-###**Step 1: Downloading SeedBot**<br>
+# How to install SeedBot on Debian<br>
+### Step 1: Downloading SeedBot<br>
 Download SeedBot by using  `git clone` or `wget`<br>
 If you want to use `git clone` then type this in your terminal of choice<br>
 `git clone https://github.com/jylescoad-ward/seedbot.git`<br>
@@ -14,11 +14,11 @@ then unzip it using `unzip`<br>
 and change the name to something that you will remember<br>
 `mv master/ mybot/`<br>
 <br>
-###Step 2: Making a Bot User
+### Step 2: Making a Bot User
 To make a bot I suggest using this guide to help you<br>
 https://www.digitaltrends.com/gaming/how-to-make-a-discord-bot/<br>
 <br>
-###Step 3: Adding your Own Token
+### Step 3: Adding your Own Token
 To get your bot token go in the bot tab on your application<br>
 and click the `Copy` button below the `Click to Reveal Token` button<br>
 <br>
@@ -30,7 +30,7 @@ With your token that you got from your Discord Bot Application Page<br>
 ![guideimg3](.guide/guide3.PNG)<br>
 It should look a bit like this ^<br>
 <br>
-###Step 4: Adding your Youtube API v3 Token
+### Step 4: Adding your Youtube API v3 Token
 1. Go to your credential page using this link<br>
 https://console.developers.google.com/apis/credentials<br>
 2. Click on create project<br>
@@ -55,7 +55,7 @@ https://console.developers.google.com/apis/credentials<br>
 ![guideimg11](.guide/guide11.PNG)<br>
 ![guideimg12](.guide/guide12.PNG)<br>
 <br>
-###Step 4: Installing the bot
+### Step 4: Installing the bot
 To install the bot go into the root directory (where changelog.txt is) and type this in to your console<br>
 ```bash
 sudo chmod +x install-apt.sh || sudo chmod +x start.sh || sudo chmod +x update.sh
@@ -72,7 +72,7 @@ sudo ./update.sh
 
 Once you have done that you can now start your bot!
 
-###Step 5: Starting the Bot
+### Step 5: Starting the Bot
 To start your bot type this in your console<br>
 ```bash
 ./start.sh
@@ -81,7 +81,7 @@ And your console should spit this out<br>
 ![guide13](.guide/guide13.png)<br>
 <br>
 <br>
-###Congratulations! You did it!
+### Congratulations! You did it!
 If there are any problems don't hesitate to make a issue on the issue tab.<br>
 <br>
 Have a fantastic day!
