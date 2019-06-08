@@ -78,7 +78,7 @@ To start your bot type this in your console<br>
 ./start.sh
 ```
 And your console should spit this out<br>
-![guide13](.guide/guide13.png)<br>
+![guide13](.guide/guide13.PNG)<br>
 <br>
 <br>
 ### Congratulations! You did it!
