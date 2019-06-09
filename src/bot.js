@@ -283,7 +283,7 @@ client.on("message", async message => {
       author: {name:'s!help'},
       fields: [{
         name: 'Help Description',
-        value: 'The Command Dictionary have been moved to ***http://jyles.club/seedbot/#commands***\n\nSorry for the Inconvenience!'
+        value: 'The Command Dictionary have been *permanently* moved to ***http://jyles.club/seedbot/#commands***'
       }],
       timestamp: 'Command Requested at ' + new Date(),
       footer: {
