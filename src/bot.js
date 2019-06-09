@@ -274,7 +274,7 @@ client.on("message", async message => {
 
   //Basic commands
   if (command === "invite") {
-      message.reply("Take me yo your leader!\n http://jyles.club/seedbot/invite");
+      message.reply("Take me to your leader!\n http://jyles.club/seedbot/invite");
       signal.command("A user executed s!invite");
   }  
   if (command === 'help') {
