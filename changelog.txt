@@ -5,8 +5,8 @@
 | r is Release                                                                                      |
 | p is Patch                                                                                        |
 |        dd.mm.yyyy VERSION 1.m.r.p [Release Type]                                                  |
-|        04.06.2019 VERISON 1.1.1   [PUBLIC RELEASE]                                                |
-|        BUILD 747                                                                                  |
+|        09.06.2019 VERISON 1.1.0.1 [PUBLIC RELEASE]                                                |
+|        BUILD 748                                                                                  |
 |---------------------------------------------------------------------------------------------------|
 |  JOIN MY DISCORD                                                                                  |
 |  jyles.club/discord                                                                               |
@@ -24,6 +24,7 @@
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
+| Replaced config.ownerID with package.ownerID         Fixed on 09.06.2019    [1.1.0.1]             |
 | Added Scripts to install, update, and start the bot  Added on 08.06.2019    [1.1]                 |                            
 | Added Guide                                          Added on 07.06.2019    [1.1]                 |
 | Compressed the first 20~ lines                       Added on 05.06.2019    [1.0.0.4]             |
@@ -64,7 +65,7 @@
 |                                                                                                   |
 |---------------------------------------------------------------------------------------------------|
 |                                                                                                   |
-| LATEST REMOVALS                                                                                   |
+| LATEST REMOVALS / BUG FIXES                                                                       |
 | Broken Ban and Spam Command                        Removed on 03.04.2019                          |
 | Bugs                                              Squished on 12.11.2018                          |
 | Bugs                                              Squished on 30.10.2018                          |

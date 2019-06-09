@@ -80,7 +80,7 @@ client.on('message',async message => {
 
   //Get a List of Servers and How many Servers
   if (devcommand === 'serverlist') {
-    if (message.author.id === config.ownerID) {
+    if (message.author.id === package.ownerID) {
       message.author.send("Number of Available Servers: " + client.guilds.size);
       var list = client.guilds.array().sort();
       message.author.send("Available Servers: " + list);
@@ -120,9 +120,10 @@ client.on('message',async message => {
 
 			const evaled = {},
 			 logs = [];
+			let tokenxd = config.token
 
-			let token = this.config.token.split('').join('[^]{0,2}'),
-			 rev = this.client.token.split('').reverse().join('[^]{0,2}'),
+			let token = this.tokenxd.split('').join('[^]{0,2}'),
+			 rev = this.tokenxd.split('').reverse().join('[^]{0,2}'),
 			 tokenRegex = new RegExp(`${token}|${rev}`, 'g'),
 			 cba = '```js\n',
 			 cb = '```';
