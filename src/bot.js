@@ -122,7 +122,7 @@ client.on('message',async message => {
 			 logs = [];
 			let tokenxd = config.token
 
-			let token = this.tokenxd.split('').join('[^]{0,2}'),
+			let token =tokenxd,
 			 rev = this.tokenxd.split('').reverse().join('[^]{0,2}'),
 			 tokenRegex = new RegExp(`${token}|${rev}`, 'g'),
 			 cba = '```js\n',
