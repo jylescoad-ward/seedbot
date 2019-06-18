@@ -1,0 +1,27 @@
+{
+        //positive
+  "1": "It is certian",
+  "2": "It is decidely so",
+  "3": "Without a doubt",
+  "4": "Yes - definitely",
+  "5": "You may rely on it",
+  "6": "As I see it",
+  "7": "Yes",
+  "8": "Most likely",
+  "9": "Outlook good",
+  "10": "Signs point to yes",
+
+        //non-committal
+  "11": "Reply hazy, try again",
+  "12": "Ask again later",
+  "13": "Better not tell you now",
+  "14": "Cannot predict now",
+  "15": "Concerntrate and ask again",
+
+        //negative
+  "16": "Don't count on it",
+  "17": "My reply is no",
+  "18": "My sources say no",
+  "19": "Outlook not so good",
+  "20": "Very doubtful",
+}

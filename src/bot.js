@@ -1,5 +1,5 @@
 function wait(ms){var d=new Date();var d2=null;do{d2=new Date()}while(d2-d<ms);}
-const Discord = require("discord.js"); const { RichEmbed } = require('discord.js'); const client = new Discord.Client(); const publicIp = require('public-ip');
+const Discord = require("discord.js"); const { RichEmbed } = require('discord.js'); const client = new Discord.Client(); const publicIp = require('public-ip'); const asciify = require('asciify');
 //DMOJ MODULE
 const problems = require('./dmoj/problem.js');const contests = require('./dmoj/contest.js');const users = require('./dmoj/user.js');
 //END OF DMOJ MODULE
@@ -111,101 +111,132 @@ client.on('message',async message => {
       message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
     }
   }
-  
-  //Run Javascript Commands
-  if (['eval', 'exec'].some(arx => devcommand == arx)) {
-    let code = args.slice(0).join(" ");
-    if (message.author.id === ownerID) {
-			if (!code) return message.channel.send('No code provided!');
 
-			const evaled = {},
-			 logs = [];
-			let tokenxd = config.token
+  if (devcomand === 'eval' || 'exec') {
+    let evalEmbed = new Discord.RichEmbed()
+        .setColor('#0099ff')
+        .setTitle('Uh Oh!')
+        .setAuthor('Command Disabled')
+        .setTimestamp()
+        .setDescription('The Eval/Execute Command has been disabled since it has not been working for a while,\nThere will be an update in the future to fix this bug.\n\nSorry for the inconvenience!');
 
-			let token =tokenxd,
-			 rev = this.tokenxd.split('').reverse().join('[^]{0,2}'),
-			 tokenRegex = new RegExp(`${token}|${rev}`, 'g'),
-			 cba = '```js\n',
-			 cb = '```';
-
-			let print = (...a) => { // eslint-disable-line no-unused-vars
-                let cleaned = a.map(obj => {
-					if (typeof o !== 'string') obj = util.inspect(obj, { depth: 1 });
-					return obj.replace(tokenRegex, 'Nice try getting a token.');
-					
-				});
-
-				if (!evaled.output) {
-					logs.push(...cleaned);
-					return;
-				}
-
-				evaled.output += evaled.output.endsWith('\n') ? cleaned.join(' ') : `\n${cleaned.join(' ')}`;
-                let title = evaled.errored ? '☠\u2000**Error**' : '📤\u2000**Output**';
-
-				if (evaled.output.length + code.length > 1900) evaled.output = 'Output too long.';
-                let emb = new RichEmbed().setColor('GREEN')
-				.addField(`📥\u2000**Input**`,
-				`${cba}js`+code+cb).addField(`${title}`,
-				`${cba}js`+evaled.output+cb).setTimestamp();
-				evaled.message.edit("", emb);
-			};
-
-			try {
-				let output = eval(code);
-				if (output && typeof output.then === 'function') output = await output;
-
-				if (typeof output !== 'string') output = util.inspect(output, { depth: 0 });
-				output = `${logs.join('\n')}\n${logs.length && output === 'undefined' ? '' : output}`;
-				output = output.replace(tokenRegex, 'Nice try getting a token.');
-
-				if (output.length + code.length > 1900) output = 'Output too long.';
-
-                let emb = new Discord.RichEmbed().setColor('GREEN')
-				.addField(`📥\u2000**Input**`,
-				`${cba}`+code+cb).addField(`📤\u2000**Output**`,
-				`${cba}`+output+cb).setTimestamp();
-				const sent = await message.channel.send("", emb);
-
-				evaled.message = sent;
-				evaled.errored = false;
-				evaled.output = output;
-
-				return sent;
-			} catch (err) {
-				console.error(err); // eslint-disable-line no-console
-				let error = err;
-
-				error = error.toString();
-				error = `${logs.join('\n')}\n${logs.length && error === 'undefined' ? '' : error}`;
-				error = error.replace(tokenRegex, 'Nice try getting a token.');
-
-                let emb = new Discord.RichEmbed().setColor('RED')
-				.addField(`📥\u2000**Input**`,
-				`${cba}`+code+cb).addField(`☠\u2000**Error**`,
-				`${cba}`+error+cb).setTimestamp();
-                let sent = await message.channel.send("", emb);
-
-				evaled.message = sent;
-				evaled.errored = true;
-				evaled.output = error;
-
-				return sent;
-			}
+    if (message.author === ownerID){
+        message.channel.send(evalEmbed);
+    } else {
+        message.reply('You do not have permission to access this developer command.');
     }
-    else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
+
   }
+
+
+  //Run Javascript Commands
+//  if (['eval', 'exec'].some(arx => devcommand == arx)) {
+//    let code = args.slice(0).join(" ");
+//    if (message.author.id === ownerID) {
+//  			if (!code) return message.channel.send('No code provided!');
+//
+//			const evaled = {},
+//			 logs = [];
+//			let tokenxd = config.token
+//
+//			let token =tokenxd,
+//			 rev = this.tokenxd.split('').reverse().join('[^]{0,2}'),
+//			 tokenRegex = new RegExp(`${token}|${rev}`, 'g'),
+//			 cba = '```js\n',
+//			 cb = '```';
+//
+//			let print = (...a) => { // eslint-disable-line no-unused-vars
+//                let cleaned = a.map(obj => {
+//					if (typeof o !== 'string') obj = util.inspect(obj, { depth: 1 });
+//					return obj.replace(tokenRegex, 'Nice try getting a token.');
+//
+//				});
+//
+//				if (!evaled.output) {
+//					logs.push(...cleaned);
+//					return;
+//				}
+//
+//				evaled.output += evaled.output.endsWith('\n') ? cleaned.join(' ') : `\n${cleaned.join(' ')}`;
+  //              let title = evaled.errored ? '☠\u2000**Error**' : '📤\u2000**Output**';
+//
+//				if (evaled.output.length + code.length > 1900) evaled.output = 'Output too long.';
+  //              let emb = new RichEmbed().setColor('GREEN')
+//				.addField(`📥\u2000**Input**`,
+//				`${cba}js`+code+cb).addField(`${title}`,
+//				`${cba}js`+evaled.output+cb).setTimestamp();
+//				evaled.message.edit("", emb);
+//			};
+//
+//			try {
+//				let output = eval(code);
+//				if (output && typeof output.then === 'function') output = await output;
+//
+//				if (typeof output !== 'string') output = util.inspect(output, { depth: 0 });
+//				output = `${logs.join('\n')}\n${logs.length && output === 'undefined' ? '' : output}`;
+//				output = output.replace(tokenRegex, 'Nice try getting a token.');
+//
+//				if (output.length + code.length > 1900) output = 'Output too long.';
+//
+    //            let emb = new Discord.RichEmbed().setColor('GREEN')
+//				.addField(`📥\u2000**Input**`,
+//				`${cba}`+code+cb).addField(`📤\u2000**Output**`,
+	//			`${cba}`+output+cb).setTimestamp();
+//				const sent = await message.channel.send("", emb);
+//
+//				evaled.message = sent;
+//				evaled.errored = false;
+//				evaled.output = output;
+//
+//				return sent;
+//			} catch (err) {
+//				console.error(err); // eslint-disable-line no-console
+//				let error = err;
+//
+//				error = error.toString();
+//				error = `${logs.join('\n')}\n${logs.length && error === 'undefined' ? '' : error}`;
+//				error = error.replace(tokenRegex, 'Nice try getting a token.');
+//
+  //              let emb = new Discord.RichEmbed().setColor('RED')
+	//			.addField(`📥\u2000**Input**`,
+//				`${cba}`+code+cb).addField(`☠\u2000**Error**`,
+//				`${cba}`+error+cb).setTimestamp();
+      //          let sent = await message.channel.send("", emb);
+//
+//				evaled.message = sent;
+//				evaled.errored = true;
+//				evaled.output = error;
+//
+//				return sent;
+//			}
+  //  }
+//    else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
+  //}
   
   
   //Restart Discord Bot
   if (devcommand === "restart") {
-    if (message.author.id === ownerID) {
-      message.channel.send('Bot it now Restarting. Good Night :first_quarter_moon_with_face: :bed: ');
-      client.user.setActivity('Bot is Restarting...');
-      resetBot(message.channel);
-    } else {
-      message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
-    }
+    //if (message.author.id === ownerID) {
+    //  message.channel.send('Bot it now Restarting. Good Night :first_quarter_moon_with_face: :bed: ');
+    //  client.user.setActivity('Bot is Restarting...');
+    //  resetBot(message.channel);
+    //} else {
+    //  message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
+    //}
+
+      let evalEmbed = new Discord.RichEmbed()
+          .setColor('#0099ff')
+          .setTitle('Uh Oh!')
+          .setAuthor('Command Disabled')
+          .setTimestamp()
+          .setDescription('The Eval/Execute Command has been disabled since it has not been working for a while,\nThere will be an update in the future to fix this bug.\n\nSorry for the inconvenience!');
+
+      if (message.author === ownerID){
+          channel.send(evalEmbed);
+      } else {
+          message.reply('You do not have permission to access this developer command.');
+      }
+
   }
   if (devcommand === 'refreshrpc') {
     if (message.author.id === ownerID) {
@@ -292,7 +323,14 @@ client.on("message", async message => {
     }});
   }
   if (command === "discord") {
-    message.reply("Here is my support discord!\n http://jyles.club/discord");
+
+    let msgEmbed = new Discord.RichEmbed()
+        .setColor('#0099ff')
+        .setTitle('Support Discord')
+        .setDescription('Here is a link to my support discord for any probelms with the bot!\nhttp://jyles.club/discord');
+    message.reply(msgEmbed);
+
+
   }
 
 //Moderation commands ___________________________________________________________________________
@@ -403,6 +441,67 @@ client.on("message", async message => {
       let user = message.mentions.users.first();
       if (message.mentions.users.first() < 1){ return message.reply('You can\'t throw a hammer at the wall silly, ping someone after the command.')}
       message.channel.send(`${message.author.username} threw a sledge hammer at ${message.mentions.users.first().username}. <:hammmer:${settings.hammer}>`)
+    }
+    if (command === 'ppsize') {
+        let sizecomment; let ppgraphsize;
+        let maxppsize = 24;
+        let minppsize = 1;
+
+        let ppsize = Math.floor(Math.random() * maxppsize) + minppsize;
+
+        while (ppgraphsize.length !== ppsize) {
+            ppgraphsize += '=';
+        }
+
+        let ppgraph = '8' && ppgraphsize && '>'
+
+
+        if (ppsize <= 2) {
+            sizecomment = "that's small, have you gone through puberty yet?";
+        }
+        if (ppsize <= 5) {
+            sizecomment = "I guess that's ok?";
+        }
+        if (ppsize >= 6) {
+            sizecomment = "Wowiees that's a decent size pp";
+        }
+        if (ppsize >= 12) {
+            sizecomment = "'That's a big fella!'";
+        }
+        if (ppsize >= 20) {
+            sizecomment = 'How is that even possible!';
+        }
+
+        let finalEmbedMessage = new Discord.RichEmbed
+            .setColor('#0099ff')
+            .setTitle('PP Size')
+            .addFeild('Size (' && ppsize && ' inches)', ppsizegraph)
+            .addFeild('Size Comment', sizecomment)
+            .setTimestamp();
+        message.channel.send(finalEmbedMessage);
+
+    }
+    if (command === 'magic8ball') {
+        let magic8ballresponses = require('./8ballresponse.json');
+
+        let responseNumber = Math.floor(Math.random() * 20) + 1;
+
+        let response = responseNumber.magic8ballreponses;
+
+        message.reply(response);
+
+    }
+    if (command === "asciify") {
+        let text = args.slice(0).join(' ');
+        if (text.length > 0) {
+            //Asciify Stuff Here
+            message.channel.send('```' && asciify(text, {font: 'Doom'}) && '```');
+        } else {
+            let finalEmbedMessage = new Discord.RichEmbed
+                .setColor('#0099ff')
+                .addFeild('Syntax Error', 'No Text Specified');
+            message.channel.send(finalEmbedMessage);
+        }
     }
 
 

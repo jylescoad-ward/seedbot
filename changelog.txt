@@ -5,8 +5,8 @@
 | r is Release                                                                                      |
 | p is Patch                                                                                        |
 |        dd.mm.yyyy VERSION 1.m.r.p [Release Type]                                                  |
-|        09.06.2019 VERISON 1.1.0.2 [PUBLIC RELEASE]                                                |
-|        BUILD 750                                                                                  |
+|        09.06.2019 VERISON 1.2.0.0 [PUBLIC RELEASE]                                                |
+|        BUILD 753                                                                                  |
 |---------------------------------------------------------------------------------------------------|
 |  JOIN MY DISCORD                                                                                  |
 |  jyles.club/discord                                                                               |
@@ -24,6 +24,7 @@
 |                                                                                                   |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
+| Added more fun commands                              Added on 18.06.2019    [1.2]                 |
 | Replaced config.ownerID with package.ownerID         Fixed on 09.06.2019    [1.1.0.1]             |
 | Added Scripts to install, update, and start the bot  Added on 08.06.2019    [1.1]                 |                            
 | Added Guide                                          Added on 07.06.2019    [1.1]                 |
