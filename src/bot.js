@@ -14,6 +14,7 @@ function resetBot(channel) {
 
 
 //Signale
+
 const options={disabled:!1,interactive:!1,stream:process.stdout,types:{command:{color:'green',label:'c  COMMAND'},info:{color:'grey',label:'INFO',},error:{color:'red',label:'ERROR',}}}
 const { Signale } = require('signale');
 const signal = new Signale(options);
@@ -112,7 +113,7 @@ client.on('message',async message => {
     }
   }
 
-  if (devcomand === 'eval' || 'exec') {
+  if (devcommand === 'eval' || 'exec') {
     let evalEmbed = new Discord.RichEmbed()
         .setColor('#0099ff')
         .setTitle('Uh Oh!')
