@@ -114,18 +114,19 @@ client.on('message',async message => {
   }
 
   if (devcommand === 'eval' || 'exec') {
-    let evalEmbed = new Discord.RichEmbed()
-        .setColor('#0099ff')
-        .setTitle('Uh Oh!')
-        .setAuthor('Command Disabled')
-        .setTimestamp()
-        .setDescription('The Eval/Execute Command has been disabled since it has not been working for a while,\nThere will be an update in the future to fix this bug.\n\nSorry for the inconvenience!');
+	  
+	if(message.author.id !== config.ownerID) return;
+		try {
+			const code = args.join(" ");
+			let evaled = eval(code);
 
-    if (message.author === ownerID){
-        message.channel.send(evalEmbed);
-    } else {
-        message.reply('You do not have permission to access this developer command.');
-    }
+			if (typeof evaled !== "string")
+			evaled = require("util").inspect(evaled);
+
+			message.channel.send(clean(evaled), {code:"xl"});
+		} catch (err) {
+		message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+	}
 
   }
 
