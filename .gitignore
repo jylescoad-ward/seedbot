@@ -60,7 +60,8 @@ typings/
 # next.js build output
 .next
 
-src/config.json
 .idea/
 .github/
+.guide/
+src/node_modules/
 src/config.json

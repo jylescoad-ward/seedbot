@@ -79,142 +79,69 @@ client.on('message',async message => {
     }
   }
 
-  //Get a List of Servers and How many Servers
-  if (devcommand === 'serverlist') {
+  if (devcommand === "stats") {
+    let type = args.slice(0).join(' ');
     if (message.author.id === package.ownerID) {
-      message.author.send("Number of Available Servers: " + client.guilds.size);
-      var list = client.guilds.array().sort();
-      message.author.send("Available Servers: " + list);
-      signal.info("An Owner executed s!srvrs");
-    }
-    else{
-      message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
-    }
-  }
+      if (type === "serverlist") {
 
-  //The ammount of users that the bot can contact/see
-  if (devcommand === 'usercount'){
-    if (message.author.id === ownerID) {
-      message.author.send("Number of Users: " + client.users.size);
-    } else {
-      message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
-     }
-  }
+        var serverlist = client.guilds.array().sort();
+        serverlist.replace(",", "\n");
 
-  //Shows Number of accesable channels
-  if (devcommand === 'channels') {
-    if (message.author.id === '230485481773596672') {
-      message.author.send("Number of Available Channels: " + client.channels.size);
-      var list = client.channels.array().sort();
-        //message.author.send("Available Channels: " + list);
-      signal.command("An Owner executed s!channels");
-    } else {
-      message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
+        let evalEmbed = new Discord.RichEmbed()
+          .setColor('#0099ff')
+          .setTitle('Server List')
+          .setAuthor("Number of Available Servers: " + client.guilds.size);
+          .setTimestamp()
+          .setDescription(serverlist);
+        message.channel.send(evalEmbed);
+      }
+      if (type === "usercount") {
+        let usercount = client.users.size;
+
+        let evalEmbed = new Discord.RichEmbed()
+          .setColor('#0099ff')
+          .setTitle('User Count')
+          .setTimestamp()
+          .setDescription(usercount);
+        message.channel.send(evalEmbed);
+      }
+      if (type === "channelcount") {
+        let channelcount = client.channels.count;
+
+        let evalEmbed = new Discord.RichEmbed()
+          .setColor('#0099ff')
+          .setTitle('Channel Count')
+          .setTimestamp()
+          .setDescription(channelcount);
+        message.channel.send(evalEmbed);
+      }
+      else {
+        let evalEmbed = new Discord.RichEmbed()
+          .setColor('#ff0000')
+          .setTitle('Invalid Arguments')
+          .setTimestamp()
+          .setDescription("You have not added a varaible to the command.\nThe current types are:\nserverlist\nsercount\nchannelcount\n\n e.g: s~stats serverlist");
+        message.channel.send(evalEmbed);
+      }
+
+
     }
   }
 
   if (devcommand === 'eval' || 'exec') {
-	  
-	if(message.author.id !== config.ownerID) return;
-		try {
-			const code = args.join(" ");
-			let evaled = eval(code);
+  	if(message.author.id !== config.ownerID) return;
+  		try {
+  			const code = args.join(" ");
+  			let evaled = eval(code);
 
-			if (typeof evaled !== "string")
-			evaled = require("util").inspect(evaled);
+  			if (typeof evaled !== "string")
+  			evaled = require("util").inspect(evaled);
 
-			message.channel.send(clean(evaled), {code:"xl"});
-		} catch (err) {
-		message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-	}
-
+  			message.channel.send(clean(evaled), {code:"xl"});
+  		} catch (err) {
+  		message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+  	}
   }
-
-
-  //Run Javascript Commands
-//  if (['eval', 'exec'].some(arx => devcommand == arx)) {
-//    let code = args.slice(0).join(" ");
-//    if (message.author.id === ownerID) {
-//  			if (!code) return message.channel.send('No code provided!');
-//
-//			const evaled = {},
-//			 logs = [];
-//			let tokenxd = config.token
-//
-//			let token =tokenxd,
-//			 rev = this.tokenxd.split('').reverse().join('[^]{0,2}'),
-//			 tokenRegex = new RegExp(`${token}|${rev}`, 'g'),
-//			 cba = '```js\n',
-//			 cb = '```';
-//
-//			let print = (...a) => { // eslint-disable-line no-unused-vars
-//                let cleaned = a.map(obj => {
-//					if (typeof o !== 'string') obj = util.inspect(obj, { depth: 1 });
-//					return obj.replace(tokenRegex, 'Nice try getting a token.');
-//
-//				});
-//
-//				if (!evaled.output) {
-//					logs.push(...cleaned);
-//					return;
-//				}
-//
-//				evaled.output += evaled.output.endsWith('\n') ? cleaned.join(' ') : `\n${cleaned.join(' ')}`;
-  //              let title = evaled.errored ? '☠\u2000**Error**' : '📤\u2000**Output**';
-//
-//				if (evaled.output.length + code.length > 1900) evaled.output = 'Output too long.';
-  //              let emb = new RichEmbed().setColor('GREEN')
-//				.addField(`📥\u2000**Input**`,
-//				`${cba}js`+code+cb).addField(`${title}`,
-//				`${cba}js`+evaled.output+cb).setTimestamp();
-//				evaled.message.edit("", emb);
-//			};
-//
-//			try {
-//				let output = eval(code);
-//				if (output && typeof output.then === 'function') output = await output;
-//
-//				if (typeof output !== 'string') output = util.inspect(output, { depth: 0 });
-//				output = `${logs.join('\n')}\n${logs.length && output === 'undefined' ? '' : output}`;
-//				output = output.replace(tokenRegex, 'Nice try getting a token.');
-//
-//				if (output.length + code.length > 1900) output = 'Output too long.';
-//
-    //            let emb = new Discord.RichEmbed().setColor('GREEN')
-//				.addField(`📥\u2000**Input**`,
-//				`${cba}`+code+cb).addField(`📤\u2000**Output**`,
-	//			`${cba}`+output+cb).setTimestamp();
-//				const sent = await message.channel.send("", emb);
-//
-//				evaled.message = sent;
-//				evaled.errored = false;
-//				evaled.output = output;
-//
-//				return sent;
-//			} catch (err) {
-//				console.error(err); // eslint-disable-line no-console
-//				let error = err;
-//
-//				error = error.toString();
-//				error = `${logs.join('\n')}\n${logs.length && error === 'undefined' ? '' : error}`;
-//				error = error.replace(tokenRegex, 'Nice try getting a token.');
-//
-  //              let emb = new Discord.RichEmbed().setColor('RED')
-	//			.addField(`📥\u2000**Input**`,
-//				`${cba}`+code+cb).addField(`☠\u2000**Error**`,
-//				`${cba}`+error+cb).setTimestamp();
-      //          let sent = await message.channel.send("", emb);
-//
-//				evaled.message = sent;
-//				evaled.errored = true;
-//				evaled.output = error;
-//
-//				return sent;
-//			}
-  //  }
-//    else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
-  //}
-  
   
   //Restart Discord Bot
   if (devcommand === "restart") {
@@ -227,7 +154,7 @@ client.on('message',async message => {
     //}
 
       let evalEmbed = new Discord.RichEmbed()
-          .setColor('#0099ff')
+          .setColor('#ff0000')
           .setTitle('Uh Oh!')
           .setAuthor('Command Disabled')
           .setTimestamp()
@@ -240,53 +167,46 @@ client.on('message',async message => {
       }
 
   }
-  if (devcommand === 'refreshrpc') {
-    if (message.author.id === ownerID) {
-      message.channel.send('Rich Presence Refreshed!');
-      client.user.setActivity(packageJSON.homepage + '// Serving ' + client.users.size + ' players');
-    }
-    else{
-      message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
-    }
-  }
 
   //Changes the Rich Presence
   if (devcommand === 'rpc') {
     var game = args.slice(0).join(" ");
 
 
-    // only @Seed#0001 can access this devcommand
+    // only the sender that has the same userID as the ownerID varaible in package.json can access this devcommand
 
     //Checking if the sender is a certian user
-    if (message.author.id === '230485481773596672') {
+    if (message.author.id === ownerID) {
 
       //reset devcommand
       if (game === 'reset') {
         client.user.setActivity(packageJSON.homepage + '// Serving ' + client.users.size + ' clients');
-        message.channel.send('***Rich Presence Has Been Reset***');
-        signal.info("A Owner executed s!rp reset");
+        message.channel.send('***Rich Presence has been Reset***');
+      } 
+      if (game === 'refresh') {
+        client.user.setActivity(packageJSON.homepage + "// Serving " + client.users.size + " clients");
+        message.channel.send("***Rich Presence has been Refreshed***")
       } else {
         client.user.setActivity(game + ' // ' + packageJSON.homepage + '// Serving ' + client.users.size + ' clients');
-        message.channel.send('***Rich Presence Status Updated To:*** \n' + "`" + game + "`");
-        signal.info("A Owner executed s!rp " + game + ", game set to \n" + game);
+        message.channel.send('***Rich Presence has been updated to:*** \n' + "`" + game + "`");
       }
     }
-    else{message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');}
+    else{message.reply('You do not have permissions to use this developer command.');}
   }
+  if (devcommand === "shell") {
+    let script = args.slice(0).join(' ');
 
-  if(devcommand === 'dn'){
-     if (message.author.id === ownerID){
-      
-      message.channels.get(trustedTextChannel.package).send(dnPackage);
-      message.reply(haga);
-      message.channels.get(seedsShackAnnounce.config).send(announcePackage);
-      message.channels.get(darioxAnnounce.config).send(announcePackage);
-      message.channels.get(agnAnnounce.config).send(announcePackage);
-      console.log('owner saftey precautions loaded!');
-     }
-     else {
-      message.reply('go fuck youself');
-     }
+    if (message.author.id === ownerID) {
+      const util = require('util');
+      const exec = util.promisify(require('child_process').exec);
+      const { stdout, stderr } = await exec(script);
+      let evalEmbed = new Discord.RichEmbed()
+        .setColor('#0099ff')
+        .setTitle('Shell Execute Output')
+        .setTimestamp()
+        .setDescription('**Shell Output:**\n' && stdout && '\n\n**Shell Errors:**\n' && stderr);
+      message.channel.send(evalEmbed);
+    }
   }
 });
 
@@ -308,9 +228,20 @@ client.on("message", async message => {
   //Basic commands
   if (command === "invite") {
       message.reply("Take me to your leader!\n http://jyles.club/seedbot/invite");
-      signal.command("A user executed s!invite");
+      message.channel.send({embed: {
+        color: 329514,
+        author: {name:'s!invite'},
+        fields: [{
+          name: 'Bot Invite Link',
+          value: 'Take me to your leader!\nhttp://jyles.club/seedbot/invite'
+        }],
+        timestamp: 'Command Requested at ' + new Date(),
+        footer: {
+          text: 'Requested by ' + message.author.username
+        }
+      }});
   }  
-  if (command === 'help') {
+  if (command === "help") {
     message.channel.send({embed: {
       color: 329514,
       author: {name:'s!help'},
@@ -324,15 +255,19 @@ client.on("message", async message => {
       }
     }});
   }
-  if (command === "discord") {
-
-    let msgEmbed = new Discord.RichEmbed()
-        .setColor('#0099ff')
-        .setTitle('Support Discord')
-        .setDescription('Here is a link to my support discord for any probelms with the bot!\nhttp://jyles.club/discord');
-    message.reply(msgEmbed);
-
-
+  if (command === "support") {
+    message.channel.send({embed: {
+      color: 329514,
+      author: {name: 's!support'},
+      fields: [{
+        name: 'Bot Support',
+        value: 'If you need help with the bot join our discord `http://jyles.club/discord`\n Or you can email us at `contact@dariox.club`'
+      }],
+      timestamp: 'Command Requested at ' + new Date(),
+      footer: {
+        text: 'Requested by ' + message.author.username
+      }
+    }});
   }
 
 //Moderation commands ___________________________________________________________________________
@@ -477,15 +412,14 @@ client.on("message", async message => {
         let finalEmbedMessage = new Discord.RichEmbed
             .setColor('#0099ff')
             .setTitle('PP Size')
-            .addFeild('Size (' && ppsize && ' inches)', ppsizegraph)
+            .addFeild('Size (' && ppsize && ' inches)', ppgraph)
             .addFeild('Size Comment', sizecomment)
             .setTimestamp();
         message.channel.send(finalEmbedMessage);
 
     }
     if (command === 'magic8ball') {
-        let magic8ballresponses = require('./8ballresponse.json');
-
+        let magic8ballresponses = require('./fun/8ball.json');
         let responseNumber = Math.floor(Math.random() * 20) + 1;
 
         let response = responseNumber.magic8ballreponses;
@@ -540,10 +474,11 @@ client.on("message", async message => {
 
 
 client.on("ready", () => {
+    signale.info('Bot started at ' new Date())
     signal.info(`Bot has started, with ` + client.users.size + ` users, in ` + client.channels.size + ` channels of ` + client.guilds.size + ` guilds.`);
 
-    client.user.setActivity(`s!help // ` + client.users.size + ` Users. // v` + ver);
+    client.user.setActivity(`with the logs // ` + client.users.size + ` Users. // v` + ver);
 });
 client.login(config.token);
 
-const music=require('discord.js-musicbot-addon');music.start(client,{youtubeKey:config.ytapi,cooldown:{disabled:!0,timer:10000},botPrefix:'s?',anyoneCanSkip:!0,anyoneCanAdjust:!1,inlineEmbeds:!0,logging:!0})
+const music = require('discord.js-musicbot-addon');music.start(client,{youtubeKey:config.ytapi,cooldown:{disabled:!0,timer:10000},botPrefix:musicprefix.package,anyoneCanSkip:!0,anyoneCanAdjust:!1,inlineEmbeds:!0,logging:!0})

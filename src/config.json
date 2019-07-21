@@ -3,5 +3,6 @@
 	"prefix": "s!",
 	"devprefix": "s~",
 	"mathprefix": "sm!",
+	"musicprefix": "s?",
 	"ytapi": "youtube-api-token"
 }

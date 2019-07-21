@@ -1,7 +1,7 @@
 {
   "name": "SeedBot",
-  "version": "1.2",
-  "build": "753",
+  "version": "1.2.2",
+  "build": "814",
   "description": "A New and Improved Version of SeedBot",
   "ownerID": "230485481773596672",
   "engines": {
@@ -13,25 +13,23 @@
   },
   "dependencies": {
     "asciify": "^1.3.5",
+    "child_process": "^1.0.2",
     "discord.js": "^11.5.1",
     "discord.js-musicbot-addon": "^13.5.2",
     "opusscript": "0.0.6",
     "public-ip": "^3.1.0",
     "signale": "^1.4.0",
-    "syncprompt": "^2.0.0"
+    "syncprompt": "^2.0.0",
+    "util": "^0.12.1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jylescoad-ward/seedbot.git"
   },
-  "author": "Jyles Coad-Ward [dariox.club@gmail.com]",
+  "author": "Jyles Coad-Ward [jyles@dariox.club]",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jylescoad-ward/seedbot/issues"
   },
-  "homepage": "http://jyles.club/seedbot",
-  "trustedTextChannel": "580316310257532938",
-  "seedsShackAnnounce": "359878140543107084",
-  "darioxAnnounce": "562570413486505994",
-  "agnAnnounce": "523104698404700180"
+  "homepage": "http://jyles.club/seedbot"
 }

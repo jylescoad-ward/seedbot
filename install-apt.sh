@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo apt install npm ffmpeg
 cd src
-npm i discord.js discord.js-musicbot-addon public-ip opusscript asciify
+npm i discord.js discord.js-musicbot-addon public-ip opusscript asciify util child_process
 cd ..
 echo ""
 echo "- - - - - - - - - - - - "
