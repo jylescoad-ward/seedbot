@@ -14,14 +14,9 @@ function resetBot(channel) {
 
 
 //Signale
-
 const options={disabled:!1,interactive:!1,stream:process.stdout,types:{command:{color:'green',label:'c  COMMAND'},info:{color:'grey',label:'INFO',},error:{color:'red',label:'ERROR',}}}
 const { Signale } = require('signale');
 const signal = new Signale(options);
-
-
-
-
 const config = require("./config.json"); const package = require('./package.json'); const build = package.build; const ver = package.version; const ownerID = package.ownerID; const ytapi = config.ytApiToken;
 
 
