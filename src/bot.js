@@ -46,10 +46,6 @@ client.on('message',async message => {
 
 
       
-  fs.readFile('dnPackage.txt', 'utf8', function(err, contents) {var dnPackage = contents;console.log('loaded dnPackage');});
-  fs.readFile('announcePackage.txt', 'utf8', function(err, contents1) {var announcePackage = contents1;console.log('loaded announcePackage');});
-  fs.readFile('haga.txt', 'utf8', function(err, contents2) {var announcePackage = contents2;console.log('loaded haga');});
-  
 
 
   //Get Yo' IP Addresses Here!
@@ -79,6 +75,12 @@ client.on('message',async message => {
     }
   }
 
+  var statcommandarray = [
+    "serverlist",
+    "usercount",
+    "channelcount"
+  ]
+
   if (devcommand === "stats") {
     let type = args.slice(0).join(' ');
     if (message.author.id === package.ownerID) {
@@ -88,9 +90,9 @@ client.on('message',async message => {
         serverlist.replace(",", "\n");
 
         let evalEmbed = new Discord.RichEmbed()
-          .setColor('#0099ff')
+          .setColor('#90d190')
           .setTitle('Server List')
-          .setAuthor("Number of Available Servers: " + client.guilds.size);
+          .setAuthor("Number of Available Servers: " + client.guilds.size)
           .setTimestamp()
           .setDescription(serverlist);
         message.channel.send(evalEmbed);
@@ -99,7 +101,7 @@ client.on('message',async message => {
         let usercount = client.users.size;
 
         let evalEmbed = new Discord.RichEmbed()
-          .setColor('#0099ff')
+          .setColor('#90d190')
           .setTitle('User Count')
           .setTimestamp()
           .setDescription(usercount);
@@ -109,18 +111,18 @@ client.on('message',async message => {
         let channelcount = client.channels.count;
 
         let evalEmbed = new Discord.RichEmbed()
-          .setColor('#0099ff')
+          .setColor('#90d190')
           .setTitle('Channel Count')
           .setTimestamp()
           .setDescription(channelcount);
         message.channel.send(evalEmbed);
       }
-      else {
+      if (type !== "channelcount" || "serverlist" || "usercount") {
         let evalEmbed = new Discord.RichEmbed()
           .setColor('#ff0000')
           .setTitle('Invalid Arguments')
           .setTimestamp()
-          .setDescription("You have not added a varaible to the command.\nThe current types are:\nserverlist\nsercount\nchannelcount\n\n e.g: s~stats serverlist");
+          .setDescription("You have not added a varaible to the command.\nThe current types are:\n```\nserverlist\nusercount\nchannelcount\n```\n\n e.g: `s~stats serverlist`");
         message.channel.send(evalEmbed);
       }
 
@@ -128,19 +130,20 @@ client.on('message',async message => {
     }
   }
 
-  if (devcommand === 'eval' || 'exec') {
-  	if(message.author.id !== config.ownerID) return;
-  		try {
-  			const code = args.join(" ");
-  			let evaled = eval(code);
+  if (devcommand === 'eval') {
+    if (message.author.id === package.ownerID) {
+      try {
+        const code = args.join(" ");
+        let evaled = eval(code);
 
-  			if (typeof evaled !== "string")
-  			evaled = require("util").inspect(evaled);
+        if (typeof evaled !== "string")
+        evaled = require("util").inspect(evaled);
 
-  			message.channel.send(clean(evaled), {code:"xl"});
-  		} catch (err) {
-  		message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-  	}
+        message.channel.send(clean(evaled), {code:"xl"});
+      } catch (err) {
+        message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+      }
+    }
   }
   
   //Restart Discord Bot
@@ -153,18 +156,17 @@ client.on('message',async message => {
     //  message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
     //}
 
+    if (message.author === package.ownerID){
       let evalEmbed = new Discord.RichEmbed()
-          .setColor('#ff0000')
-          .setTitle('Uh Oh!')
-          .setAuthor('Command Disabled')
-          .setTimestamp()
-          .setDescription('The Eval/Execute Command has been disabled since it has not been working for a while,\nThere will be an update in the future to fix this bug.\n\nSorry for the inconvenience!');
-
-      if (message.author === ownerID){
-          channel.send(evalEmbed);
-      } else {
-          message.reply('You do not have permission to access this developer command.');
-      }
+        .setColor('#ff0000')
+        .setTitle('Uh Oh!')
+        .setAuthor('Command Disabled')
+        .setTimestamp()
+        .setDescription('The Eval/Execute Command has been disabled since it has not been working for a while,\nThere will be an update in the future to fix this bug.\n\nSorry for the inconvenience!');
+      message.channel.send(evalEmbed);
+    } if (message.author.id !== package.ownerID) {
+      message.reply('You do not have permission to access this developer command.');
+    }
 
   }
 
@@ -474,11 +476,11 @@ client.on("message", async message => {
 
 
 client.on("ready", () => {
-    signale.info('Bot started at ' new Date())
+    signal.info('Bot started at ' + new Date())
     signal.info(`Bot has started, with ` + client.users.size + ` users, in ` + client.channels.size + ` channels of ` + client.guilds.size + ` guilds.`);
 
     client.user.setActivity(`with the logs // ` + client.users.size + ` Users. // v` + ver);
 });
 client.login(config.token);
 
-const music = require('discord.js-musicbot-addon');music.start(client,{youtubeKey:config.ytapi,cooldown:{disabled:!0,timer:10000},botPrefix:musicprefix.package,anyoneCanSkip:!0,anyoneCanAdjust:!1,inlineEmbeds:!0,logging:!0})
+const music = require('discord.js-musicbot-addon');music.start(client,{youtubeKey:config.ytapi,cooldown:{disabled:!0,timer:10000},botPrefix:config.musicprefix,anyoneCanSkip:!0,anyoneCanAdjust:!1,inlineEmbeds:!0,logging:!0})

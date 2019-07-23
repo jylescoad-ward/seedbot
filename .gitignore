@@ -64,4 +64,5 @@ typings/
 .github/
 .guide/
 src/node_modules/
+config.json
 src/config.json
