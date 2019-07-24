@@ -24,6 +24,7 @@
 |                                                                             [m.r.p]               |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
+| Hotfix for 1.2.2 (fixed bugs)                                 23.07.2019                          |
 | Argument-Based Stastics Commands                     Added on 22.07.2019    [1.2.2]               |
 | s~shell Command (exec shell commands, linux only)    Added on 20.07.2019    [1.2.2]               |
 | Moved back to 3-level Versions (m.r.p)            Reverted on 14.07.2019    [1.2.1]               | 
