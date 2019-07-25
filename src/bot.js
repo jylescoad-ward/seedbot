@@ -143,25 +143,25 @@ client.on('message',async message => {
   
   //Restart Discord Bot
   if (devcommand === "restart") {
-    //if (message.author.id === ownerID) {
-    //  message.channel.send('Bot it now Restarting. Good Night :first_quarter_moon_with_face: :bed: ');
-    //  client.user.setActivity('Bot is Restarting...');
-    //  resetBot(message.channel);
-    //} else {
-    //  message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
-    //}
-
-    if (message.author === package.ownerID){
-      let evalEmbed = new Discord.RichEmbed()
-        .setColor('#ff0000')
-        .setTitle('Uh Oh!')
-        .setAuthor('Command Disabled')
-        .setTimestamp()
-        .setDescription('The Eval/Execute Command has been disabled since it has not been working for a while,\nThere will be an update in the future to fix this bug.\n\nSorry for the inconvenience!');
-      message.channel.send(evalEmbed);
-    } if (message.author.id !== package.ownerID) {
-      message.reply('You do not have permission to access this developer command.');
+    if (message.author.id === ownerID) {
+      message.channel.send('Bot it now Restarting. Good Night :first_quarter_moon_with_face: :bed: ');
+      client.user.setActivity('Bot is Restarting...');
+      resetBot(message.channel);
+    } else {
+      message.reply('you do not have permissions to use this devcommand,\n so ***a s c e n d*** to the 4th ***d i m e n s i o n***');
     }
+
+    //if (message.author.id === package.ownerID){
+    //  let evalEmbed = new Discord.RichEmbed()
+    //    .setColor('#ff0000')
+    //    .setTitle('Uh Oh!')
+    //    .setAuthor('Command Disabled')
+    //    .setTimestamp()
+    //    .setDescription('The `restart` Command has been disabled since it has not been working for a while,\nThere will be an update in the future to fix this bug.\n\nSorry for the inconvenience!');
+    //  message.channel.send(evalEmbed);
+    //} if (message.author.id !== package.ownerID) {
+    //  message.reply('You do not have permission to access this developer command.');
+    //}
 
   }
 
