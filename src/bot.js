@@ -81,8 +81,8 @@ client.on('message',async message => {
     if (message.author.id === package.ownerID) {
       if (type === "serverlist") {
 
-        var serverlist = client.guilds.array().sort().replace(",", "\n");
-        
+        var serverlist = client.guilds.array().sort();
+        serverlist.toString().replace(",", "\n");
 
         let evalEmbed = new Discord.RichEmbed()
           .setColor('#90d190')
