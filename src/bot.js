@@ -478,4 +478,16 @@ client.on("ready", () => {
 });
 client.login(config.token);
 
-const music = require('discord.js-musicbot-addon');music.start(client,{youtubeKey:config.ytapi,cooldown:{disabled:!0,timer:10},botPrefix:config.musicprefix,anyoneCanSkip:!0,anyoneCanAdjust:!1,inlineEmbeds:!0,logging:!0})
+const music = require('discord.js-musicbot-addon');
+music.start(client, {
+	youtubeKey:config.ytapi,
+	cooldown:{
+		disabled:false,
+		timer:10
+	},
+	botPrefix:config.musicprefix,
+	anyoneCanSkip: false,
+	anyoneCanAdjust: true,
+	inlineEmbeds: false,
+	logging: false
+});
