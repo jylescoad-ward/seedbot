@@ -81,8 +81,8 @@ client.on('message',async message => {
     if (message.author.id === package.ownerID) {
       if (type === "serverlist") {
 
-        var serverlist = client.guilds.array().sort();
-        serverlist.replace(",", "\n");
+        var serverlist = client.guilds.array().sort().replace(",", "\n");
+        
 
         let evalEmbed = new Discord.RichEmbed()
           .setColor('#90d190')
@@ -349,11 +349,19 @@ client.on("message", async message => {
   }
 
   //Fun Commands! >w<
-  if (command === 'rps') {
+    if (command === 'rps') {
       let choice = args.join(" ").toLowerCase();
       if (choice === '') return message.reply("Please specify either rock, paper or scissors.");
       if (choice !== "rock" && choice !== "paper" && choice !== "scissors") return message.reply(`Please specify either rock, paper or scissors. ${choice} isn't one of those :P`);
       message.reply(random());
+
+      let evalEmbed = new Discord.RichEmbed()
+        .setColor('#ff0000')
+        .setTitle('Uh Oh!')
+        .setAuthor('Command Disabled')
+        .setTimestamp()
+        .setDescription('The `rps` (rock, paper, scissors) Command has been disabled since it has not been working for a while,\nThere will be an update in the future to fix this bug.\n\nSorry for the inconvenience!');
+      message.channel.send(evalEmbed);
     }
     if (command === 'punch') {
       let user = message.mentions.users.first()

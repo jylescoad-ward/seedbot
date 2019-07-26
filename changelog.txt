@@ -5,8 +5,8 @@
 | r is Release                                                                                      |
 | p is Patch                                                                                        |
 |        dd.mm.yyyy VERSION m.r.p [Release Type]                                                    |
-|        22.07.2019 VERISON 1.2.2 [PUBLIC RELEASE]                                                  |
-|        BUILD 814                                                                                  |
+|        22.07.2019 VERISON 1.2.3 [PUBLIC RELEASE]                                                  |
+|        BUILD 816                                                                                  |
 |---------------------------------------------------------------------------------------------------|
 |     = JOIN MY DISCORD =                                                                           |
 |  jyles.club/discord                                                                               |
@@ -24,6 +24,7 @@
 |                                                                             [m.r.p]               |
 |                                                                                                   |
 | LATEST ADDITIONS                                                                                  |
+| Disable s!rps                                                 26.07.2019                          |
 | Hotfix for 1.2.2 (fixed bugs)                                 23.07.2019                          |
 | Argument-Based Stastics Commands                     Added on 22.07.2019    [1.2.2]               |
 | s~shell Command (exec shell commands, linux only)    Added on 20.07.2019    [1.2.2]               |
