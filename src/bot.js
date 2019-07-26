@@ -485,9 +485,10 @@ music.start(client, {
 		disabled:false,
 		timer:10
 	},
-	botPrefix:config.musicprefix,
+	botPrefix: "s?",
 	anyoneCanSkip: false,
 	anyoneCanAdjust: true,
 	inlineEmbeds: false,
 	logging: false
 });
+
